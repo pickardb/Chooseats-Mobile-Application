@@ -1,9 +1,31 @@
-import { feathersServices, feathersAuthentication } from '../feathers/index';
+import feathersClient from '../feathers/index';
+import { SubmissionError } from 'redux-form';
 
-export const createUser = (values, dispatch) => {
-    const signupAction = dispatch(feathersServices.users.create(values, {}));
+import userTypes from '../types/users';
 
-    signupAction.then(() => (
-        dispatch(feathersAuthentication.authenticate({ strategy: 'local', email: values.email, password: values.password }))
-    ));
+const userService = feathersClient.service('users');
+
+export const signupUser = (values, dispatch) => {
+
+    userService.create(values).then(
+        (values) => console.log(values))
+        .catch(
+            error => console.log(error)
+        );
 };
+
+
+export const signupUser2 = (values, dispatch) => (
+    dispatch({
+        type: userTypes.SIGNUP,
+        payload: userService.create(values)
+    })
+        .then(values => console.log(values))
+        .catch(error => {
+            console.log(error);
+            throw new SubmissionError({
+                ...error.errors,
+                _errors: error.message
+            });
+        })
+);

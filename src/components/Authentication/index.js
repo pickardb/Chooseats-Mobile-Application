@@ -3,7 +3,6 @@ import { View, ImageBackground, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
-import { feathersAuthentication } from '../../feathers';
 
 import SignupFormContainer from './SignUp/FormContainer';
 const backgroundImage = require('./assets/bg.jpeg');

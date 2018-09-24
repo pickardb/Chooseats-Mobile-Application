@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 
-import userReducer from './user';
-import { feathersAuthentication } from '../feathers';
+import { feathersAuthentication, feathersServices } from '../feathers';
 
 export default combineReducers({
-    user: userReducer,
+    user: feathersServices.users.reducer,
     auth: feathersAuthentication.reducer,
+    form: formReducer,
 });

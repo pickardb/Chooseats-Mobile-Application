@@ -1,19 +1,21 @@
-import feathers from 'feathers-client';
+import feathers from '@feathersjs/feathers';
+import socketio from '@feathersjs/socketio-client';
+import auth from '@feathersjs/authentication-client';
+import reduxifyServices from 'feathers-redux';
 import reduxifyAuthentication from 'feathers-reduxify-authentication';
+import io from 'socket.io-client';
 
-
-const socket = io();
+const socket = io('http://128.189.79.163:3030');
 
 // Configure feathers-client
-const app = feathers()
-    .configure(feathers.socketio(socket))
-    .configure(feathers.hooks())
-    .configure(feathers.authentication({
-        storage: window.localStorage, // store the token in localStorage and initially sign in with that
-    }));
-export default app;
+export const feathersClient = feathers()
+    .configure(socketio(socket))
+    .configure(auth());
+
+// Create Redux Actions and reducers for Feathers services
+export const feathersServices = reduxifyServices(feathersClient, ['users']);
 
 // Reduxify feathers-authentication
-export const feathersAuthentication = reduxifyAuthentication(app,
-    { isUserAuthorized: (user) => user.isVerified } // user must be verified to authenticate
+export const feathersAuthentication = reduxifyAuthentication(feathersClient,
+    {} // user must be verified to authenticate
 );

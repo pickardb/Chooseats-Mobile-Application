@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
 import SignupFormContainer from './SignUp/FormContainer';
+import LoginForm from './Login/LoginForm';
 const backgroundImage = require('./assets/bg.jpeg');
 
 class Authentication extends Component {
@@ -26,9 +27,15 @@ class Authentication extends Component {
                 {showSignup && <Animatable.View animation="fadeIn" style={styles.form}>
                     <SignupFormContainer />
                 </Animatable.View>}
+                {showLogin && <Animatable.View animation="fadeIn" style={styles.form}>
+                    <LoginForm />
+                </Animatable.View>}
 
                 <Animatable.View animation="slideInLeft">
-                    <Button large title='Sign Up' onPress={() => this.setState({ showSignup: true })} />
+                    <Button large title='Sign Up' onPress={() => this.setState({ showLogin: false, showSignup: true })} />
+                </Animatable.View>
+                <Animatable.View animation="slideInLeft">
+                    <Button large title='Login' onPress={() => this.setState({ showSignup: false, showLogin: true })} />
                 </Animatable.View>
             </ImageBackground>
         );

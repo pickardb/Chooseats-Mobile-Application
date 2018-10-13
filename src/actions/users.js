@@ -1,9 +1,29 @@
 import feathersClient from '../feathers/index';
 import { SubmissionError } from 'redux-form';
-
-import userTypes from '../types/users';
+import * as userTypes from '../types/users';
+import feathers from '../feathers/index';
+import {Actions} from 'react-native-router-flux';
+import App from '../App';
+/*import {
+    EMAIL_CHANGED,
+    PASSWORD_CHANGED
+} from '../types/users'*/
 
 const userService = feathersClient.service('users');
+
+export const emailChanged = (text) => {
+    return{
+        type: userTypes.EMAIL_CHANGED,
+        payload: text
+    };
+};
+
+export const passwordChanged = (text) => {
+    return{
+        type: userTypes.PASSWORD_CHANGED,
+        payload: text
+    };
+};
 
 export const signupUser = (values, dispatch) => {
 
@@ -29,3 +49,21 @@ export const signupUser2 = (values, dispatch) => (
             });
         })
 );
+
+export const loginUser = ({email, password}) => {
+    return () => {
+        feathers.authenticate({
+            strategy: 'local',
+            email: email,
+            password: password
+        })
+        .then(()=>{
+            console.log("Login Success");
+            Actions.checkScene();
+
+        })
+        .catch(e=>{
+            console.log(e);
+        });
+    }
+};

@@ -4,13 +4,11 @@ import { CardSection, Card } from '../common';
 
 const RoomListItem = ({ roomName }) => {
     return (
-        <Card>
             <CardSection>
                 <Text>
                     {roomName}
                 </Text>
             </CardSection>
-        </Card>
     );
 };
 

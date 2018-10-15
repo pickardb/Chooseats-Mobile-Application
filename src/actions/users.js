@@ -26,27 +26,6 @@ export const signupUser = async (values, dispatch) => {
             type: userTypes.SIGNUP,
             payload: userService.create(values)
         })
-<<<<<<< HEAD
-);
-
-export const loginUser = ({email, password}) => {
-    return (dispatch) => {
-        dispatch({type: userTypes.LOGIN_PENDING});
-        feathers.authenticate({
-            strategy: 'local',
-            email: email,
-            password: password
-        })
-        .then((values)=>{
-            console.log("Login Success");
-            dispatch({type:userTypes.LOGIN_SUCCESS, payload: values.accessToken});
-            Actions.rooms();
-            console.log(values.accessToken);
-        })
-        .catch(e=>{
-            dispatch({type:userTypes.LOGIN_REJECTED, payload: e.data.message})
-            console.log(e.data.message);
-=======
         loginUser(values)(dispatch)
     } catch (error) {
         console.log(error);
@@ -66,7 +45,6 @@ export const loginUser = ({ email, password }) => async dispatch => {
                 email: email,
                 password: password
             })
->>>>>>> 8c50cefceb0d3a15b40fca4fa6a6f795c9510c90
         });
         Actions.checkScene();
     } catch (err) {

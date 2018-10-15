@@ -1,10 +1,11 @@
 import React from 'react';
-import { Scene, Router, ActionConst } from 'react-native-router-flux';
+import { Scene, Router, ActionConst, Actions } from 'react-native-router-flux';
 
 import Authentication from './components/Authentication';
 import Signup from './components/Authentication/SignUp/FormContainer';
 import Login from './components/Authentication/Login/LoginForm';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
+import roomList from './components/Rooms/RoomList';
 
 const RouterComponent = () => {
     return (
@@ -17,6 +18,20 @@ const RouterComponent = () => {
                         initial
                         hideNavBar
                     />
+                    <Scene
+                        key="signupModal"
+                        direction="vertical"
+                        component={Signup}
+                        title="Please Signup"
+                        
+                    />
+                    <Scene
+                        key="loginModal"
+                        direction="vertical"
+                        component={Login}
+                        title="Please Login"
+                        
+                    />
                 </Scene>
                 <Scene key = "rooms">
                     <Scene
@@ -24,19 +39,10 @@ const RouterComponent = () => {
                         component={RoomLobbyContainer}
                         type={ActionConst.REPLACE}
                     />
-                    <Scene
-                        key="signupModal"
-                        direction="vertical"
-                        component={Signup}
-                        title="Modal"
-                        hideNavBar
-                    />
-                    <Scene
-                        key="loginModal"
-                        direction="vertical"
-                        component={Login}
-                        title="Modal"
-                        hideNavBar
+                     <Scene
+                        key="roomList"
+                        component={roomList}
+                        title="Rooms"
                     />
                 </Scene>
             </Scene>

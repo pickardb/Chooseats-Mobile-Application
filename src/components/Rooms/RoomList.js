@@ -1,29 +1,39 @@
 import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
+import {connect} from 'react-redux';
 import { Card } from '../common';
 import RoomListItem from './RoomListItem';
+import {getRooms} from '../../actions/rooms';
 
 class RoomList extends Component {
-    state = { rooms: [] };
-
     componentWillMount() {
-        this.state.rooms[1] = "Test 1";
-        this.state.rooms[2] = "Test 2";
+        this.props._getRooms();
     }
 
-    renderRooms() {
-        return this.state.rooms.map(room =>
-            <RoomListItem key={room} roomName={room} />);
+    renderRooms(rooms) {
+        return rooms.data.map(room =>
+            <RoomListItem key={room.id} roomName={room.roomId} />);
     }
 
     render() {
-        console.log(this.state);
+    const { rooms } = this.props;
+
         return (
             <ScrollView>
-                {this.renderRooms()}
+                {this.renderRooms(rooms)}
             </ScrollView>
         );
     }
 };
 
-export default RoomList;
+const mapStatetoProps = state => {
+    return {
+        rooms: state.rooms
+    };
+};
+
+const mapDispatchToProps = dispatch => ({
+    _getRooms: () => dispatch(getRooms),
+});
+
+export default connect(mapStatetoProps,mapDispatchToProps)(RoomList);

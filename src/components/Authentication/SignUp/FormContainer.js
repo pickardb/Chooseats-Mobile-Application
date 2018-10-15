@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import { feathersClient } from '../../../feathers/index';
-import { signupUser, signupUser2 } from '../../../actions/users';
+import { signupUser } from '../../../actions/users';
 
 import SignupFormComponent from './FormComponent';
 
@@ -28,7 +28,7 @@ const validate = (values) => {
 const container = ({ error, handleSubmit, _signup }) => (
     <SignupFormComponent
         handleSubmit={handleSubmit}
-        onSubmit={signupUser2}
+        onSubmit={signupUser}
         error={error}
     />
 );

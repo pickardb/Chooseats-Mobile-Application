@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button, Spinner } from '../../common';
+=======
+import { View } from 'react-native';
+import { connect } from 'react-redux';
+import { Card, CardSection, Input, Button } from '../../common';
+>>>>>>> 8c50cefceb0d3a15b40fca4fa6a6f795c9510c90
 import { emailChanged, passwordChanged, loginUser } from '../../../actions/users';
 
 
@@ -18,6 +24,7 @@ class LoginForm extends Component {
         this.props.loginUser({ email: this.props.email, password: this.props.password });
     }
 
+<<<<<<< HEAD
     renderError() {
         if (this.props.error) {
             return <View style={{ backgroundColor: 'white' }}>
@@ -41,6 +48,8 @@ class LoginForm extends Component {
         );
     }
 
+=======
+>>>>>>> 8c50cefceb0d3a15b40fca4fa6a6f795c9510c90
     render() {
         return (
             <View>

@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
-const Check = () =>{
-    return(
+const Check = () => {
+    return (
         <View>
             <Text>
                 You are Logged In
@@ -11,4 +11,4 @@ const Check = () =>{
     );
 };
 
-export {Check};
+export default Check;

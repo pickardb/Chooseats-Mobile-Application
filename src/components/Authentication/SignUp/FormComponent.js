@@ -24,7 +24,7 @@ export default SignupFormComponent = ({ handleSubmit, onSubmit }) => (
 
 
         <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            <Text style={styles.button}>Submit</Text>
+            <Text style={styles.button}>Create an Account</Text>
         </TouchableOpacity>
     </View>
 );

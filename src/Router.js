@@ -1,8 +1,10 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, ActionConst } from 'react-native-router-flux';
+
 import Authentication from './components/Authentication';
-import {Check} from './components/Check';
-import roomList from './components/Rooms/RoomList';
+import Signup from './components/Authentication/SignUp/FormContainer';
+import Login from './components/Authentication/Login/LoginForm';
+import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 
 const RouterComponent = () => {
     return (
@@ -13,14 +15,28 @@ const RouterComponent = () => {
                         key="Authenticate"
                         component={Authentication}
                         initial
+                        hideNavBar
                     />
                 </Scene>
                 <Scene key = "rooms">
                     <Scene
-                        key="roomList"
-                        component={roomList}
-                        title="Rooms"
-                        initial
+                        key="checkScene"
+                        component={RoomLobbyContainer}
+                        type={ActionConst.REPLACE}
+                    />
+                    <Scene
+                        key="signupModal"
+                        direction="vertical"
+                        component={Signup}
+                        title="Modal"
+                        hideNavBar
+                    />
+                    <Scene
+                        key="loginModal"
+                        direction="vertical"
+                        component={Login}
+                        title="Modal"
+                        hideNavBar
                     />
                 </Scene>
             </Scene>

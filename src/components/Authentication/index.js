@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, ImageBackground, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
-import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
+import { Actions } from 'react-native-router-flux';
 
-import SignupFormContainer from './SignUp/FormContainer';
-import LoginForm from './Login/LoginForm';
 const backgroundImage = require('./assets/bg.jpeg');
 
+<<<<<<< HEAD
 class Authentication extends Component {
 
     constructor() {
@@ -52,16 +51,20 @@ const mapDispatchToProps = dispatch => ({
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Authentication);
+=======
+export default Authentication = () => (
+    <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
+        <Animatable.View animation="slideInLeft">
+            <Button large title='Sign Up' onPress={Actions.signupModal} />
+        </Animatable.View>
+        <Animatable.View animation="slideInLeft">
+            <Button large title='Login' onPress={Actions.loginModal} />
+        </Animatable.View>
+    </ImageBackground>
+);
+>>>>>>> 8c50cefceb0d3a15b40fca4fa6a6f795c9510c90
 
 const styles = StyleSheet.create({
-    form: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
-        backgroundColor: 'white',
-    },
     container: {
         flex: 1,
         flexDirection: 'column',

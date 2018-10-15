@@ -18,10 +18,9 @@ const userReducer = (state = {
         case types.LOGIN_PENDING:
             return { ...state, isLoggingIn: true }
         case types.LOGIN_FULFILLED:
-            return action.payload;
+            return { ...state, ...action.payload, isLoggingIn: false, password: null };
         case types.LOGIN_REJECTED:
             return { ...state, errors: action.payload.errors, isLoggingIn: false }
-
 
         case types.EMAIL_CHANGED:
             return { ...state, email: action.payload }

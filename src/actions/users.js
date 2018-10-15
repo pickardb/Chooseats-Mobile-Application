@@ -1,46 +1,31 @@
 import feathersClient from '../feathers/index';
 import { SubmissionError } from 'redux-form';
-import * as userTypes from '../types/users';
+import userTypes from '../types/users';
 import feathers from '../feathers/index';
-import {Actions} from 'react-native-router-flux';
-import App from '../App';
-/*import {
-    EMAIL_CHANGED,
-    PASSWORD_CHANGED
-} from '../types/users'*/
+import { Actions } from 'react-native-router-flux';
 
 const userService = feathersClient.service('users');
 
 export const emailChanged = (text) => {
-    return{
+    return {
         type: userTypes.EMAIL_CHANGED,
         payload: text
     };
 };
 
 export const passwordChanged = (text) => {
-    return{
+    return {
         type: userTypes.PASSWORD_CHANGED,
         payload: text
     };
 };
 
-export const signupUser = (values, dispatch) => {
-
-    userService.create(values).then(
-        (values) => console.log(values))
-        .catch(
-            error => console.log(error)
-        );
-};
-
-
-export const signupUser2 = (values, dispatch) => (
+export const signupUser = (values, dispatch) => (
     dispatch({
         type: userTypes.SIGNUP,
         payload: userService.create(values)
     })
-        .then(values => console.log(values))
+        .then(loginUser(values)(dispatch))
         .catch(error => {
             console.log(error);
             throw new SubmissionError({
@@ -50,20 +35,22 @@ export const signupUser2 = (values, dispatch) => (
         })
 );
 
-export const loginUser = ({email, password}) => {
-    return () => {
-        feathers.authenticate({
+export const loginUser = ({ email, password }) => dispatch => (
+    dispatch({
+        type: userTypes.LOGIN,
+        payload: feathers.authenticate({
             strategy: 'local',
             email: email,
             password: password
         })
-        .then(()=>{
-            console.log("Login Success");
-            Actions.checkScene();
+    }).then(() => {
+        Actions.checkScene();
 
-        })
-        .catch(e=>{
+    })
+        .catch(e => {
             console.log(e);
-        });
-    }
-};
+        })
+)
+
+
+

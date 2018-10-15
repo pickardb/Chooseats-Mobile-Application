@@ -51,19 +51,22 @@ export const signupUser2 = (values, dispatch) => (
 );
 
 export const loginUser = ({email, password}) => {
-    return () => {
+    return (dispatch) => {
+        dispatch({type: userTypes.LOGIN_PENDING});
         feathers.authenticate({
             strategy: 'local',
             email: email,
             password: password
         })
-        .then(()=>{
+        .then((values)=>{
             console.log("Login Success");
-            Actions.checkScene();
-
+            dispatch({type:userTypes.LOGIN_SUCCESS, payload: values.accessToken});
+            Actions.rooms();
+            console.log(values.accessToken);
         })
         .catch(e=>{
-            console.log(e);
+            dispatch({type:userTypes.LOGIN_REJECTED, payload: e.data.message})
+            console.log(e.data.message);
         });
     }
 };

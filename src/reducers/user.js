@@ -8,6 +8,7 @@ const userReducer = (state = {
 
 }, action) => {
     console.log(action);
+    console.log(state);
     switch (action.type) {
         case types.SIGNUP_PENDING:
             return { ...state, isSigningUp: true }
@@ -19,6 +20,12 @@ const userReducer = (state = {
             return{...state, email: action.payload}
         case types.PASSWORD_CHANGED:
             return{...state, password: action.payload}
+        case types.LOGIN_PENDING: 
+            return {...state, isLogginIn: true}
+        case types.LOGIN_SUCCESS:
+            return {...state, email: '', password: '', error: '', isLogginIn: false}
+        case types.LOGIN_REJECTED:
+            return {...state, password: '', isLogginIn: '', error: action.payload, isLogginIn: false}
         default:
             return state;
     }

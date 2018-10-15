@@ -1,23 +1,46 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import {connect} from 'react-redux';
-import { Card, CardSection, Input, Button } from '../../common';
-import {emailChanged, passwordChanged, loginUser} from '../../../actions/users';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { Card, CardSection, Input, Button, Spinner } from '../../common';
+import { emailChanged, passwordChanged, loginUser } from '../../../actions/users';
 
 
 class LoginForm extends Component {
-    onEmailChange(text){
+    onEmailChange(text) {
         this.props.emailChanged(text);
     }
 
-    onPasswordChange(text){
+    onPasswordChange(text) {
         this.props.passwordChanged(text);
     }
 
-    onButtonPress(){
-        this.props.loginUser({email: this.props.email, password: this.props.password});
+    onButtonPress() {
+        this.props.loginUser({ email: this.props.email, password: this.props.password });
     }
-  
+
+    renderError() {
+        if (this.props.error) {
+            return <View style={{ backgroundColor: 'white' }}>
+                <CardSection>
+                    <Text style={styles.errorTextStyle}>
+                        {this.props.error}
+                    </Text>
+                </CardSection>
+            </View>
+        }
+    }
+
+    renderButton() {
+        if (this.props.isLogginIn) {
+            return <Spinner size="large" />;
+        }
+        return (
+            <Button onPress={this.onButtonPress.bind(this)}>
+                Login
+            </Button>
+        );
+    }
+
     render() {
         return (
             <View>
@@ -39,10 +62,11 @@ class LoginForm extends Component {
                             value={this.props.password}
                         />
                     </CardSection>
+
+                    {this.renderError()}
+
                     <CardSection>
-                        <Button onPress={this.onButtonPress.bind(this)}>
-                            Login
-                        </Button>
+                        {this.renderButton()}
                     </CardSection>
                 </Card>
             </View>
@@ -51,10 +75,12 @@ class LoginForm extends Component {
     }
 }
 
-const mapStatetoProps = state =>{
-    return{
+const mapStatetoProps = state => {
+    return {
         email: state.user.email,
-        password: state.user.password
+        password: state.user.password,
+        error: state.user.error,
+        isLogginIn: state.user.isLogginIn
     };
 };
 
@@ -62,5 +88,12 @@ export default connect(mapStatetoProps, {
     emailChanged,
     passwordChanged,
     loginUser
-    })(LoginForm);
+})(LoginForm);
 
+const styles = {
+    errorTextStyle:{
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'red',
+    }
+};

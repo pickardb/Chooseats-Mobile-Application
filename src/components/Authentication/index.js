@@ -31,12 +31,12 @@ class Authentication extends Component {
                     <LoginForm />
                 </Animatable.View>}
 
-                <Animatable.View animation="slideInLeft">
-                    <Button large title='Sign Up' onPress={() => this.setState({ showLogin: false, showSignup: true })} />
-                </Animatable.View>
-                <Animatable.View animation="slideInLeft">
-                    <Button large title='Login' onPress={() => this.setState({ showSignup: false, showLogin: true })} />
-                </Animatable.View>
+                    <Animatable.View animation="slideInLeft">
+                        <Button large title='Sign Up' onPress={() => this.setState({ showLogin: false, showSignup: true })} />
+                    </Animatable.View>
+                    <Animatable.View animation="slideInLeft">
+                        <Button large title='Login' onPress={() => this.setState({ showSignup: false, showLogin: true })} />
+                    </Animatable.View>
             </ImageBackground>
         );
     }

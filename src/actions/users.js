@@ -26,7 +26,7 @@ export const signupUser = async (values, dispatch) => {
             type: userTypes.SIGNUP,
             payload: userService.create(values)
         })
-        loginUser(values)(dispatch)
+        loginUser(values, dispatch)
     } catch (error) {
         console.log(error);
         throw new SubmissionError({
@@ -36,19 +36,23 @@ export const signupUser = async (values, dispatch) => {
     }
 };
 
-export const loginUser = ({ email, password }) => async dispatch => {
+export const loginUser = async (values,dispatch) => {
     try {
         await dispatch({
             type: userTypes.LOGIN,
             payload: feathersClient.authenticate({
                 strategy: 'local',
-                email: email,
-                password: password
+                email: values.email,
+                password: values.password
             })
         });
         Actions.checkScene();
     } catch (err) {
         console.log(err);
+        throw new SubmissionError({
+            ...error.errors,
+            _errors: error.message
+        })
     }
 
 }

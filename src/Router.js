@@ -3,7 +3,7 @@ import { Scene, Router, ActionConst, Actions } from 'react-native-router-flux';
 
 import Authentication from './components/Authentication';
 import Signup from './components/Authentication/SignUp/FormContainer';
-import Login from './components/Authentication/Login/LoginForm';
+import Login from './components/Authentication/Login/LoginFormContainer';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import roomList from './components/Rooms/RoomList';
 

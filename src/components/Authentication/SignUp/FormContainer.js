@@ -25,7 +25,7 @@ const validate = (values) => {
     return errors;
 };
 
-const container = ({ error, handleSubmit, _signup }) => (
+const container = ({ error, handleSubmit }) => (
     <SignupFormComponent
         handleSubmit={handleSubmit}
         onSubmit={signupUser}
@@ -34,7 +34,6 @@ const container = ({ error, handleSubmit, _signup }) => (
 );
 
 const mapStateToProps = state => ({
-    auth: state.auth,
 });
 
 SignupFormContainer = reduxForm({

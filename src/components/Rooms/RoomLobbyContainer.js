@@ -6,10 +6,11 @@ import { Actions } from 'react-native-router-flux';
 import { getRooms } from '../../actions/rooms';
 
 class RoomLobbyContainer extends Component {
-    componentDidMount() {
+    componentWillMount() {
         const { _getRooms } = this.props;
         _getRooms();
     }
+
 
     render() {
         return (<View>
@@ -17,8 +18,8 @@ class RoomLobbyContainer extends Component {
                 <Text>
                     You are viewing your lobby
                 </Text>
-                </CardSection>
-                <CardSection>
+            </CardSection>
+            <CardSection>
                 <Button onPress={Actions.roomList}>
                     Room List
             </Button>

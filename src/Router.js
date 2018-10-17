@@ -1,11 +1,14 @@
 import React from 'react';
-import { Scene, Router, ActionConst, Actions } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
+import {connect} from 'react-redux';
+import createRoom from './actions/rooms';
 
 import Authentication from './components/Authentication';
 import Signup from './components/Authentication/SignUp/FormContainer';
 import Login from './components/Authentication/Login/LoginFormContainer';
+import RoomCreate from './components/Rooms/RoomCreate';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
-import roomList from './components/Rooms/RoomList';
+import RoomList from './components/Rooms/RoomList';
 
 const RouterComponent = () => {
     return (
@@ -34,15 +37,26 @@ const RouterComponent = () => {
                     />
                 </Scene>
                 <Scene key = "rooms">
-                    <Scene
-                        key="checkScene"
-                        component={RoomLobbyContainer}
-                        type={ActionConst.REPLACE}
-                    />
+                <Scene 
+                    key="Lobby"
+                    component = {RoomLobbyContainer}
+                    title="Test Lobby"
+                    initial
+                />
                      <Scene
                         key="roomList"
-                        component={roomList}
-                        title="Rooms"
+                        component={RoomList}
+                        title="Your Rooms"
+                        rightTitle = "Create"
+                        onRight = {()=>
+                            Actions.roomCreate()
+                        }
+                        
+                    />
+                    <Scene
+                        key="roomCreate"
+                        component = {RoomCreate}
+                        title="Create a room"
                     />
                 </Scene>
             </Scene>
@@ -50,5 +64,7 @@ const RouterComponent = () => {
     );
 
 };
+
+
 
 export default RouterComponent;

@@ -46,9 +46,9 @@ export const loginUser = async (values,dispatch) => {
                 password: values.password
             })
         });
-        Actions.checkScene();
-    } catch (err) {
-        console.log(err);
+        Actions.rooms();
+    } catch (error) {
+        console.log(error);
         throw new SubmissionError({
             ...error.errors,
             _errors: error.message
@@ -56,6 +56,8 @@ export const loginUser = async (values,dispatch) => {
     }
 
 }
+
+
 
 
 

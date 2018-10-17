@@ -1,42 +1,51 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import {Card, CardSection, Button} from '../../common';
 
 import { TextField } from '../../../utils/form_components';
 
 export default SignupFormComponent = ({ handleSubmit, onSubmit }) => (
     <View>
+        <Card>
+            <CardSection>
         <Field
             name="email"
             label="Email"
-            placeholder="your email"
+            placeholder="Your Email"
             keyboardType="email-address"
             component={TextField}
         />
-
+        </CardSection>
+        <CardSection>
         <Field
             name="password"
             label="Password"
-            placeholder="your password"
+            placeholder="Your Password"
             secureTextEntry={true}
             component={TextField}
         />
+        </CardSection>
 
-
-        <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            <Text style={styles.button}>Create an Account</Text>
-        </TouchableOpacity>
+        <CardSection>
+        <Button onPress={handleSubmit(onSubmit)}>
+            Create an Account
+        </Button>
+        </CardSection>
+        </Card>
     </View>
 );
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: 'blue',
-        color: 'white',
-        height: 30,
-        lineHeight: 30,
-        marginTop: 10,
-        textAlign: 'center',
-        width: 250
+        flex: 1,
+        elevation: 0,
+        alignSelf: 'stretch',
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: '#007aff',
+        marginLeft: 5,
+        marginRight: 5
     }
 })

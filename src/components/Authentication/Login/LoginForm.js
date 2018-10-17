@@ -15,7 +15,7 @@ export default LoginForm = ({ handleSubmit, onSubmit, isLoggingIn }) => (
                 <Field
                     name="email"
                     label="Email"
-                    placeholder="your email"
+                    placeholder="Your Email"
                     keyboardType="email-address"
                     component={TextField}
                 />
@@ -24,7 +24,7 @@ export default LoginForm = ({ handleSubmit, onSubmit, isLoggingIn }) => (
                 <Field
                     name="password"
                     label="Password"
-                    placeholder="your password"
+                    placeholder="Your Password"
                     secureTextEntry={true}
                     component={TextField}
                 />

@@ -7,7 +7,6 @@ const userReducer = (state = {
     isLoggingIn: false
 
 }, action) => {
-    console.log(action);
     switch (action.type) {
         case types.SIGNUP_PENDING:
             return { ...state, isSigningUp: true }

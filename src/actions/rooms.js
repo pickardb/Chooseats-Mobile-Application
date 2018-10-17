@@ -16,3 +16,13 @@ export const getRooms = async (dispatch) => {
     }
 };
 
+export const createRoom = async (dispatch) => {
+    try{
+        await dispatch({
+            type: roomTypes.CREATE_ROOM,
+            payload: roomsService.create({})
+        });
+    } catch(err){
+        console.log(err);
+    }
+};

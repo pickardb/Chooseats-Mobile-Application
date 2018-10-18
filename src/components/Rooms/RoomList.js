@@ -4,16 +4,18 @@ import {connect} from 'react-redux';
 import { Card } from '../common';
 import RoomListItem from './RoomListItem';
 import {getRooms} from '../../actions/rooms';
+import { Actions } from 'react-native-router-flux';
 
 class RoomList extends Component {
     componentWillMount() {
         this.props._getRooms();
+        Actions.refresh({key: 'roomList'});
     }
 
     renderRooms(rooms) {
         if(rooms.data!=undefined){
         return rooms.data.map(room =>
-            <RoomListItem key={room.id} roomName={room.roomId} />);
+            <RoomListItem key={room.id} roomName={room.roomCode} />);
         }
     }
 

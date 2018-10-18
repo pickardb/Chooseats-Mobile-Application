@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import {connect} from 'react-redux';
-import createRoom from './actions/rooms';
+import getRooms from './actions/rooms';
 
 import Authentication from './components/Authentication';
 import Signup from './components/Authentication/SignUp/FormContainer';

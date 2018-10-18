@@ -21,7 +21,7 @@ const roomsReducer = (state = {
         case types.CREATE_ROOM_PENDING:
             return { ...state, isCreatingRoom: true }
         case types.CREATE_ROOM_FULFILLED:
-            return { ...state, newRoom: action.payload.roomId, isCreatingRoom: false }
+            return { ...state, newRoom: action.payload.roomCode, isCreatingRoom: false }
         case types.CREATE_ROOM_REJECTED:
             return { ...state, errors: action.payload.errors, isCreatingRoom: false }
         default:

@@ -10,6 +10,7 @@ import RoomCreate from './components/Rooms/RoomCreate';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import RoomList from './components/Rooms/RoomList';
 import RoomJoin from './components/Rooms/RoomJoin';
+import ChatRoom from './components/Rooms/ChatRoom';
 
 const RouterComponent = () => {
     return (
@@ -63,6 +64,11 @@ const RouterComponent = () => {
                         key="roomJoin"
                         component = {RoomJoin}
                         title="Join a room"
+                    />
+                    <Scene
+                        key="chatRoom"
+                        component = {ChatRoom}
+                        title="Chat"
                     />
                 </Scene>
             </Scene>

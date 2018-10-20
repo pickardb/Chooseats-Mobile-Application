@@ -41,12 +41,6 @@ export const updateJoinRoomCode = (text) => {
 };
 
 export const joinRoom = (roomCode) => async (dispatch) => {
-    console.log(roomCode.substring(0, 5));
-    console.log(roomCode.substring(6, 7));
-
-    var code = roomCode.substring(0, 5);
-    var id = roomCode.substring(6, roomCode.length - 1);
-    console.log(code + " " + id);
     try {
         await dispatch({
             type: roomTypes.JOIN_ROOM,

@@ -9,6 +9,7 @@ import { Actions } from 'react-native-router-flux';
 class RoomList extends Component {
     componentWillMount() {
         this.props._getRooms();
+        Actions.refresh({key: 'roomList'})
     }
 
     renderRooms(rooms) {

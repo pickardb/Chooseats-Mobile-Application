@@ -9,7 +9,7 @@ import Login from './components/Authentication/Login/LoginFormContainer';
 import RoomCreate from './components/Rooms/RoomCreate';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import RoomList from './components/Rooms/RoomList';
-import RoomJoin from './components/Rooms/RoomJoin';
+import RoomJoin from './components/Rooms/RoomJoinContainer';
 import ChatRoom from './components/Rooms/ChatRoom';
 
 const RouterComponent = () => {

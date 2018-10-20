@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import { Card, CardSection, Button, Input } from '../common';
 import { Actions } from 'react-native-router-flux';
 import { updateJoinRoomCode, joinRoom } from '../../actions/rooms';
+import { TextField } from '../../utils/form_components';
+import { Field } from 'redux-form';
 
 class RoomJoin extends Component {
     componentWillUnmount() {
         Actions.refresh({ key: 'roomList' });
     }
 
-    onButtonPress() {
-        console.log(this.props.joinRoomCode);
-        this.props._joinRoom(this.props.joinRoomCode);
-    }
-    render() {
+    render() {;
+        const{error, handleSubmit, onSubmit} = this.props;
         return (
             <View>
                 <Card>
@@ -22,15 +21,15 @@ class RoomJoin extends Component {
                         <Text>Enter the room code: </Text>
                     </CardSection>
                     <CardSection>
-                        <Input
+                        <Field
+                            name="roomCode"
                             placeHolder="ABCDEF"
                             label="Room Code:"
-                            value={this.props.joinRoomCode}
-                            onChangeText={text => this.props._updateJoinRoomCode(text)}
+                            component={TextField}
                         />
                     </CardSection>
                     <CardSection>
-                        <Button onPress={this.onButtonPress.bind(this)}>
+                        <Button onPress={handleSubmit(onSubmit)}>
                             Join Room
                         </Button>
                     </CardSection>

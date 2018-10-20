@@ -2,33 +2,33 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button, Input } from '../common';
-import {Actions} from 'react-native-router-flux';
-import {updateJoinRoomCode, joinRoom} from '../../actions/rooms';
+import { Actions } from 'react-native-router-flux';
+import { updateJoinRoomCode, joinRoom } from '../../actions/rooms';
 
 class RoomJoin extends Component {
-    componentWillUnmount(){
-        Actions.refresh({key:'roomList' });
+    componentWillUnmount() {
+        Actions.refresh({ key: 'roomList' });
     }
 
-    onButtonPress(){
+    onButtonPress() {
         console.log(this.props.joinRoomCode);
-      this.props._joinRoom(this.props.joinRoomCode);
+        this.props._joinRoom(this.props.joinRoomCode);
     }
-    render (){
-        return(
+    render() {
+        return (
             <View>
                 <Card>
                     <CardSection>
                         <Text>Enter the room code: </Text>
                     </CardSection>
                     <CardSection>
-                        <Input 
+                        <Input
                             placeHolder="ABCDEF"
                             label="Room Code:"
                             value={this.props.joinRoomCode}
-                            onChangeText={text=>this.props._updateJoinRoomCode(text)}
+                            onChangeText={text => this.props._updateJoinRoomCode(text)}
                         />
-                        </CardSection>
+                    </CardSection>
                     <CardSection>
                         <Button onPress={this.onButtonPress.bind(this)}>
                             Join Room
@@ -47,9 +47,10 @@ const mapStatetoProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-   return{
-    _joinRoom: roomCode => dispatch(joinRoom),
-    _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
-}};
+    return {
+        _joinRoom: roomCode => dispatch(joinRoom(roomCode)),
+        _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
+    }
+};
 
-export default connect(mapStatetoProps,mapDispatchToProps)(RoomJoin);
+export default connect(mapStatetoProps, mapDispatchToProps)(RoomJoin);

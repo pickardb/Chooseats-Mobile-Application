@@ -23,37 +23,37 @@ export const getRooms = async (dispatch) => {
 };
 
 export const createRoom = async (dispatch) => {
-    try{
+    try {
         await dispatch({
             type: roomTypes.CREATE_ROOM,
             payload: roomsService.create({})
         })
-    } catch(err){
+    } catch (err) {
         console.log(err);
     }
 };
 
 export const updateJoinRoomCode = (text) => {
-    return{
+    return {
         type: roomTypes.JOIN_ROOM_UPDATED,
         payload: text
     };
 };
 
-export const joinRoom = async (dispatch, roomCode) => {
-    console.log(roomCode.substring(0,5));
-    console.log(roomCode.substring(6,7));
+export const joinRoom = (roomCode) => async (dispatch) => {
+    console.log(roomCode.substring(0, 5));
+    console.log(roomCode.substring(6, 7));
 
-    var code = roomCode.substring(0,5);
-    var id = roomcode.substring(6,roomcode.length-1);
-    console.log(code+" "+id);
-    try{
+    var code = roomCode.substring(0, 5);
+    var id = roomCode.substring(6, roomCode.length - 1);
+    console.log(code + " " + id);
+    try {
         await dispatch({
             type: roomTypes.JOIN_ROOM,
-            payload: roomsService.patch(roomCode,{id: roomCode, roomCode: roomCode})
+            payload: roomsService.patch(roomCode, { roomCode: roomCode })
         })
     }
-    catch(err){
+    catch (err) {
         console.log(err);
     }
 };

@@ -9,6 +9,7 @@ import Login from './components/Authentication/Login/LoginFormContainer';
 import RoomCreate from './components/Rooms/RoomCreate';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import RoomList from './components/Rooms/RoomList';
+import RoomJoin from './components/Rooms/RoomJoin';
 
 const RouterComponent = () => {
     return (
@@ -57,6 +58,11 @@ const RouterComponent = () => {
                         key="roomCreate"
                         component = {RoomCreate}
                         title="Create a room"
+                    />
+                    <Scene
+                        key="roomJoin"
+                        component = {RoomJoin}
+                        title="Join a room"
                     />
                 </Scene>
             </Scene>

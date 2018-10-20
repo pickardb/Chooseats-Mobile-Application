@@ -41,16 +41,18 @@ export const updateJoinRoomCode = (text) => {
 };
 
 export const joinRoom = async (dispatch, roomCode) => {
-    console.log(roomCode.substring(0,5));
-    console.log(roomCode.substring(6,7));
+    console.log(roomCode);
+    var roomString = roomCode.toString();
+    
+    console.log("Code: " + roomString.substr(0,6));
+    console.log("Id: " + roomString.substr(6,1));
 
-    var code = roomCode.substring(0,5);
-    var id = roomcode.substring(6,roomcode.length-1);
-    console.log(code+" "+id);
+    var code = roomString.substring(0,5);
+    var id = roomString.substring(6,roomString.length-1);
     try{
         await dispatch({
             type: roomTypes.JOIN_ROOM,
-            payload: roomsService.patch(roomCode,{id: roomCode, roomCode: roomCode})
+            payload: roomsService.patch(id,{roomCode: code})
         })
     }
     catch(err){

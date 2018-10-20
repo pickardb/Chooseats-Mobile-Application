@@ -14,7 +14,7 @@ class RoomList extends Component {
     renderRooms(rooms) {
         if (rooms.data != undefined) {
             return rooms.data.map(room =>
-                <RoomListItem key={room.id} roomName={room.roomCode} />);
+                <RoomListItem key={room.id} roomName={room.roomCode} id={room.id} />);
         }
     }
 

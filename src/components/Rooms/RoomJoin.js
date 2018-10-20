@@ -46,9 +46,10 @@ const mapStatetoProps = state => {
     };
 }
 
-const mapDispatchToProps = dispatch => ({
-    _joinRoom: (roomCode) => dispatch(joinRoom(roomCode)),
+const mapDispatchToProps = dispatch => {
+   return{
+    _joinRoom: roomCode => dispatch(joinRoom),
     _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
-});
+}};
 
 export default connect(mapStatetoProps,mapDispatchToProps)(RoomJoin);

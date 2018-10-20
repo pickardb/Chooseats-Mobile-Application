@@ -1,5 +1,7 @@
 import feathersClient from '../feathers/index';
 import { Actions } from 'react-native-router-flux';
+import React from 'react';
+
 
 import roomTypes from '../types/rooms';
 
@@ -33,17 +35,22 @@ export const createRoom = async (dispatch) => {
 
 export const updateJoinRoomCode = (text) => {
     return{
-        type:roomTypes.JOIN_ROOM_UPDATED,
+        type: roomTypes.JOIN_ROOM_UPDATED,
         payload: text
     };
 };
 
 export const joinRoom = async (dispatch, roomCode) => {
-    console.log(roomCode);
+    console.log(roomCode.substring(0,5));
+    console.log(roomCode.substring(6,7));
+
+    var code = roomCode.substring(0,5);
+    var id = roomcode.substring(6,roomcode.length-1);
+    console.log(code+" "+id);
     try{
         await dispatch({
-            type:roomTypes.JOIN_ROOM,
-            payload: roomsService.patch(roomCode,{roomCode: roomCode})
+            type: roomTypes.JOIN_ROOM,
+            payload: roomsService.patch(roomCode,{id: roomCode, roomCode: roomCode})
         })
     }
     catch(err){

@@ -6,7 +6,7 @@ import getRooms from './actions/rooms';
 import Authentication from './components/Authentication';
 import Signup from './components/Authentication/SignUp/FormContainer';
 import Login from './components/Authentication/Login/LoginFormContainer';
-import RoomCreate from './components/Rooms/RoomCreate';
+import RoomCreate from './components/Rooms/RoomCreateContainer';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import RoomList from './components/Rooms/RoomList';
 import RoomJoin from './components/Rooms/RoomJoinContainer';
@@ -42,7 +42,7 @@ const RouterComponent = () => {
                 <Scene 
                     key="Lobby"
                     component = {RoomLobbyContainer}
-                    title="Test Lobby"
+                    title="Chooseats Lobby"
                     initial
                 />
                      <Scene

@@ -14,8 +14,9 @@ class RoomList extends Component {
 
     renderRooms(rooms) {
         if (rooms.data != undefined) {
+            console.log(rooms.data);
             return rooms.data.map(room =>
-                <RoomListItem key={room.id} roomName={room.roomCode} id={room.id} />);
+                <RoomListItem key={room.id} name={room.roomName} descriptipon={room.roomDesc} code = {room.roomCode}/>);
         }
     }
 
@@ -25,12 +26,13 @@ class RoomList extends Component {
         return (
 
             <ScrollView>
-                {this.renderRooms(rooms)}
                 <CardSection>
                     <Button onPress={Actions.roomJoin}>
                         Join a new Room
-                </Button>
+                    </Button>
                 </CardSection>
+                {this.renderRooms(rooms)}
+                
             </ScrollView>
         );
     }

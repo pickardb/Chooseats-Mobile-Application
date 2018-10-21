@@ -4,7 +4,7 @@ import {Card, CardSection} from '../common';
 
 class ChatRoom extends Component {
     render(){
-        const{roomName, id} = this.props;
+        const{name, code, description} = this.props;
         return(
             <View>
                 <Card>
@@ -13,7 +13,7 @@ class ChatRoom extends Component {
                             This Room's code is: 
                         </Text>
                         <Text>
-                            {roomName}
+                            {name}
                         </Text>
                     </CardSection>
                     <CardSection>
@@ -21,12 +21,12 @@ class ChatRoom extends Component {
                             This Room's id is: 
                         </Text>
                         <Text>
-                            {id}
+                            {code}
                         </Text>
                     </CardSection>
                 </Card>
                 <Text>
-                    Chat room placeholder
+                    {description}
                 </Text>
             </View>
         );

@@ -14,9 +14,12 @@ class RoomLobbyContainer extends Component {
 
     render() {
         return (<View>
-            <CardSection>
-                <Text>
-                    You are viewing your lobby
+            <CardSection style={styles.textContainerStyle}>
+                < Text style={styles.titleTextStyle}>
+                    Welcome to Chooseats!
+                </Text>
+                <Text style={styles.subtitleTextStyle}>
+                    Press the button below to access your list of rooms!
                 </Text>
             </CardSection>
             <CardSection>
@@ -37,3 +40,20 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomLobbyContainer);
+
+const styles = {
+    titleTextStyle: {
+        fontSize: 22,
+        color: 'black',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    subtitleTextStyle: {
+        fontSize: 18,
+        color: 'black',
+        textAlign: 'center'
+    },
+    textContainerStyle: {
+        flexDirection: 'column'
+    }
+};

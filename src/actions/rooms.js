@@ -13,7 +13,7 @@ export const getRooms = async (dispatch) => {
             type: roomTypes.GET_ROOMS,
             payload: roomsService.find({
                 query: {
-                    $limit: 20
+                    $limit: 25
                 }
             })
         });
@@ -22,11 +22,11 @@ export const getRooms = async (dispatch) => {
     }
 };
 
-export const createRoom = async (dispatch) => {
+export const createRoom = async (dispatch, values) => {
     try {
         await dispatch({
             type: roomTypes.CREATE_ROOM,
-            payload: roomsService.create({})
+            payload: roomsService.create({roomName: values.name, roomDesc: values.description})
         })
     } catch (err) {
         console.log(err);

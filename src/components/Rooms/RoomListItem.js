@@ -2,25 +2,26 @@ import React, { Component } from 'react';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { CardSection, Card } from '../common';
 import { Actions } from 'react-native-router-flux';
+import { black } from 'ansi-colors';
 
 class RoomListItem extends Component {
     
    
     onRowPress() {
-        const {roomName, id} = this.props
-        Actions.chatRoom({ roomName, id });
+        const {name, code, description} = this.props
+        Actions.chatRoom({ name, code, description});
     }
     render() {
-        const {roomName, id} = this.props
+        const {name, code, description} = this.props
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>
-                    <CardSection>
-                        <Text>
-                            {roomName}
+                    <CardSection style={Styles.itemStyle}>
+                        <Text style={Styles.titleStyle}>
+                            {name}
                         </Text>
-                        <Text>
-                            {id}
+                        <Text style={Styles.idStyle}>
+                          {code}
                         </Text>
                     </CardSection>
                 </View>
@@ -30,3 +31,19 @@ class RoomListItem extends Component {
 };
 
 export default RoomListItem;
+
+const Styles = {
+    titleStyle:{
+        fontSize: 24,
+        color: 'black',
+        flex: 1
+    },
+    idStyle: {
+        fontSize: 18,
+        color: 'black'
+    },
+    itemStyle: {
+        flex: 1,
+        flexDirection: 'column'
+    }
+};

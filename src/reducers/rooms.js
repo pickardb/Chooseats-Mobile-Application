@@ -4,12 +4,13 @@ const roomsReducer = (state = {
     rooms: [],
     isGettingRooms: false,
     newRoom: '',
-    isCreatingRoom: false
+    isCreatingRoom: false,
+    joinRoomCode: ''
 }, action) => {
     console.log(action);
     switch (action.type) {
         case types.GET_ROOMS:
-            return {...state}
+            return { ...state }
         case types.GET_ROOMS_PENDING:
             return { ...state, rooms: [], isGettingRooms: true }
         case types.GET_ROOMS_FULFILLED:
@@ -24,6 +25,8 @@ const roomsReducer = (state = {
             return { ...state, newRoom: action.payload.roomCode, isCreatingRoom: false }
         case types.CREATE_ROOM_REJECTED:
             return { ...state, errors: action.payload.errors, isCreatingRoom: false }
+        case types.JOIN_ROOM_UPDATED:
+            return { ...state, joinRoomCode: action.payload }
         default:
             return state;
     }

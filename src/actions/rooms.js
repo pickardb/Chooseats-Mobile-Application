@@ -30,3 +30,23 @@ export const createRoom = async (dispatch) => {
         console.log(err);
     }
 };
+
+export const updateJoinRoomCode = (text) => {
+    return{
+        type:roomTypes.JOIN_ROOM_UPDATED,
+        payload: text
+    };
+};
+
+export const joinRoom = async (dispatch, roomCode) => {
+    console.log(roomCode);
+    try{
+        await dispatch({
+            type:roomTypes.JOIN_ROOM,
+            payload: roomsService.patch(roomCode,{roomCode: roomCode})
+        })
+    }
+    catch(err){
+        console.log(err);
+    }
+};

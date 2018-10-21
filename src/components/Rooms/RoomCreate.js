@@ -9,8 +9,6 @@ import RoomList from './RoomList';
 class RoomCreate extends Component {
     onButtonPress() {
         this.props._createRoom();
-        Actions.refresh({key:'roomList' });
-        console.log("refresh");
     }
 
     componentDidMount() {

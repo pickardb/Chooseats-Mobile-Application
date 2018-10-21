@@ -36,7 +36,7 @@ export const signupUser = async (values, dispatch) => {
     }
 };
 
-export const loginUser = async (values,dispatch) => {
+export const loginUser = async (values, dispatch) => {
     try {
         await dispatch({
             type: userTypes.LOGIN,
@@ -54,9 +54,39 @@ export const loginUser = async (values,dispatch) => {
             _errors: error.message
         })
     }
-
 }
 
+export const authenticateUser = accessToken => async (dispatch) => {
+    try {
+        await dispatch({
+            type: userTypes.AUTHENTICATE,
+            payload: feathersClient.authenticate({
+                strategy: 'jwt',
+                accessToken: accessToken
+            })
+        });
+        Actions.reset('rooms');
+    } catch (error) {
+        Actions.reset('landingScene');
+        console.log(error);
+    }
+}
+
+export const logout = () => {
+
+    return {
+        type: userTypes.LOGOUT,
+        payload: null
+    };
+};
+
+export const newUser = () => {
+
+    return {
+        type: userTypes.NEW_USER,
+        payload: null
+    }
+}
 
 
 

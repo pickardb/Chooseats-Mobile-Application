@@ -12,8 +12,9 @@ class RoomJoin extends Component {
         Actions.refresh({ key: 'roomList' });
     }
 
-    render() {;
-        const{error, handleSubmit, onSubmit} = this.props;
+    render() {
+        ;
+        const { error, handleSubmit, onSubmit } = this.props;
         return (
             <View>
                 <Card>
@@ -47,12 +48,10 @@ const mapStatetoProps = state => {
     };
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        _joinRoom: roomCode => dispatch(joinRoom(roomCode)),
-        _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
-    }
-};
+const mapDispatchToProps = dispatch => ({
+    _joinRoom: (roomCode) => dispatch(joinRoom(roomCode)),
+    _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
+});
 
 const styles = {
     titleTextStyle: {

@@ -40,11 +40,13 @@ export const updateJoinRoomCode = (text) => {
     };
 };
 
-export const joinRoom = (roomCode) => async (dispatch) => {
+export const joinRoom = async (values, dispatch) => {
+    console.log(values);
+    const { roomCode } = values;
     try {
         await dispatch({
             type: roomTypes.JOIN_ROOM,
-            payload: roomsService.patch(roomCode, { roomCode: roomCode })
+            payload: roomsService.patch(roomCode, { roomCode })
         })
     }
     catch (err) {

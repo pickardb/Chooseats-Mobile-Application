@@ -48,6 +48,7 @@ export const joinRoom = async (values, dispatch) => {
             type: roomTypes.JOIN_ROOM,
             payload: roomsService.patch(roomCode, { roomCode })
         })
+        .then(Actions.roomList());
     }
     catch (err) {
         console.log(err);

@@ -36,6 +36,7 @@ const RouterComponent = () => {
                         component={Signup}
                         title="Please Signup"
                     />
+
                     <Scene
                         key="loginModal"
                         direction="vertical"
@@ -43,6 +44,15 @@ const RouterComponent = () => {
                         title="Please Login"
                     />
                 </Scene>
+                <Scene key="rooms">
+                    <Scene
+                        key="Lobby"
+                        component={RoomLobbyContainer}
+                        title="Chooseats Lobby"
+                        initial
+                    />
+                    <Scene
+                        key="roomList"
                         component={RoomList}
                         title="Your Rooms"
                         rightTitle="Create"
@@ -53,6 +63,7 @@ const RouterComponent = () => {
                     <Scene
                         key="roomCreate"
                         title="Create a room"
+                        component={RoomCreate}
                     />
                     <Scene
                         key="roomJoin"

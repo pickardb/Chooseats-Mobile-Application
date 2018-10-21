@@ -10,7 +10,7 @@ class ChatRoom extends Component {
                 <Card>
                     <CardSection>
                         <Text>
-                            This Room's code is: 
+                            This Room's name is: 
                         </Text>
                         <Text>
                             {name}
@@ -18,7 +18,7 @@ class ChatRoom extends Component {
                     </CardSection>
                     <CardSection>
                         <Text>
-                            This Room's id is: 
+                            This Room's code is: 
                         </Text>
                         <Text>
                             {code}

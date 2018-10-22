@@ -8,17 +8,18 @@ class RoomListItem extends Component {
     
    
     onRowPress() {
-        const {name, code, description} = this.props
-        Actions.chatRoom({ name, code, description});
+        const {roomName, code, description} = this.props
+        console.log("Room data: " + roomName + " " + code + " " + description);
+        Actions.chatRoom({ roomName, code, description});
     }
     render() {
-        const {name, code, description} = this.props
+        const {roomName, code, description} = this.props
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>
                     <CardSection style={Styles.itemStyle}>
                         <Text style={Styles.titleStyle}>
-                            {name}
+                            {roomName}
                         </Text>
                         <Text style={Styles.idStyle}>
                           {code}

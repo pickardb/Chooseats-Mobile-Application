@@ -5,15 +5,13 @@ import { Actions } from 'react-native-router-flux';
 import { black } from 'ansi-colors';
 
 class RoomListItem extends Component {
-    
-   
+
     onRowPress() {
-        const {roomName, code, description} = this.props
-        console.log("Room data: " + roomName + " " + code + " " + description);
-        Actions.chatRoom({ roomName, code, description});
+        const { room } = this.props
+        Actions.roomContainer({ room });
     }
     render() {
-        const {roomName, code, description} = this.props
+        const { room: { name, id, description, roomCode } } = this.props
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>
@@ -22,7 +20,7 @@ class RoomListItem extends Component {
                             {roomName}
                         </Text>
                         <Text style={Styles.idStyle}>
-                          {code}
+                            {roomCode}
                         </Text>
                     </CardSection>
                 </View>
@@ -34,7 +32,7 @@ class RoomListItem extends Component {
 export default RoomListItem;
 
 const Styles = {
-    titleStyle:{
+    titleStyle: {
         fontSize: 24,
         color: 'black',
         flex: 1

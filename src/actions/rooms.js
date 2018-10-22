@@ -59,6 +59,7 @@ export const joinRoom = async (values, dispatch) => {
         console.log(err);
     }
 };
+<<<<<<< HEAD
 
 export const updateNewRoomName = text => {
     return({
@@ -73,3 +74,5 @@ export const updateNewRoomDesc = text => {
         payload: text
     });
 }
+=======
+>>>>>>> 9279ffbb855a09df968398b2243c7bffd7c8c2c6

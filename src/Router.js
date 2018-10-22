@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
-import CheckAuthentication from './utils/checkAuthentication';
+import CheckAuthentication from './components/Authentication/checkAuthentication';
 import Authentication from './components/Authentication';
 import Signup from './components/Authentication/SignUp/FormContainer';
 import Login from './components/Authentication/Login/LoginFormContainer';
@@ -9,7 +9,7 @@ import RoomCreate from './components/Rooms/RoomCreate';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import RoomList from './components/Rooms/RoomList';
 import RoomJoin from './components/Rooms/RoomJoinContainer';
-import ChatRoom from './components/Rooms/ChatRoom';
+import RoomContainer from './components/Room/RoomContainer';
 
 const RouterComponent = () => {
     return (
@@ -36,7 +36,6 @@ const RouterComponent = () => {
                         component={Signup}
                         title="Please Signup"
                     />
-
                     <Scene
                         key="loginModal"
                         direction="vertical"
@@ -71,8 +70,8 @@ const RouterComponent = () => {
                         title="Join a room"
                     />
                     <Scene
-                        key="chatRoom"
-                        component={ChatRoom}
+                        key="roomContainer"
+                        component={RoomContainer}
                         title="Chat"
                     />
                 </Scene>

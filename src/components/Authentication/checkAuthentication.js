@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from "react-redux";
 import { ImageBackground, StyleSheet } from 'react-native';
 import { Actions } from "react-native-router-flux";
-import { Button } from '../components/common';
+import { Button } from '../common';
 
-const backgroundImage = require('./assets/bg.jpg');
+const backgroundImage = require('./assets/Chooseats_Logo_Tall.png');
 
-import { authenticateUser, newUser } from '../actions/users';
+import { authenticateUser, newUser } from '../../actions/users';
 
 
 class CheckAuthentication extends React.Component {
@@ -29,9 +29,7 @@ class CheckAuthentication extends React.Component {
 
     render() {
         return (
-            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
-                <Button onPress={this.go}></Button>
-            </ImageBackground>
+            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage} />
         );
     }
 }

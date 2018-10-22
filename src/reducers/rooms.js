@@ -9,7 +9,6 @@ const roomsReducer = (state = {
     newRoomName: '',
     newRoomDesc: '',
 }, action) => {
-    console.log(action);
     switch (action.type) {
         case types.GET_ROOMS:
             return { ...state }

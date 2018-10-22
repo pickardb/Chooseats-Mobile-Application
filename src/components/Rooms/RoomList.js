@@ -14,9 +14,12 @@ class RoomList extends Component {
 
     renderRooms(rooms) {
         if (rooms.data != undefined) {
-            console.log(rooms.data);
             return rooms.data.map(room =>
+<<<<<<< HEAD
                 <RoomListItem key={room.id} roomName={room.roomName} description={room.roomDesc} code = {room.roomCode}/>);
+=======
+                <RoomListItem key={room.id} room={room} />);
+>>>>>>> 9279ffbb855a09df968398b2243c7bffd7c8c2c6
         }
     }
 
@@ -32,7 +35,7 @@ class RoomList extends Component {
                     </Button>
                 </CardSection>
                 {this.renderRooms(rooms)}
-                
+
             </ScrollView>
         );
     }

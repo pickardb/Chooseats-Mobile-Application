@@ -30,7 +30,7 @@ class CheckAuthentication extends React.Component {
     render() {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
-                <Button onPress={this.go}></Button>
+                <Button onPress={this.go}>Go</Button>
             </ImageBackground>
         );
     }

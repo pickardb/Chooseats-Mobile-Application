@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { Button, Card, CardSection } from '../common';
 import { Actions } from 'react-native-router-flux';
 
 import { getRooms } from '../../actions/rooms';
 import { logout } from '../../actions/users';
+
+const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
 class RoomLobbyContainer extends Component {
     componentWillMount() {
@@ -20,10 +22,14 @@ class RoomLobbyContainer extends Component {
     }
 
     render() {
-        return (<View>
-            <CardSection>
-                <Text>
-                    This will be our app home screen.
+        return (
+            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
+            <CardSection style={styles.textContainerStyle}>
+                < Text style={styles.titleTextStyle}>
+                    Welcome to Chooseats!
+                </Text>
+                <Text style={styles.subtitleTextStyle}>
+                    Press the button below to access your list of rooms!
                 </Text>
             </CardSection>
             <CardSection>
@@ -36,7 +42,7 @@ class RoomLobbyContainer extends Component {
                     Logout
                 </Button>
             </CardSection>
-        </View>)
+        </ImageBackground>)
     }
 }
 
@@ -50,3 +56,27 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomLobbyContainer);
+
+const styles = {
+    titleTextStyle: {
+        fontSize: 22,
+        color: 'black',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    subtitleTextStyle: {
+        fontSize: 18,
+        color: 'black',
+        textAlign: 'center'
+    },
+    textContainerStyle: {
+        flexDirection: 'column'
+    }, 
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25
+    },
+};

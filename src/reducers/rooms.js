@@ -7,7 +7,6 @@ const roomsReducer = (state = {
     isCreatingRoom: false,
     joinRoomCode: ''
 }, action) => {
-    console.log(action);
     switch (action.type) {
         case types.GET_ROOMS:
             return { ...state }

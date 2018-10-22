@@ -13,7 +13,7 @@ export const getRooms = async (dispatch) => {
             type: roomTypes.GET_ROOMS,
             payload: roomsService.find({
                 query: {
-                    $limit: 20
+                    $limit: 25
                 }
             })
         });
@@ -22,11 +22,15 @@ export const getRooms = async (dispatch) => {
     }
 };
 
-export const createRoom = async (dispatch) => {
+export const createRoom = async (dispatch, values) => {
+    console.log("Create room values:" + values);
     try {
         await dispatch({
             type: roomTypes.CREATE_ROOM,
-            payload: roomsService.create({})
+            payload: roomsService.create({
+                roomName: values.name, 
+                roomDesc: values.description
+            })
         })
     } catch (err) {
         console.log(err);
@@ -40,12 +44,15 @@ export const updateJoinRoomCode = (text) => {
     };
 };
 
-export const joinRoom = (roomCode) => async (dispatch) => {
+export const joinRoom = async (values, dispatch) => {
+    console.log(values);
+    const { roomCode } = values;
     try {
         await dispatch({
             type: roomTypes.JOIN_ROOM,
-            payload: roomsService.patch(roomCode, { roomCode: roomCode })
+            payload: roomsService.patch(roomCode, { roomCode })
         })
+        .then(Actions.roomList());
     }
     catch (err) {
         console.log(err);

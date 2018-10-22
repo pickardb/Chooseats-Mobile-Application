@@ -12,18 +12,21 @@ class RoomJoin extends Component {
         Actions.refresh({ key: 'roomList' });
     }
 
-    render() {;
-        const{error, handleSubmit, onSubmit} = this.props;
+    render() {
+        ;
+        const { error, handleSubmit, onSubmit } = this.props;
         return (
             <View>
                 <Card>
                     <CardSection>
-                        <Text>Enter the room code: </Text>
+                        <Text style={styles.subtitleTextStyle}>
+                        Enter the room code: 
+                        </Text>
                     </CardSection>
                     <CardSection>
                         <Field
                             name="roomCode"
-                            placeHolder="ABCDEF"
+                            placeholder="ABC123"
                             label="Room Code:"
                             component={TextField}
                         />
@@ -45,10 +48,25 @@ const mapStatetoProps = state => {
     };
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        _joinRoom: roomCode => dispatch(joinRoom(roomCode)),
-        _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
+const mapDispatchToProps = dispatch => ({
+    _joinRoom: (roomCode) => dispatch(joinRoom(roomCode)),
+    _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
+});
+
+const styles = {
+    titleTextStyle: {
+        fontSize: 22,
+        color: 'black',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    subtitleTextStyle: {
+        fontSize: 18,
+        color: 'black',
+        textAlign: 'center'
+    },
+    textContainerStyle: {
+        flexDirection: 'column'
     }
 };
 

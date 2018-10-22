@@ -3,8 +3,11 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from '../common';
 import { createRoom, getRooms } from '../../actions/rooms';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import RoomList from './RoomList';
+import { TextField } from '../../utils/form_components';
+import { Field } from 'redux-form';
+
 
 class RoomCreate extends Component {
     onButtonPress() {
@@ -15,8 +18,8 @@ class RoomCreate extends Component {
         console.log("New Room: " + this.props.newRoom);
     }
 
-    componentWillUnmount(){
-        Actions.refresh({key:'roomList' });
+    componentWillUnmount() {
+        Actions.refresh({ key: 'roomList' });
     }
 
     renderRoomCode() {
@@ -24,11 +27,20 @@ class RoomCreate extends Component {
             return (
                 <CardSection>
                     <Text style={styles.descriptTextStyle} >
-                        Your Room Code:  
+                        Your Room Code:
                     </Text >
                     <Text style={styles.descriptTextStyle}>
                         {this.props.newRoom}
                     </Text>
+                </CardSection>
+            );
+        }
+        else {
+            return (
+                <CardSection>
+                    <Button onPress={this.onButtonPress.bind(this)}>
+                        Create a Room
+                        </Button>
                 </CardSection>
             );
         }
@@ -39,10 +51,22 @@ class RoomCreate extends Component {
             <View>
                 <Card>
                     {this.renderRoomCode()}
+
                     <CardSection>
-                        <Button onPress={this.onButtonPress.bind(this)}>
-                            Create a Room
-                        </Button>
+                        <Field
+                            name="name"
+                            label="Room Name"
+                            placeholder="Name your room"
+                            component={TextField}
+                        />
+                    </CardSection>
+                    <CardSection>
+                        <Field
+                            name="description"
+                            label="Details"
+                            placeholder="Room Details"
+                            component={TextField}
+                        />
                     </CardSection>
                 </Card>
             </View>

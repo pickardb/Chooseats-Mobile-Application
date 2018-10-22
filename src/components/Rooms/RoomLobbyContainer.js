@@ -17,32 +17,31 @@ class RoomLobbyContainer extends Component {
 
     handleLogout = () => {
         const { _logout } = this.props;
-        Actions.reset('landingScene');
         _logout();
     }
 
     render() {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
-            <CardSection style={styles.textContainerStyle}>
-                < Text style={styles.titleTextStyle}>
-                    Welcome to Chooseats!
+                <CardSection style={styles.textContainerStyle}>
+                    < Text style={styles.titleTextStyle}>
+                        Welcome to Chooseats!
                 </Text>
-                <Text style={styles.subtitleTextStyle}>
-                    Press the button below to access your list of rooms!
+                    <Text style={styles.subtitleTextStyle}>
+                        Press the button below to access your list of rooms!
                 </Text>
-            </CardSection>
-            <CardSection>
-                <Button onPress={Actions.roomList}>
-                    Room List
+                </CardSection>
+                <CardSection>
+                    <Button onPress={Actions.roomList}>
+                        Room List
                 </Button>
-            </CardSection>
-            <CardSection>
-                <Button onPress={this.handleLogout}>
-                    Logout
+                </CardSection>
+                <CardSection>
+                    <Button onPress={this.handleLogout}>
+                        Logout
                 </Button>
-            </CardSection>
-        </ImageBackground>)
+                </CardSection>
+            </ImageBackground>)
     }
 }
 
@@ -52,7 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     _getRooms: () => dispatch(getRooms),
-    _logout: () => dispatch(logout())
+    _logout: () => dispatch(logout)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomLobbyContainer);
@@ -71,7 +70,7 @@ const styles = {
     },
     textContainerStyle: {
         flexDirection: 'column'
-    }, 
+    },
     container: {
         flex: 1,
         flexDirection: 'column',

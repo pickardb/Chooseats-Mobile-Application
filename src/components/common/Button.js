@@ -19,20 +19,21 @@ const Button = (props) => {
 const styles = StyleSheet.create({
     textStyle: {
         alignSelf: 'center',
-        color: '#007aff',
-        fontSize: 16,
-        fontWeight: '600',
+        color: '#444',
+        fontSize: 18,
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
+        fontFamily: 'sans-serif-medium',
+        elevation: 2,
     },
     buttonStyle: {
         flex: 1,
         elevation: 0,
         alignSelf: 'stretch',
         backgroundColor: '#fff',
-        borderRadius: 5,
         borderWidth: 2,
-        borderColor: '#007aff',
+        borderColor: '#444',
+        borderRadius: 2,
         marginLeft: 5,
         marginRight: 5
     }

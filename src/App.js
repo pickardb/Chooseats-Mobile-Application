@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Router />
+          <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}/>
         </PersistGate>
       </Provider>
 
@@ -32,4 +32,15 @@ export default class App extends Component {
   }
 );*/
 
-
+const styles = StyleSheet.create({
+  navBar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'red', // changing navbar color
+  },
+  navTitle: {
+    color: 'white', // changing navbar title color
+  },
+})

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { Button, Card, CardSection } from '../common';
 import { Actions } from 'react-native-router-flux';
 
 import { getRooms } from '../../actions/rooms';
 import { logout } from '../../actions/users';
+
+const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
 class RoomLobbyContainer extends Component {
     componentWillMount() {
@@ -20,7 +22,8 @@ class RoomLobbyContainer extends Component {
     }
 
     render() {
-        return (<View>
+        return (
+            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
             <CardSection style={styles.textContainerStyle}>
                 < Text style={styles.titleTextStyle}>
                     Welcome to Chooseats!
@@ -39,7 +42,7 @@ class RoomLobbyContainer extends Component {
                     Logout
                 </Button>
             </CardSection>
-        </View>)
+        </ImageBackground>)
     }
 }
 
@@ -68,5 +71,12 @@ const styles = {
     },
     textContainerStyle: {
         flexDirection: 'column'
-    }
+    }, 
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25
+    },
 };

@@ -23,10 +23,14 @@ export const getRooms = async (dispatch) => {
 };
 
 export const createRoom = async (dispatch, values) => {
+    console.log("Create room values:" + values);
     try {
         await dispatch({
             type: roomTypes.CREATE_ROOM,
-            payload: roomsService.create({roomName: values.name, roomDesc: values.description})
+            payload: roomsService.create({
+                roomName: values.name, 
+                roomDesc: values.description
+            })
         })
     } catch (err) {
         console.log(err);

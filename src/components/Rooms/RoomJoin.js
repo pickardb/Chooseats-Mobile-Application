@@ -13,7 +13,6 @@ class RoomJoin extends Component {
     }
 
     render() {
-        ;
         const { error, handleSubmit, onSubmit } = this.props;
         return (
             <View>

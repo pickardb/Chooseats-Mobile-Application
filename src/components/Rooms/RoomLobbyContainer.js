@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, ImageBackground } from 'react-native';
-import { Button, Card, CardSection } from '../common';
+import { Card, CardSection } from '../common';
+import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
 import { getRooms } from '../../actions/rooms';
@@ -31,16 +32,24 @@ class RoomLobbyContainer extends Component {
                         Press the button below to access your list of rooms!
                 </Text>
                 </CardSection>
-                <CardSection>
-                    <Button onPress={Actions.roomList}>
-                        Room List
-                </Button>
-                </CardSection>
-                <CardSection>
-                    <Button onPress={this.handleLogout}>
-                        Logout
-                </Button>
-                </CardSection>
+                <Button
+                    buttonStyle={{
+                        marginTop: 10,
+                        backgroundColor: '#c67f00',
+                        elevation: 5
+                    }}
+                    large title='Room List'
+                    onPress={Actions.roomList}
+                />
+                <Button
+                    buttonStyle={{
+                        marginTop: 10,
+                        backgroundColor: '#c67f00',
+                        elevation: 5
+                    }}
+                    large title='Logout'
+                    onPress={this.handleLogout}
+                />
             </ImageBackground>)
     }
 }
@@ -77,6 +86,6 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: 10,
-        paddingBottom: 25
+        paddingBottom: 25,
     },
 };

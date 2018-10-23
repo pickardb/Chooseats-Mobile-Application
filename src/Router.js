@@ -13,7 +13,11 @@ import RoomContainer from './components/Room/RoomContainer';
 
 const RouterComponent = () => {
     return (
-        <Router>
+        <Router 
+        navigationBarStyle={{ backgroundColor: '#ffb839' }} 
+        titleStyle={{color:'white'}} 
+        rightButtonTextStyle={{color: "#FFFFFF"}}
+        >
             <Scene key="root" hideNavBar>
                 <Scene key="authenticate">
                     <Scene

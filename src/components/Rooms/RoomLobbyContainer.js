@@ -4,6 +4,7 @@ import { View, Text, ImageBackground } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import { change, actionCreators } from 'redux-form';
 
 import { getRooms } from '../../actions/rooms';
 import { logout } from '../../actions/users';
@@ -79,7 +80,9 @@ const styles = {
         textAlign: 'center'
     },
     textContainerStyle: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
     },
     container: {
         flex: 1,

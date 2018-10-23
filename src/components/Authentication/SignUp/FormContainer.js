@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 });
 
 SignupFormContainer = reduxForm({
-    form: 'signIn',
+    form: 'SignUp',
 })(container);
 
 export default connect(mapStateToProps)(SignupFormContainer);

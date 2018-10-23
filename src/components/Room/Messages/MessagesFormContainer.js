@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
 });
 
 MessagesFormContainer = reduxForm({
-    form: 'message'
+    form: 'SendMessage'
 })(container);
 
 export default connect(mapStateToProps)(MessagesFormContainer);

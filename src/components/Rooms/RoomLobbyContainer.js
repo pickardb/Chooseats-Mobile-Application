@@ -4,6 +4,7 @@ import { View, Text, ImageBackground } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import {change, actionCreators} from 'redux-form';
 
 import { getRooms } from '../../actions/rooms';
 import { logout } from '../../actions/users';
@@ -20,6 +21,10 @@ class RoomLobbyContainer extends Component {
         const { _logout } = this.props;
         Actions.reset('landingScene');
         this.props.user.accessToken = '';
+        this.props.dispatch(actionCreators.change('LoginForm','email', ''));
+        //this.props.dispatch(change('Login','password', ''));
+        //this.props.dispatch(change('signIn','email', ''))
+        //this.props.dispatch(change('signIn','password', ''))
         _logout();
     }
 
@@ -81,7 +86,9 @@ const styles = {
         textAlign: 'center'
     },
     textContainerStyle: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
     },
     container: {
         flex: 1,

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, ImageBackground } from 'react-native';
-import { Button, Card, CardSection } from '../common';
+import { Card, CardSection } from '../common';
+import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import {change, actionCreators} from 'redux-form';
 
 import { getRooms } from '../../actions/rooms';
 import { logout } from '../../actions/users';
@@ -18,36 +20,50 @@ class RoomLobbyContainer extends Component {
     handleLogout = () => {
         const { _logout } = this.props;
         Actions.reset('landingScene');
+        this.props.user.accessToken = '';
+        this.props.dispatch(actionCreators.change('LoginForm','email', ''));
+        //this.props.dispatch(change('Login','password', ''));
+        //this.props.dispatch(change('signIn','email', ''))
+        //this.props.dispatch(change('signIn','password', ''))
         _logout();
     }
 
     render() {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
-            <CardSection style={styles.textContainerStyle}>
-                < Text style={styles.titleTextStyle}>
-                    Welcome to Chooseats!
+                <CardSection style={styles.textContainerStyle}>
+                    < Text style={styles.titleTextStyle}>
+                        Welcome to Chooseats!
                 </Text>
-                <Text style={styles.subtitleTextStyle}>
-                    Press the button below to access your list of rooms!
+                    <Text style={styles.subtitleTextStyle}>
+                        Press the button below to access your list of rooms!
                 </Text>
-            </CardSection>
-            <CardSection>
-                <Button onPress={Actions.roomList}>
-                    Room List
-                </Button>
-            </CardSection>
-            <CardSection>
-                <Button onPress={this.handleLogout}>
-                    Logout
-                </Button>
-            </CardSection>
-        </ImageBackground>)
+                </CardSection>
+                <Button
+                    buttonStyle={{
+                        marginTop: 10,
+                        backgroundColor: '#c67f00',
+                        elevation: 5
+                    }}
+                    large title='Room List'
+                    onPress={Actions.roomList}
+                />
+                <Button
+                    buttonStyle={{
+                        marginTop: 10,
+                        backgroundColor: '#c67f00',
+                        elevation: 5
+                    }}
+                    large title='Logout'
+                    onPress={this.handleLogout}
+                />
+            </ImageBackground>)
     }
 }
 
 const mapStateToProps = state => ({
     rooms: state.rooms,
+    user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -70,13 +86,15 @@ const styles = {
         textAlign: 'center'
     },
     textContainerStyle: {
-        flexDirection: 'column'
-    }, 
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
+    },
     container: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: 10,
-        paddingBottom: 25
+        paddingBottom: 25,
     },
 };

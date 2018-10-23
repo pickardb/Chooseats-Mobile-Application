@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button, Input } from '../common';
+import { Card, CardSection, Input } from '../common';
+import {Button} from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { updateJoinRoomCode, joinRoom } from '../../actions/rooms';
 import { TextField } from '../../utils/form_components';
@@ -19,7 +20,7 @@ class RoomJoin extends Component {
                 <Card>
                     <CardSection>
                         <Text style={styles.subtitleTextStyle}>
-                        Enter the room code: 
+                            Enter the room code:
                         </Text>
                     </CardSection>
                     <CardSection>
@@ -30,12 +31,17 @@ class RoomJoin extends Component {
                             component={TextField}
                         />
                     </CardSection>
-                    <CardSection>
-                        <Button onPress={handleSubmit(onSubmit)}>
-                            Join Room
-                        </Button>
-                    </CardSection>
-                </Card>
+                    </Card>
+                    <Button
+                        buttonStyle={{
+                            marginVertical: 10,
+                            backgroundColor: '#9b6400',
+                            elevation: 5
+                        }}
+                        large title='Join Room'
+                        onPress={handleSubmit(onSubmit)}
+                    />
+                
             </View>
         );
     }

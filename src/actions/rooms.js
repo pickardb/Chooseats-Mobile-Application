@@ -29,11 +29,7 @@ export const createRoom = (newRoomName, newRoomDesc) => async (dispatch) => {
         await dispatch({
             type: roomTypes.CREATE_ROOM,
             payload: roomsService.create({
-<<<<<<< HEAD
                 roomName: newRoomName,
-=======
-                roomName: newRoomName, 
->>>>>>> Merged manually & fixed persistant user screen bug
                 roomDesc: newRoomDesc
             })
         })
@@ -65,27 +61,15 @@ export const joinRoom = async (values, dispatch) => {
 };
 
 export const updateNewRoomName = text => {
-<<<<<<< HEAD
     return ({
-=======
-    return({
->>>>>>> Merged manually & fixed persistant user screen bug
         type: roomTypes.NEW_ROOM_NAME,
         payload: text
     });
 }
 
 export const updateNewRoomDesc = text => {
-<<<<<<< HEAD
     return ({
         type: roomTypes.NEW_ROOM_DESC,
         payload: text
     });
 }
-=======
-    return({
-        type: roomTypes.NEW_ROOM_DESC,
-        payload: text
-    });
-}
->>>>>>> Merged manually & fixed persistant user screen bug

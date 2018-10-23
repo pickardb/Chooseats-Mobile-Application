@@ -47,6 +47,7 @@ class RoomLobbyContainer extends Component {
 
 const mapStateToProps = state => ({
     rooms: state.rooms,
+    user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({

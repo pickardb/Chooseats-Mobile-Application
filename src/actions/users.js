@@ -73,7 +73,7 @@ export const authenticateUser = accessToken => async (dispatch) => {
 }
 
 export const logout = () => {
-
+    feathersClient.logout();    
     return {
         type: userTypes.LOGOUT,
         payload: null

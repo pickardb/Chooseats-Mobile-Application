@@ -18,6 +18,7 @@ class RoomLobbyContainer extends Component {
     handleLogout = () => {
         const { _logout } = this.props;
         Actions.reset('landingScene');
+        this.props.user.accessToken='';
         _logout();
     }
 
@@ -48,6 +49,7 @@ class RoomLobbyContainer extends Component {
 
 const mapStateToProps = state => ({
     rooms: state.rooms,
+    user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({

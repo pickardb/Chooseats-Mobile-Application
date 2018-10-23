@@ -9,10 +9,10 @@ const backgroundImage = require('./assets/Chooseats_Logo_Tall.png');
 export default Authentication = () => (
     <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
         <Animatable.View animation="slideInLeft">
-            <Button buttonStyle = {{marginVertical: 5, backgroundColor: '#9b6400'}}large title='Sign Up' onPress={Actions.signupModal} />
+            <Button buttonStyle = {{marginVertical: 5, backgroundColor: '#c67f00'}}large title='Sign Up' onPress={Actions.signupModal} />
         </Animatable.View>
         <Animatable.View animation="slideInLeft">
-            <Button buttonStyle = {{marginVertical: 5, backgroundColor: '#9b6400'}} large title='Login' onPress={Actions.loginModal} />
+            <Button buttonStyle = {{marginVertical: 5, backgroundColor: '#c67f00'}} large title='Login' onPress={Actions.loginModal} />
         </Animatable.View>
     </ImageBackground>
 );

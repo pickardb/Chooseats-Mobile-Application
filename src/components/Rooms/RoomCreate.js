@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button, Input } from '../common';
+import { Card, CardSection, Input } from '../common';
+import {Button} from 'react-native-elements';
 import { createRoom, getRooms, updateNewRoomDesc, updateNewRoomName } from '../../actions/rooms';
 import { Actions } from 'react-native-router-flux';
 import RoomList from './RoomList';
@@ -26,7 +27,7 @@ class RoomCreate extends Component {
         this.props._updateNewRoomName(text)
     }
 
-    onDescChange(text){
+    onDescChange(text) {
         this.props._updateNewRoomDesc(text)
     }
 
@@ -34,6 +35,7 @@ class RoomCreate extends Component {
     renderRoomCode() {
         if (this.props.newRoom) {
             return (
+                <Card>
                 <CardSection>
                     <Text style={styles.descriptTextStyle} >
                         Your Room Code:
@@ -42,15 +44,20 @@ class RoomCreate extends Component {
                         {this.props.newRoom}
                     </Text>
                 </CardSection>
+                </Card>
             );
         }
         else {
             return (
-                <CardSection>
-                    <Button onPress={this.onButtonPress.bind(this)}>
-                        Create a Room
-                        </Button>
-                </CardSection>
+                <Button
+                    buttonStyle={{
+                        marginVertical: 10,
+                        backgroundColor: '#c67f00',
+                        elevation: 5
+                    }}
+                    large title='Create a Room'
+                    onPress={this.onButtonPress.bind(this)}
+                />
             );
         }
     }
@@ -58,9 +65,9 @@ class RoomCreate extends Component {
     render() {
         return (
             <View>
-                <Card>
+                
                     {this.renderRoomCode()}
-
+                    <Card>
                     <CardSection>
                         <Input
                             label="Room Name"

@@ -11,13 +11,13 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case types.SIGNUP_PENDING:
-            return { ...state, isSigningUp: true, isNew: false };
+            return { ...state, isSigningUp: true };
         case types.SIGNUP_FULFILLED:
             return action.payload;
         case types.SIGNUP_REJECTED:
             return { ...state, errors: action.payload.errors, isSigningUp: false };
         case types.LOGIN_PENDING:
-            return { ...state, isLoggingIn: true , isNew: false};
+            return { ...state, isLoggingIn: true};
         case types.LOGIN_FULFILLED:
             return { ...state, ...action.payload, isLoggingIn: false, password: null, isNew: false };
         case types.LOGIN_REJECTED:

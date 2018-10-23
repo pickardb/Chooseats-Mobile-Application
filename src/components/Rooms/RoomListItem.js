@@ -12,7 +12,11 @@ class RoomListItem extends Component {
         Actions.chatRoom({ roomName, code, description });
     }
     render() {
+<<<<<<< HEAD
         const { roomName, roomCode, description } = this.props
+=======
+        const { room: { roomName, id, description, roomCode } } = this.props
+>>>>>>> Merged manually & fixed persistant user screen bug
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>

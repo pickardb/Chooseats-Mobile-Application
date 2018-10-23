@@ -21,10 +21,6 @@ class RoomLobbyContainer extends Component {
         const { _logout } = this.props;
         Actions.reset('landingScene');
         this.props.user.accessToken = '';
-        this.props.dispatch(actionCreators.change('LoginForm','email', ''));
-        //this.props.dispatch(change('Login','password', ''));
-        //this.props.dispatch(change('signIn','email', ''))
-        //this.props.dispatch(change('signIn','password', ''))
         _logout();
     }
 
@@ -34,10 +30,10 @@ class RoomLobbyContainer extends Component {
                 <CardSection style={styles.textContainerStyle}>
                     < Text style={styles.titleTextStyle}>
                         Welcome to Chooseats!
-                </Text>
+                    </Text>
                     <Text style={styles.subtitleTextStyle}>
                         Press the button below to access your list of rooms!
-                </Text>
+                    </Text>
                 </CardSection>
                 <Button
                     buttonStyle={{

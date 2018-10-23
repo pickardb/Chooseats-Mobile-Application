@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input } from '../common';
 import {Button} from 'react-native-elements';
@@ -9,6 +9,7 @@ import RoomList from './RoomList';
 import { TextField } from '../../utils/form_components';
 import { Field } from 'redux-form';
 
+const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
 class RoomCreate extends Component {
     onButtonPress() {
@@ -35,7 +36,7 @@ class RoomCreate extends Component {
     renderRoomCode() {
         if (this.props.newRoom) {
             return (
-                <Card>
+                <Card style={styles.textContainerStyle}>
                 <CardSection>
                     <Text style={styles.descriptTextStyle} >
                         Your Room Code:
@@ -64,10 +65,12 @@ class RoomCreate extends Component {
 
     render() {
         return (
+            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
+
             <View>
                 
                     {this.renderRoomCode()}
-                    <Card>
+                    <Card style={styles.textContainerStyle}>
                     <CardSection>
                         <Input
                             label="Room Name"
@@ -86,6 +89,7 @@ class RoomCreate extends Component {
                     </CardSection>
                 </Card>
             </View>
+            </ImageBackground>
         );
     }
 };
@@ -95,7 +99,19 @@ const styles = {
         textAlign: 'center',
         fontSize: 18,
         marginLeft: 10
-    }
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25,
+    },
+    textContainerStyle: {
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
+    },
 };
 
 const mapStatetoProps = state => {

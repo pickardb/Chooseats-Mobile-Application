@@ -6,7 +6,7 @@ import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
 
 export default RoomComponent = ({ messages, room }) => {
-    const { roomCode, roomName, id } = room;
+    const { roomCode, roomName, roomDesc } = room;
 
     return (
         <View>
@@ -24,7 +24,7 @@ export default RoomComponent = ({ messages, room }) => {
                 </CardSection>
                 <CardSection>
                     <Text>
-                        This Room's id is: {id}
+                        {roomDesc}
                     </Text>
 
                 </CardSection>

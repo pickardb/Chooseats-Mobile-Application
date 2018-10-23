@@ -4,30 +4,33 @@ const INITIAL_STATE = {
     email: '',
     password: '',
     error: '',
-    isLoggingIn: false
+    isLoggingIn: false,
+    isNew: false
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case types.SIGNUP_PENDING:
-            return { ...state, isSigningUp: true };
+            return { ...state, isSigningUp: true, isNew: false };
         case types.SIGNUP_FULFILLED:
             return action.payload;
         case types.SIGNUP_REJECTED:
             return { ...state, errors: action.payload.errors, isSigningUp: false };
         case types.LOGIN_PENDING:
-            return { ...state, isLoggingIn: true };
+            return { ...state, isLoggingIn: true , isNew: false};
         case types.LOGIN_FULFILLED:
-            return { ...state, ...action.payload, isLoggingIn: false, password: null };
+            return { ...state, ...action.payload, isLoggingIn: false, password: null, isNew: false };
         case types.LOGIN_REJECTED:
             return { ...state, errors: action.payload.errors, isLoggingIn: false };
 
         case types.EMAIL_CHANGED:
-            return { ...state, email: action.payload };
+            return { ...state, email: action.payload, isNew: false };
         case types.PASSWORD_CHANGED:
-            return { ...state, password: action.payload };
+            return { ...state, password: action.payload, isNew: false };
         case types.LOGOUT:
             return INITIAL_STATE;
+        case types.NEW_USER:
+            return {...state, isNew: true}
         default:
             return state;
     }

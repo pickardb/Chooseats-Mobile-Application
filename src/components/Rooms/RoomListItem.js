@@ -11,13 +11,13 @@ class RoomListItem extends Component {
         Actions.roomContainer({ room });
     }
     render() {
-        const { room: { name, id, description, roomCode } } = this.props
+        const { room: { roomName, id, description, roomCode } } = this.props
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>
                     <CardSection style={Styles.itemStyle}>
                         <Text style={Styles.titleStyle}>
-                            {name}
+                            {roomName}
                         </Text>
                         <Text style={Styles.idStyle}>
                             {roomCode}

@@ -23,6 +23,13 @@ class CheckAuthentication extends React.Component {
         }
     }
 
+    componentWillReceiveProps(){
+        console.log("componentWillReceiveProps");
+        if(this.props.user.isNew){
+            Actions.landingScene();
+        }
+    }
+
     go = () => {
         Actions.reset('landingScene');
     }

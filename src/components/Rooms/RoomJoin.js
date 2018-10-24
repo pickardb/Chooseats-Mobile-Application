@@ -22,12 +22,12 @@ class RoomJoin extends Component {
 
             <View>
                 <Card style={styles.textContainerStyle}>
-                    <CardSection>
+                    <CardSection style={styles.cardSectionStyle}>
                         <Text style={styles.subtitleTextStyle}>
                             Enter the room code:
                         </Text>
                     </CardSection>
-                    <CardSection>
+                    <CardSection style={styles.cardSectionStyle}>
                         <Field
                             name="roomCode"
                             placeholder="ABC123"
@@ -86,6 +86,9 @@ const styles = {
         justifyContent: 'flex-start',
         padding: 10,
         paddingBottom: 25,
+    },
+    cardSectionStyle: {
+        opacity: 0.8,
     },
 };
 

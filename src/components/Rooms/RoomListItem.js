@@ -43,6 +43,7 @@ const Styles = {
     },
     itemStyle: {
         flex: 1,
-        flexDirection: 'column'
-    }
+        flexDirection: 'column',
+        opacity: 0.8,
+    },
 };

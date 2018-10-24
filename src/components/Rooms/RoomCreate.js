@@ -37,7 +37,7 @@ class RoomCreate extends Component {
         if (this.props.newRoom) {
             return (
                 <Card style={styles.textContainerStyle}>
-                <CardSection>
+                <CardSection style={styles.cardSectionStyle}>
                     <Text style={styles.descriptTextStyle} >
                         Your Room Code:
                     </Text >
@@ -71,7 +71,7 @@ class RoomCreate extends Component {
                 
                     {this.renderRoomCode()}
                     <Card style={styles.textContainerStyle}>
-                    <CardSection>
+                    <CardSection style={styles.cardSectionStyle}>
                         <Input
                             label="Room Name"
                             placeholder="Name your room"
@@ -79,7 +79,7 @@ class RoomCreate extends Component {
                             value={this.newRoomName}
                         />
                     </CardSection>
-                    <CardSection>
+                    <CardSection style={styles.cardSectionStyle}>
                         <Input
                             label="Details"
                             placeholder="Room Details"
@@ -111,6 +111,9 @@ const styles = {
         flexDirection: 'column',
         borderRadius: 5,
         opacity: 0.8
+    },
+    cardSectionStyle: {
+        opacity: 0.8,
     },
 };
 

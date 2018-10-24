@@ -27,7 +27,7 @@ class CheckAuthentication extends React.Component {
     componentWillReceiveProps(){
         console.log("componentWillReceiveProps");
         if(this.props.user.isNew){
-            Actions.pop()
+            Actions.pop();
             Actions.landingScene();
         }
     }

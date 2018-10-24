@@ -72,6 +72,7 @@ export const authenticateUser = accessToken => async (dispatch) => {
     }
 }
 
+<<<<<<< HEAD
 export const logout = async (dispatch) => {
     try {
         await dispatch({
@@ -82,6 +83,13 @@ export const logout = async (dispatch) => {
     } catch (error) {
         Actions.reset('landingScene');
         console.log(error);
+=======
+export const logout = () => {
+    feathersClient.logout();    
+    return {
+        type: userTypes.LOGOUT,
+        payload: null
+>>>>>>> 19e8a53fe741d5e8d70611e71a272b39cc598055
     };
 };
 

@@ -17,20 +17,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case types.SIGNUP_REJECTED:
             return { ...state, errors: action.payload.errors, isSigningUp: false };
         case types.LOGIN_PENDING:
-            return { ...state, isLoggingIn: true};
+            return { ...state, isLoggingIn: true };
         case types.LOGIN_FULFILLED:
             return { ...state, ...action.payload, isLoggingIn: false, password: null, isNew: false };
         case types.LOGIN_REJECTED:
             return { ...state, errors: action.payload.errors, isLoggingIn: false };
-
-        case types.EMAIL_CHANGED:
-            return { ...state, email: action.payload, isNew: false };
-        case types.PASSWORD_CHANGED:
+        case types.LOGOUT_FULFILLED:
             return { ...state, password: action.payload, isNew: false };
-        case types.LOGOUT:
+        case types.NEW_USER:
+            return { ...state, isNew: true }
+        case types.LOGOUT_FULFILLED:
             return INITIAL_STATE;
         case types.NEW_USER:
-            return {...state, isNew: true}
+            return { ...state, isNew: true }
         default:
             return state;
     }

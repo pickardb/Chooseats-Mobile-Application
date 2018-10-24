@@ -7,11 +7,12 @@ import { black } from 'ansi-colors';
 class RoomListItem extends Component {
 
     onRowPress() {
-        const { room } = this.props
+        const { room } = this.props;
         Actions.roomContainer({ room });
     }
+
     render() {
-        const { room: { roomName, id, description, roomCode } } = this.props
+        const { room: { roomName, roomCode } } = this.props
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>

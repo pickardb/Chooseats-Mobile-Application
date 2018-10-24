@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input } from '../common';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { createRoom, getRooms, updateNewRoomDesc, updateNewRoomName } from '../../actions/rooms';
 import { Actions } from 'react-native-router-flux';
 import RoomList from './RoomList';
@@ -37,14 +37,14 @@ class RoomCreate extends Component {
         if (this.props.newRoom) {
             return (
                 <Card style={styles.textContainerStyle}>
-                <CardSection>
-                    <Text style={styles.descriptTextStyle} >
-                        Your Room Code:
+                    <CardSection>
+                        <Text style={styles.descriptTextStyle} >
+                            Your Room Code:
                     </Text >
-                    <Text style={styles.descriptTextStyle}>
-                        {this.props.newRoom}
-                    </Text>
-                </CardSection>
+                        <Text style={styles.descriptTextStyle}>
+                            {this.props.newRoom}
+                        </Text>
+                    </CardSection>
                 </Card>
             );
         }
@@ -67,28 +67,28 @@ class RoomCreate extends Component {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
 
-            <View>
-                
+                <View>
+
                     {this.renderRoomCode()}
                     <Card style={styles.textContainerStyle}>
-                    <CardSection>
-                        <Input
-                            label="Room Name"
-                            placeholder="Name your room"
-                            onChangeText={this.onNameChange.bind(this)}
-                            value={this.newRoomName}
-                        />
-                    </CardSection>
-                    <CardSection>
-                        <Input
-                            label="Details"
-                            placeholder="Room Details"
-                            onChangeText={this.onDescChange.bind(this)}
-                            value={this.newRoomDesc}
-                        />
-                    </CardSection>
-                </Card>
-            </View>
+                        <CardSection>
+                            <Input
+                                label="Room Name"
+                                placeholder="Name your room"
+                                onChangeText={this.onNameChange.bind(this)}
+                                value={this.newRoomName}
+                            />
+                        </CardSection>
+                        <CardSection>
+                            <Input
+                                label="Details"
+                                placeholder="Room Details"
+                                onChangeText={this.onDescChange.bind(this)}
+                                value={this.newRoomDesc}
+                            />
+                        </CardSection>
+                    </Card>
+                </View>
             </ImageBackground>
         );
     }

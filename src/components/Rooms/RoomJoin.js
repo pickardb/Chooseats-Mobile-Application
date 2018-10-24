@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input } from '../common';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { updateJoinRoomCode, joinRoom } from '../../actions/rooms';
 import { TextField } from '../../utils/form_components';
@@ -20,21 +20,21 @@ class RoomJoin extends Component {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
 
-            <View>
-                <Card style={styles.textContainerStyle}>
-                    <CardSection>
-                        <Text style={styles.subtitleTextStyle}>
-                            Enter the room code:
+                <View>
+                    <Card style={styles.textContainerStyle}>
+                        <CardSection>
+                            <Text style={styles.subtitleTextStyle}>
+                                Enter the room code:
                         </Text>
-                    </CardSection>
-                    <CardSection>
-                        <Field
-                            name="roomCode"
-                            placeholder="ABC123"
-                            label="Room Code:"
-                            component={TextField}
-                        />
-                    </CardSection>
+                        </CardSection>
+                        <CardSection>
+                            <Field
+                                name="roomCode"
+                                placeholder="ABC123"
+                                label="Room Code:"
+                                component={TextField}
+                            />
+                        </CardSection>
                     </Card>
                     <Button
                         buttonStyle={{
@@ -45,8 +45,8 @@ class RoomJoin extends Component {
                         large title='Join Room'
                         onPress={handleSubmit(onSubmit)}
                     />
-                
-            </View>
+
+                </View>
             </ImageBackground>
         );
     }
@@ -79,7 +79,7 @@ const styles = {
         flexDirection: 'column',
         borderRadius: 5,
         opacity: 0.8
-    }, 
+    },
     container: {
         flex: 1,
         flexDirection: 'column',

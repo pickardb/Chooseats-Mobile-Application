@@ -4,7 +4,6 @@ import { View, Text, ImageBackground } from 'react-native';
 import { Card, CardSection } from '../common';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import {change, actionCreators} from 'redux-form';
 
 import { getRooms } from '../../actions/rooms';
 import { logout } from '../../actions/users';
@@ -19,8 +18,6 @@ class RoomLobbyContainer extends Component {
 
     handleLogout = () => {
         const { _logout } = this.props;
-        Actions.reset('landingScene');
-        this.props.user.accessToken = '';
         _logout();
     }
 
@@ -64,7 +61,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     _getRooms: () => dispatch(getRooms),
-    _logout: () => dispatch(logout())
+    _logout: () => dispatch(logout)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomLobbyContainer);

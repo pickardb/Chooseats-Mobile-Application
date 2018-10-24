@@ -5,18 +5,20 @@ import messageTypes from '../types/messages';
 
 const messagesService = feathersClient.service('messages');
 
-export const sendMessage = (roomId) => async (values, dispatch) => {
+export const sendMessage = (roomId, user) => async (values, dispatch) => {
     const { text } = values;
 
     const localMessageId = uuidv1()
-    dispatch(addLocalMessage({ text, id: localMessageId }));
 
+    //Disabled for now as we are not storing user email in our store on persisted start
+    //dispatch(addLocalMessage({ text, id: localMessageId }));
     try {
         await dispatch({
             type: messageTypes.SEND_MESSAGE,
             payload: messagesService.create({ roomId: roomId, text, type: "user" })
         })
-        dispatch(removeLocalMessage(localMessageId));
+        //Disabled for now
+        //dispatch(removeLocalMessage(localMessageId));
     }
     catch (err) {
 

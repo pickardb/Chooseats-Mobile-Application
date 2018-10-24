@@ -7,8 +7,8 @@ import { black } from 'ansi-colors';
 class RoomListItem extends Component {
 
     onRowPress() {
-        const { room } = this.props;
-        Actions.roomContainer({ room });
+        const { room, room: { roomCode, roomName } } = this.props;
+        Actions.roomContainer({ room, title: roomName });
     }
 
     render() {

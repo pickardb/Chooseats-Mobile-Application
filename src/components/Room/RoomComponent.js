@@ -1,43 +1,44 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Card, CardSection } from '../common';
+import { View, Text, ScrollView } from 'react-native';
+import { Card } from 'react-native-elements';
 
 import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
 
-export default RoomComponent = ({ messages, room }) => {
-    const { roomCode, roomName, roomDesc } = room;
+export default class RoomContainer extends React.Component {
 
-    return (
-        <View>
-            <Card>
-                <CardSection>
-                    <Text>
-                        This Room's code is: {roomCode}
-                    </Text>
+    componentDidMount() {
+        this.refs.messagesView.scrollToEnd({ animated: false });
+    }
 
-                </CardSection>
-                <CardSection>
-                    <Text>
-                        This Room's name is: {roomName}
-                    </Text>
-                </CardSection>
-                <CardSection>
-                    <Text>
-                        {roomDesc}
-                    </Text>
+    render() {
+        const { messages, room } = this.props;
 
-                </CardSection>
-            </Card>
-            <Card>
-                <CardSection>
+        return (
+            <View style={styles.container}>
+
+                <Card title={room.roomDesc} >
+                    <Text h3>This room's code is {room.roomCode}</Text>
+                </Card>
+                <ScrollView ref="messagesView"
+
+                >
                     {!messages.isLoading &&
                         <MessagesList messages={messages} />
                     }
-                </CardSection>
-            </Card>
-            <MessagesFormContainer roomId={room.id} />
-        </View>
-    );
-}
+                </ScrollView>
 
+                <MessagesFormContainer roomId={room.id} />
+            </View>
+        );
+    }
+
+};
+
+const styles = {
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
+    },
+};

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, ScrollView } from 'react-native';
+import { List } from 'react-native-elements';
 
 import MessageListItem from './MessageListItem';
 
@@ -15,8 +16,9 @@ export default MessageList = ({ messages: allMessages }) => {
 
     //messagesListJSX = messagesListJSX.reverse();
     return (
-        <ScrollView>
+        <List>
             {messagesListJSX}
             {localMessagesListJSX}
-        </ScrollView>);
+        </List>);
 }
+//            </List>{localMessagesListJSX}

@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { CardSection, Card } from '../../common';
+import { ListItem } from 'react-native-elements'
 
 export default MessageListItem = ({ message }) => {
-    const { text, type, user } = message;
+    const { id, text, type, user } = message;
 
     return (
-        <View>
-            <Text>
-                {text}
-            </Text>
-        </View>);
+        <ListItem
+            key={id}
+            title={user.email}
+            subtitle={text}
+            hideChevron={true}
+        />);
 };

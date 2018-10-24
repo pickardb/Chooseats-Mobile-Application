@@ -5,7 +5,9 @@ const roomsReducer = (state = {
     isGettingRooms: false,
     newRoom: '',
     isCreatingRoom: false,
-    joinRoomCode: ''
+    joinRoomCode: '',
+    newRoomName: '',
+    newRoomDesc: '',
 }, action) => {
     switch (action.type) {
         case types.GET_ROOMS:
@@ -26,6 +28,10 @@ const roomsReducer = (state = {
             return { ...state, errors: action.payload.errors, isCreatingRoom: false }
         case types.JOIN_ROOM_UPDATED:
             return { ...state, joinRoomCode: action.payload }
+        case types.NEW_ROOM_NAME:
+            return {...state, newRoomName: action.payload}
+        case types.NEW_ROOM_DESC:
+            return {...state, newRoomDesc: action.payload}
         default:
             return state;
     }

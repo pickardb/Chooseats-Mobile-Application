@@ -23,6 +23,10 @@ class RoomContainer extends React.Component {
         _getMessages(id);
     }
 
+    componentWillUnmount() {
+        feathersClient.service('messages').removeAllListeners("created");
+    }
+
     render() {
         const { room, messages } = this.props;
 

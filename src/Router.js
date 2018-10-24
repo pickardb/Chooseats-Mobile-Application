@@ -5,7 +5,7 @@ import CheckAuthentication from './components/Authentication/checkAuthentication
 import Authentication from './components/Authentication';
 import Signup from './components/Authentication/SignUp/FormContainer';
 import Login from './components/Authentication/Login/LoginFormContainer';
-import RoomCreate from './components/Rooms/RoomCreateContainer';
+import RoomCreate from './components/Rooms/RoomCreate';
 import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import RoomList from './components/Rooms/RoomList';
 import RoomJoin from './components/Rooms/RoomJoinContainer';
@@ -13,7 +13,11 @@ import RoomContainer from './components/Room/RoomContainer';
 
 const RouterComponent = () => {
     return (
-        <Router>
+        <Router 
+        navigationBarStyle={{ backgroundColor: '#ffb839' }} 
+        titleStyle={{color:'white'}} 
+        rightButtonTextStyle={{color: "#FFFFFF"}}
+        >
             <Scene key="root" hideNavBar>
                 <Scene key="authenticate">
                     <Scene

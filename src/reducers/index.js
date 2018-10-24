@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 
 import userReducer from '../reducers/user';
 import roomsReducer from '../reducers/rooms';
 import messagesReducer from '../reducers/messages';
+import formReducer from '../reducers/form';
 
 export default combineReducers({
     user: userReducer,

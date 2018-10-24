@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button } from '../common';
-import { createRoom, getRooms } from '../../actions/rooms';
+import { Card, CardSection, Input } from '../common';
+import {Button} from 'react-native-elements';
+import { createRoom, getRooms, updateNewRoomDesc, updateNewRoomName } from '../../actions/rooms';
 import { Actions } from 'react-native-router-flux';
 import RoomList from './RoomList';
 import { TextField } from '../../utils/form_components';
 import { Field } from 'redux-form';
 
+const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
 class RoomCreate extends Component {
     onButtonPress() {
-        this.props._createRoom();
+        this.props._createRoom(this.props.newRoomName, this.props.newRoomDesc);
     }
 
     componentDidMount() {
@@ -22,9 +24,19 @@ class RoomCreate extends Component {
         Actions.refresh({ key: 'roomList' });
     }
 
+    onNameChange(text) {
+        this.props._updateNewRoomName(text)
+    }
+
+    onDescChange(text) {
+        this.props._updateNewRoomDesc(text)
+    }
+
+
     renderRoomCode() {
         if (this.props.newRoom) {
             return (
+                <Card style={styles.textContainerStyle}>
                 <CardSection>
                     <Text style={styles.descriptTextStyle} >
                         Your Room Code:
@@ -33,43 +45,51 @@ class RoomCreate extends Component {
                         {this.props.newRoom}
                     </Text>
                 </CardSection>
+                </Card>
             );
         }
         else {
             return (
-                <CardSection>
-                    <Button onPress={this.onButtonPress.bind(this)}>
-                        Create a Room
-                        </Button>
-                </CardSection>
+                <Button
+                    buttonStyle={{
+                        marginVertical: 10,
+                        backgroundColor: '#c67f00',
+                        elevation: 5
+                    }}
+                    large title='Create a Room'
+                    onPress={this.onButtonPress.bind(this)}
+                />
             );
         }
     }
 
     render() {
         return (
-            <View>
-                <Card>
-                    {this.renderRoomCode()}
+            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
 
+            <View>
+                
+                    {this.renderRoomCode()}
+                    <Card style={styles.textContainerStyle}>
                     <CardSection>
-                        <Field
-                            name="name"
+                        <Input
                             label="Room Name"
                             placeholder="Name your room"
-                            component={TextField}
+                            onChangeText={this.onNameChange.bind(this)}
+                            value={this.newRoomName}
                         />
                     </CardSection>
                     <CardSection>
-                        <Field
-                            name="description"
+                        <Input
                             label="Details"
                             placeholder="Room Details"
-                            component={TextField}
+                            onChangeText={this.onDescChange.bind(this)}
+                            value={this.newRoomDesc}
                         />
                     </CardSection>
                 </Card>
             </View>
+            </ImageBackground>
         );
     }
 };
@@ -79,18 +99,34 @@ const styles = {
         textAlign: 'center',
         fontSize: 18,
         marginLeft: 10
-    }
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25,
+    },
+    textContainerStyle: {
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
+    },
 };
 
 const mapStatetoProps = state => {
     return {
-        newRoom: state.rooms.newRoom
+        newRoom: state.rooms.newRoom,
+        newRoomName: state.rooms.newRoomName,
+        newRoomDesc: state.rooms.newRoomDesc,
     };
 };
 
 const mapDispatchToProps = dispatch => ({
-    _createRoom: () => dispatch(createRoom),
+    _createRoom: (roomName, roomDesc) => dispatch(createRoom(roomName, roomDesc)),
     _getRooms: () => dispatch(getRooms),
+    _updateNewRoomName: (text) => dispatch(updateNewRoomName(text)),
+    _updateNewRoomDesc: (text) => dispatch(updateNewRoomDesc(text)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomCreate);

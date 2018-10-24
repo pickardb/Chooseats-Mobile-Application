@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection, Button } from '../common';
+import { CardSection } from '../common';
+import {Button} from 'react-native-elements';
 import RoomListItem from './RoomListItem';
 import { getRooms } from '../../actions/rooms';
 import { Actions } from 'react-native-router-flux';
+
+const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
 class RoomList extends Component {
     componentWillMount() {
@@ -23,16 +26,22 @@ class RoomList extends Component {
         const { rooms } = this.props;
 
         return (
+            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
 
             <ScrollView>
-                <CardSection>
-                    <Button onPress={Actions.roomJoin}>
-                        Join a new Room
-                    </Button>
-                </CardSection>
+                <Button
+                    buttonStyle={{
+                        marginVertical: 10,
+                        backgroundColor: '#c67f00',
+                        elevation: 5
+                    }}
+                    large title='Join a New Room'
+                    onPress={Actions.roomJoin}
+                />
                 {this.renderRooms(rooms)}
 
             </ScrollView>
+            </ImageBackground>
         );
     }
 };
@@ -48,3 +57,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomList);
+
+const styles = {
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25,
+    },
+};

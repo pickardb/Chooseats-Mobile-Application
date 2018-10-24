@@ -28,12 +28,14 @@ const container = ({ error, handleSubmit, isLoggingIn }) => (
         handleSubmit={handleSubmit}
         onSubmit={loginUser}
         isLoggingIn={isLoggingIn}
+        
     />
 );
 
 LoginFormContainer = reduxForm({
     form: 'Login',
-    validate
+    validate,
+    enableReinitialize: true
 })(container);
 
 const mapStatetoProps = state => {

@@ -2,6 +2,9 @@
   "name": "ChooseEats",
   "version": "0.0.1",
   "private": true,
+  "husky": {
+    "precommit": "eslint ."
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
@@ -36,6 +39,7 @@
     "eslint": "^5.8.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.1.2",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.3",
     "react-test-renderer": "16.5.0",

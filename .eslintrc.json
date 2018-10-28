@@ -1,0 +1,30 @@
+{
+    "parser": "babel-eslint",
+
+    "extends": [
+		"eslint:recommended",
+    "plugin:react/recommended"
+    ],
+
+     "settings": {
+    "react": {
+      "createClass": "createReactClass", 
+                                        
+      "pragma": "React",  
+      "version": "15.0", 
+      "flowVersion": "0.53" 
+    },
+    "propWrapperFunctions": [ "forbidExtraProps" ] 
+    },
+
+    "rules": {
+      "no-unused-vars": 0
+    },
+  
+    "plugins": ["react", "react-native"],
+  
+    "env": {
+		"react-native/react-native": true,
+		"browser": true
+    }
+}

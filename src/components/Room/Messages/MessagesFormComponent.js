@@ -6,7 +6,7 @@ import {Button} from 'react-native-elements';
 
 import { TextField } from '../../../utils/form_components';
 
-export default MessagesFormComponent = ({ handleSubmit, onSubmit }) => (
+const MessagesFormComponent = ({ handleSubmit, onSubmit }) => (
     <View>
         <Card>
             <CardSection>
@@ -31,3 +31,5 @@ export default MessagesFormComponent = ({ handleSubmit, onSubmit }) => (
         
     </View>
 );
+
+export default MessagesFormComponent;

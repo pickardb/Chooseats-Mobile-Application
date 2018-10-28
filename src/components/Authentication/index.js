@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall.png');
 
-export default Authentication = () => (
+const Authentication = () => (
     <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
         <Animatable.View animation="slideInLeft">
             <Button buttonStyle = {{marginVertical: 5, backgroundColor: '#c67f00'}}large title='Sign Up' onPress={Actions.signupModal} />
@@ -26,3 +26,5 @@ const styles = StyleSheet.create({
         paddingBottom: 25
     }
 });
+
+export default Authentication;

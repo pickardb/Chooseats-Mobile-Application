@@ -52,13 +52,13 @@ class RoomJoin extends Component {
     }
 }
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return {
         joinRoomCode: state.rooms.joinRoomCode,
     };
-}
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     _joinRoom: (roomCode) => dispatch(joinRoom(roomCode)),
     _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
 });

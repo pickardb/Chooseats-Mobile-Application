@@ -12,7 +12,7 @@ class RoomListItem extends Component {
     }
 
     render() {
-        const { room: { roomName, roomCode } } = this.props
+        const { room: { roomName, roomCode } } = this.props;
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>

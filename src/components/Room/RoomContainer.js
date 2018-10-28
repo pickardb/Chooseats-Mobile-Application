@@ -15,7 +15,7 @@ class RoomContainer extends React.Component {
         const callback = (message, context) => {
             _addNewMessage(message);
             console.log(message);
-        }
+        };
         feathersClient.service('messages').on('newMessage', callback);
     }
 
@@ -36,15 +36,15 @@ class RoomContainer extends React.Component {
 }
 
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return {
         messages: state.messages
     };
 };
 
-const mapDispatchToProps = dispatch => ({
-    _getMessages: roomId => dispatch(getMessages(roomId)),
-    _addNewMessage: message => dispatch(addNewMessage(message))
+const mapDispatchToProps = (dispatch) => ({
+    _getMessages: (roomId) => dispatch(getMessages(roomId)),
+    _addNewMessage: (message) => dispatch(addNewMessage(message))
 
 });
 

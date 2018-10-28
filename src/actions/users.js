@@ -26,7 +26,7 @@ export const signupUser = async (values, dispatch) => {
             type: userTypes.SIGNUP,
             payload: userService.create(values)
         })
-        loginUser(values, dispatch)
+        loginUser(values, dispatch);
     } catch (error) {
         console.log(error);
         throw new SubmissionError({
@@ -54,9 +54,9 @@ export const loginUser = async (values, dispatch) => {
             _errors: error.message
         })
     }
-}
+};
 
-export const authenticateUser = accessToken => async (dispatch) => {
+export const authenticateUser = (accessToken) => async (dispatch) => {
     try {
         await dispatch({
             type: userTypes.AUTHENTICATE,
@@ -70,7 +70,7 @@ export const authenticateUser = accessToken => async (dispatch) => {
         Actions.reset('landingScene');
         console.log(error);
     }
-}
+};
 
 export const logout = async (dispatch) => {
     try {
@@ -91,7 +91,7 @@ export const newUser = () => {
         type: userTypes.NEW_USER,
         payload: null
     }
-}
+};
 
 
 

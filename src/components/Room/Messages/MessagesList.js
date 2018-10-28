@@ -4,15 +4,15 @@ import { List } from 'react-native-elements';
 
 import MessageListItem from './MessageListItem';
 
-export default MessageList = ({ messages: allMessages }) => {
+const MessageList = ({ messages: allMessages }) => {
 
-    var messagesListJSX = allMessages.messages.map(message => {
+    var messagesListJSX = allMessages.messages.map((message) => {
         return (<MessageListItem key={message.id} message={message} />);
-    })
+    });
 
-    var localMessagesListJSX = allMessages.localMessages.map(message => {
+    var localMessagesListJSX = allMessages.localMessages.map((message) => {
         return (<MessageListItem key={message.id} message={message} />);
-    })
+    });
 
     //messagesListJSX = messagesListJSX.reverse();
     return (
@@ -20,5 +20,6 @@ export default MessageList = ({ messages: allMessages }) => {
             {messagesListJSX}
             {localMessagesListJSX}
         </List>);
-}
+};
 //            </List>{localMessagesListJSX}
+export default MessageList;

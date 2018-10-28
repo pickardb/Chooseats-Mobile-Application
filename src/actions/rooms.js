@@ -24,7 +24,7 @@ export const getRooms = async (dispatch) => {
 
 export const createRoom = (newRoomName, newRoomDesc) => async (dispatch) => {
     console.log("Create room values:" + newRoomName + " " + newRoomDesc);
-    console.log("dispatch: " + dispatch)
+    console.log("dispatch: " + dispatch);
     try {
         await dispatch({
             type: roomTypes.CREATE_ROOM,
@@ -32,7 +32,7 @@ export const createRoom = (newRoomName, newRoomDesc) => async (dispatch) => {
                 roomName: newRoomName,
                 roomDesc: newRoomDesc
             })
-        })
+        });
     } catch (err) {
         console.log(err);
     }
@@ -60,14 +60,14 @@ export const joinRoom = async (values, dispatch) => {
     }
 };
 
-export const updateNewRoomName = text => {
+export const updateNewRoomName = (text) => {
     return ({
         type: roomTypes.NEW_ROOM_NAME,
         payload: text
     });
-}
+};
 
-export const updateNewRoomDesc = text => {
+export const updateNewRoomDesc = (text) => {
     return ({
         type: roomTypes.NEW_ROOM_DESC,
         payload: text

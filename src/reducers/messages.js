@@ -1,9 +1,9 @@
-import types from '../types/messages'
+import types from '../types/messages';
 const INITIAL_STATE = {
     isLoading: false,
     messages: [],
     localMessages: []
-}
+};
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {

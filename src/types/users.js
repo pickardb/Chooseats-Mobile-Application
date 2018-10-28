@@ -39,4 +39,4 @@ export default {
     LOGOUT_FULFILLED,
     LOGOUT_REJECTED,
     NEW_USER
-}
+};

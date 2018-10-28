@@ -92,7 +92,7 @@ class RoomCreate extends Component {
             </ImageBackground>
         );
     }
-};
+}
 
 const styles = {
     descriptTextStyle: {

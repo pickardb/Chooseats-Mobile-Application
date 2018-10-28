@@ -43,7 +43,7 @@ class RoomList extends Component {
             </ImageBackground>
         );
     }
-};
+}
 
 const mapStatetoProps = state => {
     return {

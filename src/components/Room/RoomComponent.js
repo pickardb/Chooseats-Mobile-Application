@@ -33,7 +33,7 @@ export default class RoomContainer extends React.Component {
         );
     }
 
-};
+}
 
 const styles = {
     container: {

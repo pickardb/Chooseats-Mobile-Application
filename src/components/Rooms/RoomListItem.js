@@ -28,7 +28,7 @@ class RoomListItem extends Component {
             </TouchableWithoutFeedback>
         );
     }
-};
+}
 
 export default RoomListItem;
 

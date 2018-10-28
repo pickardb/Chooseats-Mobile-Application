@@ -82,7 +82,7 @@ export const logout = async (dispatch) => {
     } catch (error) {
         Actions.reset('landingScene');
         console.log(error);
-    };
+    }
 };
 
 export const newUser = () => {

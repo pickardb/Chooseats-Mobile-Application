@@ -27,6 +27,6 @@ const container = ({error, handleSubmit}) => (
 RoomJoinContainer = reduxForm({
     form: "RoomJoin",
     validate
-})(container)
+})(container);
 
 export default connect(null, {joinRoom})(RoomJoinContainer);

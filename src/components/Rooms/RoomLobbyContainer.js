@@ -50,16 +50,16 @@ class RoomLobbyContainer extends Component {
                     large title='Logout'
                     onPress={this.handleLogout}
                 />
-            </ImageBackground>)
+            </ImageBackground>);
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     rooms: state.rooms,
     user: state.user
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     _getRooms: () => dispatch(getRooms),
     _logout: () => dispatch(logout)
 });

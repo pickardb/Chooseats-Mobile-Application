@@ -27,7 +27,7 @@ class CheckAuthentication extends React.Component {
     componentWillReceiveProps(){
         console.log("componentWillReceiveProps");
         if(this.props.user.isNew){
-            Actions.pop()
+            Actions.pop();
             Actions.landingScene();
         }
     }
@@ -47,13 +47,13 @@ class CheckAuthentication extends React.Component {
     }
 }
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return {
         user: state.user
     };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     _authenticate: (accessToken) => dispatch(authenticateUser(accessToken)),
     _newUser: () => dispatch(newUser())
 });

@@ -8,7 +8,7 @@ export default formReducer.plugin({
     Login: (state, action) => { // <------ 'Login' is name of form given to reduxForm()
         switch (action.type) {
             case userTypes.LOGIN_FULFILLED:
-                return undefined;       // <--- blow away form data
+                return null;       // <--- blow away form data
             default:
                 return state;
         }
@@ -24,7 +24,7 @@ export default formReducer.plugin({
     SendMessage: (state, action) => { // <------ 'SendMessage' is name of form given to reduxForm()
         switch (action.type) {
             case messageTypes.SEND_MESSAGE_FULFILLED:
-                return undefined;       // <--- blow away form data
+                return null;       // <--- blow away form data
             default:
                 return state;
         }
@@ -32,7 +32,7 @@ export default formReducer.plugin({
     RoomJoin: (state, action) => { // <------ 'RoomJoin' is name of form given to reduxForm()
         switch (action.type) {
             case roomTypes.JOIN_ROOM_FUFILLED:
-                return undefined;       // <--- blow away form data
+                return null;       // <--- blow away form data
             default:
                 return state;
         }

@@ -5,7 +5,7 @@ import {Card, CardSection, Button} from '../../common';
 
 import { TextField } from '../../../utils/form_components';
 
-export default SignupFormComponent = ({ handleSubmit, onSubmit }) => (
+const SignupFormComponent = ({ handleSubmit, onSubmit }) => (
     <View>
         <Card>
             <CardSection>
@@ -48,4 +48,6 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginRight: 5
     }
-})
+});
+
+export default SignupFormComponent;

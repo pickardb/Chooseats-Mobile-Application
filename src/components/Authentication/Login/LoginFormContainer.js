@@ -38,7 +38,7 @@ LoginFormContainer = reduxForm({
     enableReinitialize: true
 })(container);
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return{
     isLoggingIn: state.user.isLoggingIn
     };

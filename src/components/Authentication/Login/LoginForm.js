@@ -9,7 +9,7 @@ import { Field } from 'redux-form';
 
 
 
-export default LoginForm = ({ handleSubmit, onSubmit, isLoggingIn }) => (
+const LoginForm = ({ handleSubmit, onSubmit, isLoggingIn }) => (
     < View >
         <Card>
             <CardSection>
@@ -55,3 +55,5 @@ const styles = {
         color: 'red',
     }
 };
+
+export default LoginForm;

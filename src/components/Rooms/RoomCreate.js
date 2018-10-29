@@ -25,11 +25,11 @@ class RoomCreate extends Component {
     }
 
     onNameChange(text) {
-        this.props._updateNewRoomName(text)
+        this.props._updateNewRoomName(text);
     }
 
     onDescChange(text) {
-        this.props._updateNewRoomDesc(text)
+        this.props._updateNewRoomDesc(text);
     }
 
 
@@ -114,7 +114,7 @@ const styles = {
     },
 };
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return {
         newRoom: state.rooms.newRoom,
         newRoomName: state.rooms.newRoomName,
@@ -122,7 +122,7 @@ const mapStatetoProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     _createRoom: (roomName, roomDesc) => dispatch(createRoom(roomName, roomDesc)),
     _getRooms: () => dispatch(getRooms),
     _updateNewRoomName: (text) => dispatch(updateNewRoomName(text)),

@@ -6,6 +6,16 @@ import { Actions } from 'react-native-router-flux';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall.png');
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        padding: 10,
+        paddingBottom: 25
+    }
+});
+
 const Authentication = () => (
     <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
         <Animatable.View animation="slideInLeft">
@@ -17,14 +27,5 @@ const Authentication = () => (
     </ImageBackground>
 );
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        padding: 10,
-        paddingBottom: 25
-    }
-});
 
 export default Authentication;

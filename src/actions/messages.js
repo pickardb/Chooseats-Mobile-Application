@@ -58,4 +58,4 @@ export const getMessages = (id) => async dispatch => {
     catch (err) {
         console.log(err);
     }
-}
+};

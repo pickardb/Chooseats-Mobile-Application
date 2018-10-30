@@ -9,6 +9,16 @@ const backgroundImage = require('./assets/Chooseats_Logo_Tall.png');
 
 import { authenticateUser, newUser } from '../../actions/users';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        padding: 10,
+        paddingBottom: 25
+    }
+});
+
 
 class CheckAuthentication extends React.Component {
 
@@ -61,12 +71,3 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStatetoProps, mapDispatchToProps)(CheckAuthentication);
 
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        padding: 10,
-        paddingBottom: 25
-    }
-});

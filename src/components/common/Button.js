@@ -1,21 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const Button = (props) => {
-    const {
-        buttonStyle,
-        textStyle
-    } = styles;
-
-    return (
-        <TouchableOpacity onPress = {props.onPress} style={buttonStyle}>
-            <Text style={textStyle}>
-                {props.children}
-            </Text>
-        </TouchableOpacity>
-    );
-};
-
 const styles = StyleSheet.create({
     textStyle: {
         alignSelf: 'center',
@@ -38,5 +23,21 @@ const styles = StyleSheet.create({
         marginRight: 5
     }
 });
+
+const Button = (props) => {
+    const {
+        buttonStyle,
+        textStyle
+    } = styles;
+
+    return (
+        <TouchableOpacity onPress = {props.onPress} style={buttonStyle}>
+            <Text style={textStyle}>
+                {props.children}
+            </Text>
+        </TouchableOpacity>
+    );
+};
+
 
 export {Button};

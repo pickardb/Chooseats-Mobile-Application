@@ -5,6 +5,14 @@ import { Card } from 'react-native-elements';
 import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
 
+const styles = {
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
+    },
+};
+
 export default class RoomContainer extends React.Component {
 
     componentDidMount() {
@@ -35,10 +43,3 @@ export default class RoomContainer extends React.Component {
 
 }
 
-const styles = {
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start'
-    },
-};

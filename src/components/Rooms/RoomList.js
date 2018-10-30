@@ -9,6 +9,16 @@ import { Actions } from 'react-native-router-flux';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
+const styles = {
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25,
+    },
+};
+
 class RoomList extends Component {
     componentWillMount() {
         this.props._getRooms();
@@ -57,12 +67,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomList);
 
-const styles = {
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
-    },
-};

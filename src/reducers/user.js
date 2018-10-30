@@ -1,4 +1,4 @@
-import types from '../types/users'
+import types from '../types/users';
 const INITIAL_STATE = {
     isSigningUp: false,
     email: '',
@@ -29,6 +29,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
         default:
             return state;
     }
-}
+};
 
 export default userReducer;

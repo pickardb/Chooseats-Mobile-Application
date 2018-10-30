@@ -22,13 +22,13 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: 10,
-        paddingBottom: 25,
+        paddingBottom: 25
     },
     textContainerStyle: {
         flexDirection: 'column',
         borderRadius: 5,
         opacity: 0.8
-    },
+    }
 };
 
 class RoomCreate extends Component {
@@ -113,7 +113,6 @@ class RoomCreate extends Component {
         );
     }
 }
-
 
 const mapStatetoProps = (state) => {
     return {

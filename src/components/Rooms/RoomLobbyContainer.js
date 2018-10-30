@@ -32,8 +32,8 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: 10,
-        paddingBottom: 25,
-    },
+        paddingBottom: 25
+    }
 };
 
 class RoomLobbyContainer extends Component {

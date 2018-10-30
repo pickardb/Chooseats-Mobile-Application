@@ -22,7 +22,7 @@ export const loginUser = async (values, dispatch) => {
         throw new SubmissionError({
             ...error.errors,
             _errors: error.message
-        })
+        });
     }
 };
 
@@ -63,7 +63,7 @@ export const authenticateUser = (accessToken) => async (dispatch) => {
             type: userTypes.AUTHENTICATE,
             payload: feathersClient.authenticate({
                 strategy: 'jwt',
-                accessToken: accessToken
+                accessToken
             })
         });
         Actions.reset('rooms');
@@ -91,7 +91,7 @@ export const newUser = () => {
     return {
         type: userTypes.NEW_USER,
         payload: null
-    }
+    };
 };
 
 

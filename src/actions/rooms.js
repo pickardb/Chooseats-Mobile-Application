@@ -72,4 +72,4 @@ export const updateNewRoomDesc = (text) => {
         type: roomTypes.NEW_ROOM_DESC,
         payload: text
     });
-}
+};

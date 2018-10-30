@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     error: '',
     isLoggingIn: false,
     isNew: false
-}
+};
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {

@@ -26,7 +26,7 @@ export default class RoomContainer extends React.Component {
             <View style={styles.container}>
 
                 <Card title={room.roomDesc} >
-                    <Text h3>This room's code is {room.roomCode}</Text>
+                    <Text h3>This rooms code is {room.roomCode}</Text>
                 </Card>
                 <ScrollView ref="messagesView"
 

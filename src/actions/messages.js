@@ -32,7 +32,7 @@ export const addNewMessage = (message) => {
         type: messageTypes.ADD_NEW_MESSAGE_FROM_SERVER,
         payload: message
     };
-}
+};
 
 export const addLocalMessage = (message) => {
     return {
@@ -53,7 +53,7 @@ export const getMessages = (id) => async dispatch => {
         await dispatch({
             type: messageTypes.GET_MESSAGES,
             payload: messagesService.find({ query: { roomId: id, $sort: -1, $limit: 30 } })
-        })
+        });
     }
     catch (err) {
         console.log(err);

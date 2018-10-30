@@ -2,17 +2,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-//Make a component
-const Header = (props) => {
-    const { textStyle, viewStyle } = styles;
-
-    return (
-        <View style = {viewStyle}>
-            <Text style={textStyle}>{props.headerText}</Text>
-        </View>
-    );
-};
-
 const styles = {
     viewStyle: {
         backgroundColor: '#ffa400',
@@ -28,6 +17,18 @@ const styles = {
         color: '#000'
     }
 };
+
+//Make a component
+const Header = (props) => {
+    const { textStyle, viewStyle } = styles;
+
+    return (
+        <View style = {viewStyle}>
+            <Text style={textStyle}>{props.headerText}</Text>
+        </View>
+    );
+};
+
 
 //Make the component available to the other parts of the app
 export  {Header};

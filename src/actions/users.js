@@ -6,36 +6,6 @@ import userTypes from '../types/users';
 
 const userService = feathersClient.service('users');
 
-export const emailChanged = (text) => {
-    return {
-        type: userTypes.EMAIL_CHANGED,
-        payload: text
-    };
-};
-
-export const passwordChanged = (text) => {
-    return {
-        type: userTypes.PASSWORD_CHANGED,
-        payload: text
-    };
-};
-
-export const signupUser = async (values, dispatch) => {
-    try {
-        await dispatch({
-            type: userTypes.SIGNUP,
-            payload: userService.create(values)
-        })
-        loginUser(values, dispatch);
-    } catch (error) {
-        console.log(error);
-        throw new SubmissionError({
-            ...error.errors,
-            _errors: error.message
-        })
-    }
-};
-
 export const loginUser = async (values, dispatch) => {
     try {
         await dispatch({
@@ -55,6 +25,37 @@ export const loginUser = async (values, dispatch) => {
         })
     }
 };
+
+export const emailChanged = (text) => {
+    return {
+        type: userTypes.EMAIL_CHANGED,
+        payload: text
+    };
+};
+
+export const passwordChanged = (text) => {
+    return {
+        type: userTypes.PASSWORD_CHANGED,
+        payload: text
+    };
+};
+
+export const signupUser = async (values, dispatch) => {
+    try {
+        await dispatch({
+            type: userTypes.SIGNUP,
+            payload: userService.create(values)
+        });
+        loginUser(values, dispatch);
+    } catch (error) {
+        console.log(error);
+        throw new SubmissionError({
+            ...error.errors,
+            _errors: error.message
+        })
+    }
+};
+
 
 export const authenticateUser = (accessToken) => async (dispatch) => {
     try {

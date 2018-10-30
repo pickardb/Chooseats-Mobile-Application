@@ -9,7 +9,7 @@ const validate = (values) => {
 
     if (!values.roomCode) {
         errors.password = 'Password is required';
-    } else if (values.roomCode.length !=6) {
+    } else if (values.roomCode.length !==6) {
         errors.password = 'Password is too short';
     }
 

@@ -10,6 +10,32 @@ import { logout } from '../../actions/users';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
+const styles = {
+    titleTextStyle: {
+        fontSize: 22,
+        color: 'black',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    subtitleTextStyle: {
+        fontSize: 18,
+        color: 'black',
+        textAlign: 'center'
+    },
+    textContainerStyle: {
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25
+    }
+};
+
 class RoomLobbyContainer extends Component {
     componentWillMount() {
         const { _getRooms } = this.props;
@@ -66,28 +92,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomLobbyContainer);
 
-const styles = {
-    titleTextStyle: {
-        fontSize: 22,
-        color: 'black',
-        textAlign: 'center',
-        fontWeight: 'bold'
-    },
-    subtitleTextStyle: {
-        fontSize: 18,
-        color: 'black',
-        textAlign: 'center'
-    },
-    textContainerStyle: {
-        flexDirection: 'column',
-        borderRadius: 5,
-        opacity: 0.8
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
-    },
-};

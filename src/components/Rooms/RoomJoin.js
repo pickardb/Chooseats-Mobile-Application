@@ -10,6 +10,32 @@ import { Field } from 'redux-form';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
+const styles = {
+    titleTextStyle: {
+        fontSize: 22,
+        color: 'black',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    subtitleTextStyle: {
+        fontSize: 18,
+        color: 'black',
+        textAlign: 'center'
+    },
+    textContainerStyle: {
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25,
+    },
+};
+
 class RoomJoin extends Component {
     componentWillUnmount() {
         Actions.refresh({ key: 'roomList' });
@@ -63,30 +89,5 @@ const mapDispatchToProps = (dispatch) => ({
     _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
 });
 
-const styles = {
-    titleTextStyle: {
-        fontSize: 22,
-        color: 'black',
-        textAlign: 'center',
-        fontWeight: 'bold'
-    },
-    subtitleTextStyle: {
-        fontSize: 18,
-        color: 'black',
-        textAlign: 'center'
-    },
-    textContainerStyle: {
-        flexDirection: 'column',
-        borderRadius: 5,
-        opacity: 0.8
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
-    },
-};
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomJoin);

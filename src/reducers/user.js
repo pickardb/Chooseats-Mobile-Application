@@ -1,4 +1,4 @@
-import types from '../types/users'
+import types from '../types/users';
 const INITIAL_STATE = {
     isSigningUp: false,
     email: '',
@@ -26,13 +26,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return { ...state, password: action.payload, isNew: false };
         case types.NEW_USER:
             return { ...state, isNew: true };
-        case types.LOGOUT_FULFILLED:
-            return INITIAL_STATE;
-        case types.NEW_USER:
-            return { ...state, isNew: true };
         default:
             return state;
     }
-}
+};
 
 export default userReducer;

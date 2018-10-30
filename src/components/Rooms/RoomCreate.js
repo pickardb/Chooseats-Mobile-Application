@@ -111,7 +111,7 @@ const styles = {
         flexDirection: 'column',
         borderRadius: 5,
         opacity: 0.8
-    },
+    }
 };
 
 const mapStatetoProps = (state) => {

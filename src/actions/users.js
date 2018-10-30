@@ -25,7 +25,7 @@ export const signupUser = async (values, dispatch) => {
         await dispatch({
             type: userTypes.SIGNUP,
             payload: userService.create(values)
-        })
+        });
         loginUser(values, dispatch);
     } catch (error) {
         console.log(error);

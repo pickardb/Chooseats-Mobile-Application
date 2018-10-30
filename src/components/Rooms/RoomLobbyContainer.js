@@ -89,5 +89,5 @@ const styles = {
         justifyContent: 'flex-start',
         padding: 10,
         paddingBottom: 25,
-    },
+    }
 };

@@ -8,9 +8,11 @@ const validate = (values) => {
     const errors = {};
 
     if (!values.roomCode) {
-        errors.password = 'Password is required';
-    } else if (values.roomCode.length !=6) {
-        errors.password = 'Password is too short';
+        errors.roomCode = 'Room Code is required';
+    } else if (values.roomCode.length <6) {
+        errors.roomCode = 'Room Code is too short';
+    } else if (values.roomCode.length >6) {
+        errors.roomCode = 'Room Code is too long';
     }
 
     return errors;

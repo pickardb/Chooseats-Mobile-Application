@@ -52,7 +52,7 @@ export const loginUser = async (values, dispatch) => {
         throw new SubmissionError({
             ...error.errors,
             _errors: error.message
-        })
+        });
     }
 }
 

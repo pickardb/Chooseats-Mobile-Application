@@ -1,0 +1,3 @@
+export default {
+    RESTAURANT_SELECTED: 'RESTAURANT_SELECTED'
+}

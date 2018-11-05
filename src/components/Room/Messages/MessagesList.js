@@ -1,8 +1,16 @@
 import React from 'react';
-import { Text, ScrollView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { List } from 'react-native-elements';
 
 import MessageListItem from './MessageListItem';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 3,
+        flexDirection: 'column',
+        backgroundColor: 'blue'
+    }
+})
 
 const MessageList = ({ messages: allMessages }) => {
 
@@ -16,10 +24,9 @@ const MessageList = ({ messages: allMessages }) => {
 
     //messagesListJSX = messagesListJSX.reverse();
     return (
-        <List>
+        <List style={styles.container}>
             {messagesListJSX}
             {localMessagesListJSX}
         </List>);
 };
-//            </List>{localMessagesListJSX}
 export default MessageList;

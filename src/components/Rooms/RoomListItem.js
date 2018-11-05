@@ -48,3 +48,19 @@ class RoomListItem extends Component {
 
 export default RoomListItem;
 
+const Styles = {
+    titleStyle: {
+        fontSize: 24,
+        color: 'black',
+        flex: 1
+    },
+    idStyle: {
+        fontSize: 18,
+        color: 'black'
+    },
+    itemStyle: {
+        flex: 1,
+        flexDirection: 'column',
+        opacity: 0.8,
+    },
+};

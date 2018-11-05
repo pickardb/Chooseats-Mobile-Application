@@ -57,9 +57,9 @@ class RoomCreate extends Component {
         if (this.props.newRoom) {
             return (
                 <Card style={styles.textContainerStyle}>
-                    <CardSection>
-                        <Text style={styles.descriptTextStyle} >
-                            Your Room Code:
+                <CardSection style={styles.cardSectionStyle}>
+                    <Text style={styles.descriptTextStyle} >
+                        Your Room Code:
                     </Text >
                         <Text style={styles.descriptTextStyle}>
                             {this.props.newRoom}
@@ -91,28 +91,51 @@ class RoomCreate extends Component {
 
                     {this.renderRoomCode()}
                     <Card style={styles.textContainerStyle}>
-                        <CardSection>
-                            <Input
-                                label="Room Name"
-                                placeholder="Name your room"
-                                onChangeText={this.onNameChange.bind(this)}
-                                value={this.newRoomName}
-                            />
-                        </CardSection>
-                        <CardSection>
-                            <Input
-                                label="Details"
-                                placeholder="Room Details"
-                                onChangeText={this.onDescChange.bind(this)}
-                                value={this.newRoomDesc}
-                            />
-                        </CardSection>
-                    </Card>
-                </View>
+                    <CardSection style={styles.cardSectionStyle}>
+                        <Input
+                            label="Room Name"
+                            placeholder="Name your room"
+                            onChangeText={this.onNameChange.bind(this)}
+                            value={this.newRoomName}
+                        />
+                    </CardSection>
+                    <CardSection style={styles.cardSectionStyle}>
+                        <Input
+                            label="Details"
+                            placeholder="Room Details"
+                            onChangeText={this.onDescChange.bind(this)}
+                            value={this.newRoomDesc}
+                        />
+                    </CardSection>
+                </Card>
+            </View>
             </ImageBackground>
         );
     }
-}
+};
+
+const styles = {
+    descriptTextStyle: {
+        textAlign: 'center',
+        fontSize: 18,
+        marginLeft: 10
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25,
+    },
+    textContainerStyle: {
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
+    },
+    cardSectionStyle: {
+        opacity: 0.8,
+    },
+};
 
 const mapStatetoProps = (state) => {
     return {

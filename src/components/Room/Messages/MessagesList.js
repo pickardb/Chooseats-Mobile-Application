@@ -6,9 +6,6 @@ import MessageListItem from './MessageListItem';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 3,
-        flexDirection: 'column',
-        backgroundColor: 'blue'
     }
 })
 

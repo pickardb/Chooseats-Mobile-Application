@@ -13,6 +13,14 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'flex-start'
     },
+    messagesContainer: {
+        flex: 9,
+        backgroundColor: 'green'
+    },
+    sendContainer: {
+        flex: 0,
+        flexGrow: 1
+    }
 };
 
 export default class RoomContainer extends React.Component {
@@ -35,19 +43,23 @@ export default class RoomContainer extends React.Component {
 
         return (
             <View style={styles.container}>
-
-                <Card title={room.roomDesc} >
-                    <Text h3>This rooms code is {room.roomCode}</Text>
-                </Card>
-                <ScrollView ref="messagesView">
-                    {!messages.isLoading &&
-                        <MessagesList messages={messages} />
-                    }
-                </ScrollView>
-                <MessagesFormContainer roomId={room.id} />
+                <View style={styles.messagesContainer}>
+                    <ScrollView ref="messagesView">
+                        {!messages.isLoading &&
+                            <MessagesList messages={messages} />
+                        }
+                    </ScrollView>
+                </View>
+                <View style={styles.sendContainer}>
+                    <MessagesFormContainer roomId={room.id} />
+                </View>
             </View>
         );
     }
 
 }
 
+
+{/* <Card title={room.roomDesc} >
+<Text h3>This rooms code is {room.roomCode}</Text>
+</Card> */}

@@ -10,6 +10,7 @@ import RoomLobbyContainer from './components/Rooms/RoomLobbyContainer';
 import RoomList from './components/Rooms/RoomList';
 import RoomJoin from './components/Rooms/RoomJoinContainer';
 import RoomContainer from './components/Room/RoomContainer';
+import RestaurantContainer from './components/Restaurants/RestaurantContainer';
 
 const RouterComponent = () => {
     return (
@@ -77,6 +78,15 @@ const RouterComponent = () => {
                         key="roomContainer"
                         component={RoomContainer}
                         title="Chat"
+                        rightTitle="Restaurants"
+                        onRight={() =>
+                            Actions.restaurantContainer()
+                        }
+                    />
+                    <Scene
+                        key="restaurantContainer"
+                        component={RestaurantContainer}
+                        title="Restaurant"
                     />
                 </Scene>
             </Scene>

@@ -9,6 +9,16 @@ const backgroundImage = require('./assets/Chooseats_Logo_Tall.png');
 
 import { authenticateUser, newUser } from '../../actions/users';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        padding: 10,
+        paddingBottom: 25
+    }
+});
+
 
 class CheckAuthentication extends React.Component {
 
@@ -27,7 +37,7 @@ class CheckAuthentication extends React.Component {
     componentWillReceiveProps(){
         console.log("componentWillReceiveProps");
         if(this.props.user.isNew){
-            Actions.pop()
+            Actions.pop();
             Actions.landingScene();
         }
     }
@@ -47,13 +57,13 @@ class CheckAuthentication extends React.Component {
     }
 }
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return {
         user: state.user
     };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     _authenticate: (accessToken) => dispatch(authenticateUser(accessToken)),
     _newUser: () => dispatch(newUser())
 });
@@ -61,12 +71,3 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStatetoProps, mapDispatchToProps)(CheckAuthentication);
 
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        padding: 10,
-        paddingBottom: 25
-    }
-});

@@ -15,7 +15,7 @@ const container = ({ error, handleSubmit, roomId }) => (
     />
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 });
 
 MessagesFormContainer = reduxForm({

@@ -6,6 +6,18 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from './store';
 import Router from './Router';
 
+const styles = StyleSheet.create({
+  navBar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'red', // changing navbar color
+  },
+  navTitle: {
+    color: 'white', // changing navbar title color
+  },
+});
 
 export default class App extends Component {
   render() {
@@ -20,15 +32,3 @@ export default class App extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  navBar: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red', // changing navbar color
-  },
-  navTitle: {
-    color: 'white', // changing navbar title color
-  },
-})

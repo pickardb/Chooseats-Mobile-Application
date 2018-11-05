@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import promiseMiddleware from "redux-promise-middleware";
@@ -24,3 +25,31 @@ export const store = createStore(
 export const persistor = persistStore(store);
 
 
+=======
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import promiseMiddleware from "redux-promise-middleware";
+import { composeWithDevTools } from 'remote-redux-devtools';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+
+import rootReducer from './reducers';
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    stateReconciler: autoMergeLevel2 // see "Merge Process" section for details.
+};
+
+const pReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(
+    pReducer,
+    composeWithDevTools(applyMiddleware(thunk, promiseMiddleware()))
+);
+
+export const persistor = persistStore(store);
+
+
+>>>>>>> 8da3d2cd789d1f1255f7d9fcb7d7f819bf3d6254

@@ -11,6 +11,26 @@ import { Field } from 'redux-form';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
+const styles = {
+    descriptTextStyle: {
+        textAlign: 'center',
+        fontSize: 18,
+        marginLeft: 10
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25
+    },
+    textContainerStyle: {
+        flexDirection: 'column',
+        borderRadius: 5,
+        opacity: 0.8
+    }
+};
+
 class RoomCreate extends Component {
     onButtonPress() {
         this.props._createRoom(this.props.newRoomName, this.props.newRoomDesc);
@@ -25,11 +45,11 @@ class RoomCreate extends Component {
     }
 
     onNameChange(text) {
-        this.props._updateNewRoomName(text)
+        this.props._updateNewRoomName(text);
     }
 
     onDescChange(text) {
-        this.props._updateNewRoomDesc(text)
+        this.props._updateNewRoomDesc(text);
     }
 
 
@@ -92,29 +112,9 @@ class RoomCreate extends Component {
             </ImageBackground>
         );
     }
-};
+}
 
-const styles = {
-    descriptTextStyle: {
-        textAlign: 'center',
-        fontSize: 18,
-        marginLeft: 10
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
-    },
-    textContainerStyle: {
-        flexDirection: 'column',
-        borderRadius: 5,
-        opacity: 0.8
-    },
-};
-
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return {
         newRoom: state.rooms.newRoom,
         newRoomName: state.rooms.newRoomName,
@@ -122,7 +122,7 @@ const mapStatetoProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     _createRoom: (roomName, roomDesc) => dispatch(createRoom(roomName, roomDesc)),
     _getRooms: () => dispatch(getRooms),
     _updateNewRoomName: (text) => dispatch(updateNewRoomName(text)),

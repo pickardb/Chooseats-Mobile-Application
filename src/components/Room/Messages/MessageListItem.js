@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { ListItem } from 'react-native-elements'
+import { ListItem } from 'react-native-elements';
 
-export default MessageListItem = ({ message }) => {
+const MessageListItem = ({ message }) => {
     const { id, text, type, user } = message;
 
     return (
@@ -13,3 +13,5 @@ export default MessageListItem = ({ message }) => {
             hideChevron={true}
         />);
 };
+
+export default MessageListItem;

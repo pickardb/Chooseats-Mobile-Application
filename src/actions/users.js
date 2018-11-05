@@ -6,6 +6,26 @@ import userTypes from '../types/users';
 
 const userService = feathersClient.service('users');
 
+export const loginUser = async (values, dispatch) => {
+    try {
+        await dispatch({
+            type: userTypes.LOGIN,
+            payload: feathersClient.authenticate({
+                strategy: 'local',
+                email: values.email,
+                password: values.password
+            })
+        });
+        Actions.rooms();
+    } catch (error) {
+        console.log(error);
+        throw new SubmissionError({
+            ...error.errors,
+            _errors: error.message
+        });
+    }
+};
+
 export const emailChanged = (text) => {
     return {
         type: userTypes.EMAIL_CHANGED,
@@ -25,8 +45,8 @@ export const signupUser = async (values, dispatch) => {
         await dispatch({
             type: userTypes.SIGNUP,
             payload: userService.create(values)
-        })
-        loginUser(values, dispatch)
+        });
+        loginUser(values, dispatch);
     } catch (error) {
         console.log(error);
         throw new SubmissionError({
@@ -56,13 +76,13 @@ export const loginUser = async (values, dispatch) => {
     }
 }
 
-export const authenticateUser = accessToken => async (dispatch) => {
+export const authenticateUser = (accessToken) => async (dispatch) => {
     try {
         await dispatch({
             type: userTypes.AUTHENTICATE,
             payload: feathersClient.authenticate({
                 strategy: 'jwt',
-                accessToken: accessToken
+                accessToken
             })
         });
         Actions.reset('rooms');
@@ -70,7 +90,7 @@ export const authenticateUser = accessToken => async (dispatch) => {
         Actions.reset('landingScene');
         console.log(error);
     }
-}
+};
 
 export const logout = async (dispatch) => {
     try {
@@ -82,7 +102,7 @@ export const logout = async (dispatch) => {
     } catch (error) {
         Actions.reset('landingScene');
         console.log(error);
-    };
+    }
 };
 
 export const newUser = () => {
@@ -90,8 +110,8 @@ export const newUser = () => {
     return {
         type: userTypes.NEW_USER,
         payload: null
-    }
-}
+    };
+};
 
 
 

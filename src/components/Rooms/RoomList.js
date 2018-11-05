@@ -9,15 +9,25 @@ import { Actions } from 'react-native-router-flux';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
+const styles = {
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        padding: 10,
+        paddingBottom: 25,
+    },
+};
+
 class RoomList extends Component {
     componentWillMount() {
         this.props._getRooms();
-        Actions.refresh({ key: 'roomList' })
+        Actions.refresh({ key: 'roomList' });
     }
 
     renderRooms(rooms) {
-        if (rooms.data != undefined) {
-            return rooms.data.map(room =>
+        if (rooms.data != null) {
+            return rooms.data.map((room) =>
                 <RoomListItem key={room.id} room={room} />);
         }
     }
@@ -43,26 +53,17 @@ class RoomList extends Component {
             </ImageBackground>
         );
     }
-};
+}
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
     return {
         rooms: state.rooms
     };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     _getRooms: () => dispatch(getRooms),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomList);
 
-const styles = {
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
-    },
-};

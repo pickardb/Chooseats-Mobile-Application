@@ -56,26 +56,6 @@ export const signupUser = async (values, dispatch) => {
     }
 };
 
-export const loginUser = async (values, dispatch) => {
-    try {
-        await dispatch({
-            type: userTypes.LOGIN,
-            payload: feathersClient.authenticate({
-                strategy: 'local',
-                email: values.email,
-                password: values.password
-            })
-        });
-        Actions.rooms();
-    } catch (error) {
-        console.log(error);
-        throw new SubmissionError({
-            ...error.errors,
-            _errors: error.message
-        });
-    }
-}
-
 export const authenticateUser = (accessToken) => async (dispatch) => {
     try {
         await dispatch({

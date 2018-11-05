@@ -1,0 +1,7 @@
+const UPDATE_CHOICE = 'UPDATE_CHOICE';
+const SUBMIT_VOTE = 'SUBMIT VOTE';
+
+export default {
+    UPDATE_CHOICE,
+    SUBMIT_VOTE,
+};

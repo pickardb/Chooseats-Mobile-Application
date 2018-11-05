@@ -11,26 +11,6 @@ import { Field } from 'redux-form';
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
-const styles = {
-    descriptTextStyle: {
-        textAlign: 'center',
-        fontSize: 18,
-        marginLeft: 10
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25
-    },
-    textContainerStyle: {
-        flexDirection: 'column',
-        borderRadius: 5,
-        opacity: 0.8
-    }
-};
-
 class RoomCreate extends Component {
     onButtonPress() {
         this.props._createRoom(this.props.newRoomName, this.props.newRoomDesc);

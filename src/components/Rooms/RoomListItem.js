@@ -4,22 +4,6 @@ import { CardSection, Card } from '../common';
 import { Actions } from 'react-native-router-flux';
 import { black } from 'ansi-colors';
 
-const Styles = {
-    titleStyle: {
-        fontSize: 24,
-        color: 'black',
-        flex: 1
-    },
-    idStyle: {
-        fontSize: 18,
-        color: 'black'
-    },
-    itemStyle: {
-        flex: 1,
-        flexDirection: 'column'
-    }
-};
-
 class RoomListItem extends Component {
 
     onRowPress() {

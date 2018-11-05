@@ -89,36 +89,5 @@ const mapDispatchToProps = (dispatch) => ({
     _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
 });
 
-<<<<<<< HEAD
-=======
-const styles = {
-    titleTextStyle: {
-        fontSize: 22,
-        color: 'black',
-        textAlign: 'center',
-        fontWeight: 'bold'
-    },
-    subtitleTextStyle: {
-        fontSize: 18,
-        color: 'black',
-        textAlign: 'center'
-    },
-    textContainerStyle: {
-        flexDirection: 'column',
-        borderRadius: 5,
-        opacity: 0.8
-    }, 
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
-    },
-    cardSectionStyle: {
-        opacity: 0.8,
-    },
-};
->>>>>>> f0474a1f8478282e4b7fbfd72c46bc602357ab1a
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomJoin);

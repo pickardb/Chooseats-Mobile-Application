@@ -38,10 +38,7 @@ export default class RoomContainer extends React.Component {
                 </ScrollView>
 
                 <MessagesFormContainer roomId={room.id} />
-
-                <VoteModal>
-                    
-                </VoteModal>
+                <VoteModal />
             </View>
         );
     }

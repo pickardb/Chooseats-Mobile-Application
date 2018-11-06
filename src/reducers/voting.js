@@ -9,9 +9,9 @@ const votingReducer = (state=INITIAL_STATE, action) => {
     console.log(action);
     switch(action.type){
         case types.SUBMIT_VOTE: 
-            return {...state, voteSubmitted: true}
+            return {...state, voteSubmitted: true};
         case types.UPDATE_CHOICE:
-            return {...state, choice: action.payload}
+            return {...state, choice: action.payload};
         default:
             return state;
     }

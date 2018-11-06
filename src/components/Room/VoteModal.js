@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, Modal } from 'react-native';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Card, CardSection } from '../common';
 import VoteModalItem from './VoteModalItem';
-import {connect} from 'react-redux';
-import {ScrollView} from 'react-native';
-import {submitVote} from './../../actions/voting';
+import { connect } from 'react-redux';
+import { ScrollView } from 'react-native';
+import { submitVote } from './../../actions/voting';
 
 const items = [
     {
@@ -23,16 +23,16 @@ const items = [
 ];
 
 class VoteModal extends Component {
-    state={showModal:true}
+    state = { showModal: true }
 
-    renderItems(items){
-        if(items!=null){
-            return items.map((item)=><VoteModalItem key={item.id} item={item}/>);
+    renderItems(items) {
+        if (items != null) {
+            return items.map((item) => <VoteModalItem key={item.id} item={item} />);
         }
     }
 
-    onSubmitPress(){
-        this.setState({showModal:false});
+    onSubmitPress() {
+        this.setState({ showModal: false });
         this.props.submitVote();
     }
 
@@ -43,38 +43,39 @@ class VoteModal extends Component {
                 onRequestClose={() => { }}
                 visible={this.state.showModal}
                 transparent
-                
-                onRequestClose={() => { this.showModal(false); } }
+                onRequestClose={() => { this.showModal(false); }}
             >
-            <View style = {styles.modalStyle}>
-                <Card>
-                    <CardSection>
-                        <Text>
-                            Please Select an Item
+                <View style={styles.modalStyle}>
+                    <Card>
+                        <CardSection>
+                            <Text>
+                                Please Select an Item
                         </Text>
-                    </CardSection>
-                </Card>
-                <ScrollView >
-                    {this.renderItems(items)}
-                    <Button 
-                    large title='Submit Vote'
-                    onPress = {this.onSubmitPress.bind(this)}
-                    />
-                </ScrollView>
+                        </CardSection>
+                        <CardSection>
+                            <ScrollView >
+                                {this.renderItems(items)}
+                                <Button
+                                    large title='Submit Vote'
+                                    onPress={this.onSubmitPress.bind(this)}
+                                />
+                            </ScrollView>
+                        </CardSection>
+                    </Card>
                 </View>
             </Modal>
         );
     }
 };
 
-const mapStatetoProps= (state)=>{
+const mapStatetoProps = (state) => {
     return {
-        voteSubmitted: state.voteSubmitted,
-        restaurantChosen: state.choice,
+        voteSubmitted: state.voting.voteSubmitted,
+        restaurantChosen: state.voting.choice,
     };
 };
 
-export default connect(mapStatetoProps, {submitVote})(VoteModal);
+export default connect(mapStatetoProps, { submitVote })(VoteModal);
 
 const styles = {
     modalStyle: {

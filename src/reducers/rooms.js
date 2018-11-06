@@ -8,6 +8,8 @@ const roomsReducer = (state = {
     joinRoomCode: '',
     newRoomName: '',
     newRoomDesc: '',
+    newRoomMax: '1',
+    newRoomVote: 'vote',
 }, action) => {
     switch (action.type) {
         case types.GET_ROOMS:
@@ -32,6 +34,10 @@ const roomsReducer = (state = {
             return {...state, newRoomName: action.payload};
         case types.NEW_ROOM_DESC:
             return {...state, newRoomDesc: action.payload};
+        case types.NEW_ROOM_MAX: 
+            return {...state, newRoomMax: action.payload};
+        case types.NEW_ROOM_VOTE:
+            return {...state, newRoomVote: action.payload};
         default:
             return state;
     }

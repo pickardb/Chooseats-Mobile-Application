@@ -73,3 +73,17 @@ export const updateNewRoomDesc = (text) => {
         payload: text
     });
 };
+
+export const updateNewRoomMax = (text) => {
+    return ({
+        type: roomTypes.NEW_ROOM_MAX,
+        payload: text
+    });
+};
+
+export const updateNewRoomVote = (text) => {
+    return({
+        type: roomTypes.NEW_ROOM_VOTE,
+        payload: text
+    });
+};

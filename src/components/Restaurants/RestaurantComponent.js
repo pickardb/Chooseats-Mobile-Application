@@ -9,12 +9,13 @@ const styles = StyleSheet.create({
     }
 });
 
-const RestaurantComponent = () => {
-    return(
-    <View style={styles.container}>
-        <RestaurantListComponent restaurants={{}}/>
-        <AddRestaurantButton />
-    </View>);
+const RestaurantComponent = ({ openSearchModal }) => {
+
+    return (
+        <View style={styles.container}>
+            <RestaurantListComponent restaurants={{ rest1: {} }} />
+            <AddRestaurantButton onClick={openSearchModal} />
+        </View>);
 };
 
 export default RestaurantComponent;

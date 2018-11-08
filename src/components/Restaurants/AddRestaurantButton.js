@@ -3,10 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
 
-export default AddRestaurantButton = () => (
+export default AddRestaurantButton = ({ onClick }) => (
     <View style={{ flex: 1, backgroundColor: '#f3f3f3' }}>
-        <ActionButton buttonColor="rgba(231,76,60,1)">
-            <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+        <ActionButton buttonColor='#c67f00'>
+            <ActionButton.Item buttonColor='#c67f00' title="Add Restaurant" onPress={onClick}>
                 <Icon name="md-create" style={styles.actionButtonIcon} />
             </ActionButton.Item>
         </ActionButton>

@@ -6,6 +6,7 @@ import MessageListItem from './MessageListItem';
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 0
     }
 })
 
@@ -21,7 +22,7 @@ const MessageList = ({ messages: allMessages }) => {
 
     //messagesListJSX = messagesListJSX.reverse();
     return (
-        <List style={styles.container}>
+        <List containerStyle={styles.container}>
             {messagesListJSX}
             {localMessagesListJSX}
         </List>);

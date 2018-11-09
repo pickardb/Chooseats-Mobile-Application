@@ -29,9 +29,11 @@ const roomsReducer = (state = {
         case types.JOIN_ROOM_UPDATED:
             return { ...state, joinRoomCode: action.payload };
         case types.NEW_ROOM_NAME:
-            return {...state, newRoomName: action.payload};
+            return { ...state, newRoomName: action.payload };
         case types.NEW_ROOM_DESC:
-            return {...state, newRoomDesc: action.payload};
+            return { ...state, newRoomDesc: action.payload };
+        case types.SET_CURRENT_ROOM:
+            return { ...state, currentRoomId: action.payload };
         default:
             return state;
     }

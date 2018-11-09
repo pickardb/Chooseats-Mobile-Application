@@ -10,44 +10,46 @@ export const setSelectedRestaurant = restaurant => dispatch => ({
     payload: restaurant
 });
 
-export const addRestaurant = (roomId, google_places_id) => await dispatch => {
-    try{   
+export const addRestaurant = (roomId, google_places_id) => async dispatch => {
+    try {
         await dispatch({
             type: restaurantTypes.ADD_RESTAURANT,
             payload: restaurantsService.create({
-               roomId,
-               google_places_id
-              });
+                roomId,
+                google_places_id
+            })
         })
+        dispatch(getRoomRestaurants(roomId));
     } catch (error) {
 
     }
 }
 
-export const getRestaurantInformation = (id) => await dispatch => {
-    try {
-        await dispatch({
-            type: restaurantTypes.GET_GOOGLE_RESTAURANT_INFO,
-            payload: RNGooglePlaces.lookUpPlaceByID(id)
-        });
-
-    } catch (error) {
-
-    }
+export const getRestaurantInformation = (id) => dispatch => {
+    return dispatch({
+        type: restaurantTypes.GET_GOOGLE_RESTAURANT_INFO,
+        payload: RNGooglePlaces.lookUpPlaceByID(id)
+    });
 }
 
-export const getRoomRestaurants = (roomId)=> await dispatch => {
-    try {
-        await dispatch({
-            type: restaurantTypes.GET_ROOM_RESTAURANTS,
-            payload: restaurantsService.find({
-                query: {
-                  roomId: roomId
-                }
-              });
-        });
+const getRestaurants = async (roomId, dispatch) => {
+    const result = await restaurantsService.find({
+        query: {
+            roomId
+        }
+    });
 
-    } catch (error) {
+    await Promise.all(result.data.map(restaurant => {
+        return dispatch(getRestaurantInformation(restaurant.google_places_id));
+    }));
 
-    }
+    return result;
+}
+
+export const getRoomRestaurants = (roomId) => dispatch => {
+    console.log(roomId);
+    return dispatch({
+        type: restaurantTypes.GET_ROOM_RESTAURANTS,
+        payload: getRestaurants(roomId, dispatch)
+    })
 }

@@ -23,7 +23,8 @@ const Styles = {
 class RoomListItem extends Component {
 
     onRowPress() {
-        const { room, room: { roomCode, roomName } } = this.props;
+        const { room, room: { roomCode, roomName }, setCurrentRoomHandler } = this.props;
+        setCurrentRoomHandler();
         Actions.roomContainer({ room, title: roomName });
     }
 

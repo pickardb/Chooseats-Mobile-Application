@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
     }
 });
 
-const RestaurantComponent = ({ openSearchModal }) => {
+const RestaurantComponent = ({ openSearchModal, restaurants }) => {
 
     return (
         <View style={styles.container}>
-            <RestaurantListComponent restaurants={{ rest1: {} }} />
+            {!restaurants.isLoading && <RestaurantListComponent restaurants={restaurants} />}
             <AddRestaurantButton onClick={openSearchModal} />
         </View>);
 };

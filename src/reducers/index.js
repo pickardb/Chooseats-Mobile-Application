@@ -12,4 +12,4 @@ export default combineReducers({
     rooms: roomsReducer,
     messages: messagesReducer,
     restaurants: restaurantReducer,
-});
+}); 

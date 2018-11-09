@@ -12,22 +12,14 @@ const styles = StyleSheet.create({
 
 const RestaurantListComponent = ({ restaurants }) => {
 
-    /*var restaurantsListJSX = restaurants.map((restaurant) => {
-        return {};//(<RestaurantListItem key={restaurant.id} restaurant={restaurant} />);
-          {restaurantsListJSX}
-    });*/
+    var restaurantsListJSX = restaurants.restaurants.data.map((restaurant) => {
+        return (<RestaurantListItem key={restaurant.id} restaurant={restaurant} restaurantInfo={restaurants.restaurant_info[restaurant.google_places_id]} />);
+    });
+
 
     return (
         <List containerStyle={styles.container}>
-            <ListItem
-                title='Limited supply! Its like digital gold!'
-            />
-            <ListItem
-                title='Limited supply! Its like digital gold!'
-            />
-            <ListItem
-                title='Limited supply! Its like digital gold!'
-            />
+            {restaurantsListJSX}
         </List>);
 };
 export default RestaurantListComponent;

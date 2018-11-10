@@ -45,7 +45,6 @@ const mapStatetoProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     _getMessages: (roomId) => dispatch(getMessages(roomId)),
     _addNewMessage: (message) => dispatch(addNewMessage(message))
-
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomContainer);

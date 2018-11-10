@@ -73,3 +73,10 @@ export const updateNewRoomDesc = (text) => {
         payload: text
     });
 };
+
+export const setCurrentRoom = (id) => {
+    return ({
+        type: roomTypes.SET_CURRENT_ROOM,
+        payload: id
+    });
+}

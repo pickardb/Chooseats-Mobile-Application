@@ -3,7 +3,7 @@ import socketio from '@feathersjs/socketio-client';
 import auth from '@feathersjs/authentication-client';
 import io from 'socket.io-client';
 
-const socket = io('http://35.202.171.59/');
+const socket = io('http://10.227.190.110:3030/');
 
 // Configure feathers-client
 const feathersClient = feathers()

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, Modal } from 'react-native';
 import { Button } from 'react-native-elements';
-import { Card, CardSection } from '../common';
-import VoteModalItem from './VoteModalItem';
+import { Card, CardSection } from '../../common';
+import RankedVoteModalItem from './RankedVoteModalItem';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
-import { submitVote } from './../../actions/voting';
+import { submitVote } from '../../../actions/voting';
 
 const items = [
     {
@@ -19,7 +19,27 @@ const items = [
     {
         id: 3,
         itemName: "testItem3"
-    }
+    },
+    {
+        id: 4,
+        itemName: "testItem4"
+    },
+    {
+        id: 5,
+        itemName: "testItem4"
+    },
+    {
+        id: 6,
+        itemName: "testItem4"
+    },
+    {
+        id: 7,
+        itemName: "testItem4"
+    },
+    {
+        id: 8,
+        itemName: "testItem4"
+    },
 ];
 
 class VoteModal extends Component {
@@ -27,7 +47,7 @@ class VoteModal extends Component {
 
     renderItems(items) {
         if (items != null) {
-            return items.map((item) => <VoteModalItem key={item.id} item={item} />);
+            return items.map((item) => <RankedVoteModalItem key={item.id} item={item} max={items.length} />);
         }
     }
 
@@ -58,6 +78,10 @@ class VoteModal extends Component {
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}
+                                    buttonStyle = {{
+                                        marginVertical: 10,
+                                        elevation: 8
+                                    }}
                                 />
                             </ScrollView>
                         </CardSection>

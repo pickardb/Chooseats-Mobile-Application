@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-native-elements';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import {connect} from 'react-redux';
-import {chooseVote} from '../../actions/voting';
+import {chooseVote} from '../../../actions/voting';
 import { Actions } from 'react-native-router-flux';
 
 class VoteModalItem extends Component {

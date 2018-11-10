@@ -1,8 +1,10 @@
 import types from '../types/voting';
 
 const INITIAL_STATE = {
+    votingStyle: '',
     voteSubmitted: false,
     choice: '',
+    rankedChoices: [],
 };
 
 const votingReducer = (state=INITIAL_STATE, action) => {

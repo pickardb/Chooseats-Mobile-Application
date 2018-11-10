@@ -4,7 +4,8 @@ import { Card } from 'react-native-elements';
 
 import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
-import VoteModal from './VoteModal';
+import VoteModal from './Voting/VoteModal';
+import RankedVoteModal from './Voting/RankedVoteModal';
 
 const styles = {
     container: {
@@ -38,7 +39,7 @@ export default class RoomContainer extends React.Component {
                 </ScrollView>
 
                 <MessagesFormContainer roomId={room.id} />
-                <VoteModal />
+                <RankedVoteModal />
             </View>
         );
     }

@@ -5,7 +5,7 @@ import { Card, CardSection } from '../../common';
 import RankedVoteModalItem from './RankedVoteModalItem';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
-import { submitVote } from '../../../actions/voting';
+import { submitVote, setReduxArray } from '../../../actions/voting';
 
 const items = [
     {
@@ -42,12 +42,15 @@ const items = [
     },
 ];
 
-class VoteModal extends Component {
+class RankedVoteModal extends Component {
     state = { showModal: true }
 
+    componentWillMount(){
+        this.props.setReduxArray(items.length);
+    }
     renderItems(items) {
         if (items != null) {
-            return items.map((item) => <RankedVoteModalItem key={item.id} item={item} max={items.length} />);
+            return items.map((item) => <RankedVoteModalItem  key={item.id} item={item} max={items.length} />);
         }
     }
 
@@ -99,7 +102,7 @@ const mapStatetoProps = (state) => {
     };
 };
 
-export default connect(mapStatetoProps, { submitVote })(VoteModal);
+export default connect(mapStatetoProps, { submitVote, setReduxArray })(RankedVoteModal);
 
 const styles = {
     modalStyle: {

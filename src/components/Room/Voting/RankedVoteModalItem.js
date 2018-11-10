@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Button } from 'react-native-elements';
 import { View, Text, TouchableWithoutFeedback, Picker } from 'react-native';
 import { connect } from 'react-redux';
-import { chooseVote } from '../../../actions/voting';
+import { chooseVote, rankedUpdate } from '../../../actions/voting';
 import { Actions } from 'react-native-router-flux';
 import { Card, CardSection } from '../../common';
 
-class VoteModalItem extends Component {
+class RankedVoteModalItem extends Component {
     state = {
         style: styles.buttonStyle,
         selectedDropDownValue: "1"
@@ -20,12 +20,16 @@ class VoteModalItem extends Component {
         return pickerArray.map(value => <Picker.Item key = {value} label={value} value={value}/>);
     }
 
+
     render() {
         return (
                 <CardSection style={{ flexDirection: 'row' }}>
                     <Picker
                         selectedValue={this.state.selectedDropDownValue}
-                        onValueChange={(itemValue, itemIndex) => this.setState({ selectedDropDownValue: itemValue })}
+                        onValueChange={(itemValue, itemIndex) => {
+                            this.setState({ selectedDropDownValue: itemValue});
+                            this.props.rankedUpdate(itemIndex-1, itemValue);
+                        }}
                         style={{ flex: 1 }}
                     >
                         {this.createPickerItems()}
@@ -45,7 +49,7 @@ const mapStatetoProps = (state) => {
     };
 };
 
-export default connect(mapStatetoProps, { chooseVote })(VoteModalItem);
+export default connect(mapStatetoProps, { chooseVote, rankedUpdate })(RankedVoteModalItem);
 
 const styles = {
     buttonStyle: {

@@ -15,6 +15,7 @@ const NEW_ROOM_NAME = 'NEW_ROOM_NAME';
 const NEW_ROOM_DESC = 'NEW_ROOM_DESC';
 const NEW_ROOM_MAX = 'NEW_ROOM_MAX';
 const NEW_ROOM_VOTE = 'NEW_ROOM_VOTE';
+const SET_CURRENT_ROOM = 'SET_CURRENT_ROOM';
 
 export default {
     GET_ROOMS,
@@ -34,4 +35,6 @@ export default {
     NEW_ROOM_DESC,
     NEW_ROOM_MAX,
     NEW_ROOM_VOTE,
+    SET_CURRENT_ROOM
 };
+

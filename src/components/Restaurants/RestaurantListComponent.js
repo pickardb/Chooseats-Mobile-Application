@@ -19,7 +19,7 @@ const RestaurantListComponent = ({ restaurants }) => {
 
     return (
         <List containerStyle={styles.container}>
-            {restaurantsListJSX}
+            {!restaurants.isLoading && restaurantsListJSX}
         </List>);
 };
 export default RestaurantListComponent;

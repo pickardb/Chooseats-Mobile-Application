@@ -1,7 +1,7 @@
 import types from '../types/restaurants';
 const INITIAL_STATE = {
     restaurant_info: {},
-    restaurants: [],
+    restaurants: { data: [] },
     isLoading: false,
 };
 
@@ -10,7 +10,7 @@ const restaurantReducer = (state = INITIAL_STATE, action) => {
         case types.RESTAURANT_SELECTED:
             return { selectedRestaurant: action.payload };
         case types.GET_ROOM_RESTAURANTS_PENDING:
-            return { ...state, restaurants: {}, isLoading: true };
+            return { ...state, restaurants: { data: [] }, isLoading: true };
         case types.GET_ROOM_RESTAURANTS_FULFILLED:
             return { ...state, restaurants: action.payload, isLoading: false };
         case types.GET_GOOGLE_RESTAURANT_INFO_FULFILLED:

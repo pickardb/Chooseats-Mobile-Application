@@ -26,7 +26,9 @@ const votingReducer = (state=INITIAL_STATE, action) => {
     console.log(action);
     console.log("Ranked Choices is: " + state.rankedChoices)
     switch(action.type){
-        case types.SUBMIT_VOTE: 
+        case types.SINGLE_SUBMIT_VOTE: 
+            return {...state, voteSubmitted: true};
+        case types.RANKED_SUBMIT_VOTE:
             return {...state, voteSubmitted: true};
         case types.UPDATE_CHOICE:
             return {...state, choice: action.payload};

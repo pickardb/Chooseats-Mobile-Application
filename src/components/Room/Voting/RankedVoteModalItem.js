@@ -28,7 +28,7 @@ class RankedVoteModalItem extends Component {
                         selectedValue={this.state.selectedDropDownValue}
                         onValueChange={(itemValue, itemIndex) => {
                             this.setState({ selectedDropDownValue: itemValue});
-                            this.props.rankedUpdate(itemIndex-1, itemValue);
+                            this.props.rankedUpdate(itemIndex, itemValue);
                         }}
                         style={{ flex: 1 }}
                     >

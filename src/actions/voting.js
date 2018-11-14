@@ -1,9 +1,15 @@
 import votingTypes from '../types/voting'
+import RNGooglePlaces from 'react-native-google-places';
+
+import feathersClient from '../feathers/index';
+
+const restaurantsService = feathersClient.service('restaurants');
+
 
 export const chooseVote = (item) => {
     return {
         type: votingTypes.UPDATE_CHOICE,
-        payload: item.itemName
+        payload: item.google_places_id
     };
 };
 
@@ -34,6 +40,7 @@ export const rankedUpdate = (index, rank) => {
 };
 
 export const setReduxArray = (size) => {
+    console.log("runningSetReduxArray");
     var retArray = []
     for (var i = 0; i < size; i++) {
         retArray[i] = 1;
@@ -44,3 +51,32 @@ export const setReduxArray = (size) => {
         payload: retArray
     };
 };
+
+export const getRestaurantInformation = (id) => dispatch => {
+    return dispatch({
+        type: votingTypes.GET_GOOGLE_RESTAURANT_INFO,
+        payload: RNGooglePlaces.lookUpPlaceByID(id)
+    });
+}
+
+const getRestaurants = async (roomId, dispatch) => {
+    const result = await restaurantsService.find({
+        query: {
+            roomId
+        }
+    });
+
+    await Promise.all(result.data.map(restaurant => {
+        return dispatch(getRestaurantInformation(restaurant.google_places_id));
+    }));
+
+    return result;
+}
+
+export const getRoomRestaurants = (roomId) => dispatch => {
+    console.log(roomId);
+    return dispatch({
+        type: votingTypes.GET_ROOM_RESTAURANTS,
+        payload: getRestaurants(roomId, dispatch)
+    })
+}

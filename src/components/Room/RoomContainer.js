@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getMessages, addNewMessage } from '../../actions/messages';
+import {getRoomRestaurants} from '../../actions/voting';
 import feathersClient from '../../feathers/index';
 import { Actions } from 'react-native-router-flux';
 
@@ -20,8 +21,9 @@ class RoomContainer extends React.Component {
     }
 
     componentDidMount() {
-        const { _getMessages, room: { id, roomName, roomCode } } = this.props;
+        const { _getRestaurants, _getMessages, room: { id, roomName, roomCode } } = this.props;
         _getMessages(id);
+        _getRestaurants(id);
     }
 
     componentWillUnmount() {
@@ -44,7 +46,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     _getMessages: (roomId) => dispatch(getMessages(roomId)),
-    _addNewMessage: (message) => dispatch(addNewMessage(message))
+    _addNewMessage: (message) => dispatch(addNewMessage(message)),
+    _getRestaurants: (roomId) => dispatch(getRoomRestaurants(roomId))
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomContainer);

@@ -17,7 +17,7 @@ class RankedVoteModalItem extends Component {
         for(var i = 1; i<=this.props.max; i++){
             pickerArray.push(i.toString());
         }
-        return pickerArray.map(value => <Picker.Item key = {value} label={value} value={value}/>);
+        return pickerArray.map((value, index) => <Picker.Item key = {index} label={value} value={value}/>);
     }
 
 
@@ -26,16 +26,17 @@ class RankedVoteModalItem extends Component {
                 <CardSection style={{ flexDirection: 'row' }}>
                     <Picker
                         selectedValue={this.state.selectedDropDownValue}
-                        onValueChange={(itemValue, itemIndex) => {
+                        onValueChange={(itemValue) => {
+                            console.log("Index: " + this.props.index + " set to: " + itemValue);
                             this.setState({ selectedDropDownValue: itemValue});
-                            this.props.rankedUpdate(itemIndex, itemValue);
+                            this.props.rankedUpdate(this.props.index, itemValue);
                         }}
                         style={{ flex: 1 }}
                     >
                         {this.createPickerItems()}
                     </Picker>
                     <Text style={{ flex: 3 }}>
-                        {this.props.item.itemName}
+                        {this.props.item.google_places_id}
                     </Text>
                 </CardSection>
         );

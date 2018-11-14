@@ -5,7 +5,7 @@ import { Card, CardSection } from '../../common';
 import RankedVoteModalItem from './RankedVoteModalItem';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
-import { submitRankedVote, setReduxArray } from '../../../actions/voting';
+import { submitRankedVote, setReduxArray, getRoomRestaurants } from '../../../actions/voting';
 
 const items = [
     {
@@ -49,11 +49,11 @@ class RankedVoteModal extends Component {
     }
 
     componentWillMount() {
-        this.props.setReduxArray(items.length);
+        this.props._setReduxArray(this.props.restaurants.length);
     }
-    renderItems(items) {
-        if (items != null) {
-            return items.map((item) => <RankedVoteModalItem key={item.id} item={item} max={items.length} />);
+    renderItems(restaurants) {
+        if (restaurants.length >0) {
+            return restaurants.map((restaurant, index) => <RankedVoteModalItem key={index} index={index} item={restaurant} max={restaurants.length} />);
         }
     }
 
@@ -78,7 +78,7 @@ class RankedVoteModal extends Component {
     onSubmitPress() {
         if (this.checkRanks(this.props.rankedChoices)) {
             this.setState({ showModal: false });
-            this.props.submitRankedVote();
+           this.props._submitRankedVote();
         }
     }
 
@@ -100,7 +100,7 @@ class RankedVoteModal extends Component {
                         </CardSection>
                         <CardSection>
                             <ScrollView >
-                                {this.renderItems(items)}
+                                {this.renderItems(this.props.restaurants)}
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}
@@ -123,10 +123,16 @@ const mapStatetoProps = (state) => {
         voteSubmitted: state.voting.voteSubmitted,
         restaurantChosen: state.voting.choice,
         rankedChoices: state.voting.rankedChoices,
+        restaurants: state.voting.restaurants,
     };
 };
 
-export default connect(mapStatetoProps, { submitRankedVote, setReduxArray })(RankedVoteModal);
+const mapDispatchToProps = (dispatch) => ({
+    _submitRankedVote: () => dispatch(submitRankedVote),
+    _setReduxArray: (length) => dispatch(setReduxArray(length)),
+});
+
+export default connect(mapStatetoProps, mapDispatchToProps)(RankedVoteModal);
 
 const styles = {
     modalStyle: {

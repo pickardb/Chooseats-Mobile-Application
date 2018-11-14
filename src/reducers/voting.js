@@ -5,6 +5,9 @@ const INITIAL_STATE = {
     voteSubmitted: false,
     choice: '',
     rankedChoices: null,
+    restaurants: { data: [] },
+    restaurantsLoading: false,
+    restaurant_info: {},
 };
 
 const updateArray = (state, i, rank) => {
@@ -25,6 +28,8 @@ const updateArray = (state, i, rank) => {
 const votingReducer = (state=INITIAL_STATE, action) => {
     console.log(action);
     console.log("Ranked Choices is: " + state.rankedChoices)
+    console.log("Restaurants is: ");
+    console.log (state.restaurants);
     switch(action.type){
         case types.SINGLE_SUBMIT_VOTE: 
             return {...state, voteSubmitted: true};
@@ -36,6 +41,19 @@ const votingReducer = (state=INITIAL_STATE, action) => {
             return {...state, rankedChoices: updateArray(state, action.payload.index, action.payload.rank)}
         case types.SET_REDUX_ARRAY:
             return {...state, rankedChoices: action.payload }
+            case types.GET_ROOM_RESTAURANTS_PENDING:
+            return { ...state, restaurantsLoading: true };
+        case types.GET_ROOM_RESTAURANTS_FULFILLED:
+            return { ...state, restaurants: action.payload.data, restaurantsLoading: false };
+        case types.GET_GOOGLE_RESTAURANT_INFO_FULFILLED:
+            if (action.payload.placeID) {
+                var restaurant_info = { ...state.restaurant_info };
+                restaurant_info[action.payload.placeID] = action.payload;
+
+                return { ...state, restaurant_info };
+            } else {
+                return state
+            }
         default:
             return state;
     }

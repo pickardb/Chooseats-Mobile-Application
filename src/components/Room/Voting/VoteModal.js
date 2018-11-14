@@ -25,9 +25,9 @@ const items = [
 class VoteModal extends Component {
     state = { showModal: true }
 
-    renderItems(items) {
-        if (items != null) {
-            return items.map((item) => <VoteModalItem key={item.id} item={item} />);
+    renderItems(restaurants) {
+        if (restaurants != null) {
+            return restaurants.map((restaurant, index) => <VoteModalItem key={index} index={index} item={restaurant} />);
         }
     }
 
@@ -54,7 +54,7 @@ class VoteModal extends Component {
                         </CardSection>
                         <CardSection>
                             <ScrollView >
-                                {this.renderItems(items)}
+                                {this.renderItems(this.props.restaurants)}
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}
@@ -72,6 +72,7 @@ const mapStatetoProps = (state) => {
     return {
         voteSubmitted: state.voting.voteSubmitted,
         restaurantChosen: state.voting.choice,
+        restaurants: state.voting.restaurants,
     };
 };
 

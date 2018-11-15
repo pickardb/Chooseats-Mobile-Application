@@ -53,3 +53,4 @@ export const getRoomRestaurants = (roomId) => dispatch => {
         payload: getRestaurants(roomId, dispatch)
     })
 }
+

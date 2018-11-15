@@ -80,3 +80,10 @@ export const getRoomRestaurants = (roomId) => dispatch => {
         payload: getRestaurants(roomId, dispatch)
     })
 }
+
+export const clearVotingState = () => {
+    console.log("Clearing Voting State");
+    return {
+        type: votingTypes.CLEAR_VOTING_STATE
+    };
+};

@@ -8,7 +8,10 @@ import { ScrollView } from 'react-native';
 import { submitVote } from '../../../actions/voting';
 
 class VoteModal extends Component {
-    state = { showModal: true }
+    state = { 
+        showModal: true,
+        error: ''
+    }
 
     renderItems(restaurant_info) {
         if (restaurant_info != null) {
@@ -17,8 +20,32 @@ class VoteModal extends Component {
     }
 
     onSubmitPress() {
-        this.setState({ showModal: false });
-        this.props.submitVote();
+        if(this.props.chosen){
+            this.setState({ showModal: false });
+            this.setState({error: ''});
+            this.props.submitVote();
+        }
+        else{
+            this.setState({error: 'Please select a Restaurant'});
+        }
+    }
+
+    renderError() {
+        if (this.state.error) {
+            return (
+
+                <CardSection>
+                    <Text
+                        style={{
+                            color:"#F11",
+                            fontSize: 18,
+                        }}
+                    >
+                        {this.state.error}
+                    </Text>
+                </CardSection>
+            );
+        }
     }
 
     render() {
@@ -28,7 +55,7 @@ class VoteModal extends Component {
                 onRequestClose={() => { }}
                 visible={this.state.showModal}
                 transparent
-                onRequestClose={() => { this.showModal(false); }}
+                onRequestClose={() => { this.setState({ showModal: false }) }}
             >
                 <View style={styles.modalStyle}>
                     <Card>
@@ -46,6 +73,7 @@ class VoteModal extends Component {
                                 />
                             </ScrollView>
                         </CardSection>
+                        {this.renderError()}
                     </Card>
                 </View>
             </Modal>
@@ -59,6 +87,7 @@ const mapStatetoProps = (state) => {
         restaurantChosen: state.voting.choice,
         restaurants: state.voting.restaurants,
         restaurant_info: state.voting.restaurant_info,
+        chosen: state.voting.choice,
     };
 };
 

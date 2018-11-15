@@ -46,6 +46,7 @@ class RankedVoteModal extends Component {
     onSubmitPress() {
         if (this.checkRanks(this.props.rankedChoices)) {
             this.setState({ showModal: false });
+            this.setState({error: ''});
             this.props._submitRankedVote();
         }
     }

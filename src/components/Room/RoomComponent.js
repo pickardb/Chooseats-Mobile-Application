@@ -26,9 +26,42 @@ const styles = {
 };
 
 export default class RoomContainer extends React.Component {
-
+    state={showModal: false};
     componentDidMount() {
         this.refs.messagesView.scrollToEnd({ animated: false });
+    }
+
+    //renderVotingModal() {
+    //    const { room } = this.props;
+    //    if (room.isVoting) {
+    //        if (room.roomType == "ranked") {
+    //            return(<RankedVoteModal/>);
+    //        }
+    //        else if (room.roomType == "single") {
+    //            return(<VoteModal/>);
+    //        }
+    //        else if (room.roomType == "random") {
+    //            //No Modal
+    //        }
+            /*
+             **For bonus if implemented
+             *else if (room.roomType=="swipe"){
+             *return(<SwipeVoteModal/>)  ;  
+             *}
+             */
+    //    }
+    //}
+
+    renderModal(){
+        if(this.state.showModal){
+            return(
+                <VoteModal/>
+            );
+        }
+    }
+
+    onButtonPress(){
+        this.setState({showModal:true});
     }
 
     render() {
@@ -37,6 +70,10 @@ export default class RoomContainer extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.messagesContainer}>
+                    <Button
+                        large title = "Show Modal"
+                        onPress = {this.onButtonPress.bind(this)}
+                    />
                     <ScrollView ref="messagesView">
                         {!messages.isLoading &&
                             <MessagesList messages={messages} />
@@ -46,9 +83,10 @@ export default class RoomContainer extends React.Component {
                 <View style={styles.sendContainer}>
                     <MessagesFormContainer roomId={room.id} />
                 </View>
-                <RankedVoteModal/>
+
+                {this.renderModal()}
             </View>
-            
+
         );
     }
 

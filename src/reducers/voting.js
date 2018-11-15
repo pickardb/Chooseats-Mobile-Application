@@ -51,6 +51,8 @@ const votingReducer = (state=INITIAL_STATE, action) => {
             } else {
                 return state
             }
+        case types.CLEAR_VOTING_STATE: 
+            return{INITIAL_STATE, restaurant_info: {}, restaurants: {data: []} }
         default:
             return state;
     }

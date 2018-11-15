@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getMessages, addNewMessage } from '../../actions/messages';
-import {getRoomRestaurants} from '../../actions/voting';
+import {getRoomRestaurants, clearVotingState} from '../../actions/voting';
 import feathersClient from '../../feathers/index';
 import { Actions } from 'react-native-router-flux';
 
@@ -19,9 +19,13 @@ class RoomContainer extends React.Component {
         };
         feathersClient.service('messages').on('newMessage', callback);
     }
-
+    componentWillMount(){
+        this.props._clearVotingState();
+        console.log(this.props.restaurants);
+    }
     componentDidMount() {
-        const { _getRestaurants, _getMessages, room: { id, roomName, roomCode } } = this.props;
+        const { _getRestaurants, _getMessages, _clearVotingState, room: { id, roomName, roomCode } } = this.props;
+        
         _getMessages(id);
         _getRestaurants(id);
     }
@@ -40,14 +44,16 @@ class RoomContainer extends React.Component {
 
 const mapStatetoProps = (state) => {
     return {
-        messages: state.messages
+        messages: state.messages,
+        restaurants: state.user.restaurants
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
     _getMessages: (roomId) => dispatch(getMessages(roomId)),
     _addNewMessage: (message) => dispatch(addNewMessage(message)),
-    _getRestaurants: (roomId) => dispatch(getRoomRestaurants(roomId))
+    _getRestaurants: (roomId) => dispatch(getRoomRestaurants(roomId)),
+    _clearVotingState: () => dispatch(clearVotingState()),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomContainer);

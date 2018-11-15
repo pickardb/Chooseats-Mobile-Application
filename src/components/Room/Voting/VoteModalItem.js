@@ -21,7 +21,7 @@ class VoteModalItem extends Component {
     
     chooseButtonStyle(newProps){
         console.log("chooseButtonStyle: " + newProps.choice);
-        if(newProps.choice==this.props.item.google_places_id){
+        if(newProps.choice==this.props.item.name){
             this.setState({style:styles.chosenButtonStyle});
         }
         else{
@@ -34,7 +34,7 @@ class VoteModalItem extends Component {
             <Button 
             onPress={this.onPress.bind(this)} 
             buttonStyle={this.state.style}
-            large title =  {this.props.item.google_places_id}
+            large title =  {this.props.item.name}
             />
         );
     }

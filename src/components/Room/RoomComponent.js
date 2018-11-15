@@ -46,7 +46,7 @@ export default class RoomContainer extends React.Component {
                 <View style={styles.sendContainer}>
                     <MessagesFormContainer roomId={room.id} />
                 </View>
-                <VoteModal/>
+                <RankedVoteModal/>
             </View>
             
         );

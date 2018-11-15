@@ -9,7 +9,7 @@ const restaurantsService = feathersClient.service('restaurants');
 export const chooseVote = (item) => {
     return {
         type: votingTypes.UPDATE_CHOICE,
-        payload: item.google_places_id
+        payload: item.name
     };
 };
 

@@ -6,54 +6,22 @@ import RankedVoteModalItem from './RankedVoteModalItem';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 import { submitRankedVote, setReduxArray, getRoomRestaurants } from '../../../actions/voting';
+import { red } from 'ansi-colors';
 
-const items = [
-    {
-        id: 1,
-        itemName: "testItem1"
-    },
-    {
-        id: 2,
-        itemName: "testItem2"
-    },
-    {
-        id: 3,
-        itemName: "testItem3"
-    },
-    /*{
-        id: 4,
-        itemName: "testItem4"
-    },
-    {
-        id: 5,
-        itemName: "testItem4"
-    },
-    {
-        id: 6,
-        itemName: "testItem4"
-    },
-    {
-        id: 7,
-        itemName: "testItem4"
-    },
-    {
-        id: 8,
-        itemName: "testItem4"
-    },*/
-];
 
 class RankedVoteModal extends Component {
     state = {
         showModal: true,
-        error: null
+        error: ''
     }
 
     componentWillMount() {
-        this.props._setReduxArray(this.props.restaurants.length);
+        this.props._setReduxArray(Object.keys(this.props.restaurant_info).length);
+        this.setState({ error: '' });
     }
-    renderItems(restaurants) {
-        if (restaurants.length >0) {
-            return restaurants.map((restaurant, index) => <RankedVoteModalItem key={index} index={index} item={restaurant} max={restaurants.length} />);
+    renderItems(restaurant_info) {
+        if (Object.keys(restaurant_info).length > 0) {
+            return Object.keys(restaurant_info).map((restaurantKey, index) => <RankedVoteModalItem key={index} index={index} item={this.props.restaurant_info[restaurantKey]} max={Object.keys(restaurant_info).length} />);
         }
     }
 
@@ -69,7 +37,7 @@ class RankedVoteModal extends Component {
             return true;
         }
         else {
-            console.log('Total is: '+total+ " and check is: " + check);
+            console.log('Total is: ' + total + " and check is: " + check);
             this.setState({ error: "Please only select one of each rank" });
             return false;
         }
@@ -78,7 +46,25 @@ class RankedVoteModal extends Component {
     onSubmitPress() {
         if (this.checkRanks(this.props.rankedChoices)) {
             this.setState({ showModal: false });
-           this.props._submitRankedVote();
+            this.props._submitRankedVote();
+        }
+    }
+
+    renderError() {
+        if (this.state.error) {
+            return (
+
+                <CardSection>
+                    <Text
+                        style={{
+                            color:"#F11",
+                            fontSize: 18,
+                        }}
+                    >
+                        {this.state.error}
+                    </Text>
+                </CardSection>
+            );
         }
     }
 
@@ -89,7 +75,7 @@ class RankedVoteModal extends Component {
                 onRequestClose={() => { }}
                 visible={this.state.showModal}
                 transparent
-                onRequestClose={() => { this.showModal(false); }}
+                onRequestClose={() => { this.setState({ showModal: false }) }}
             >
                 <View style={styles.modalStyle}>
                     <Card>
@@ -100,7 +86,7 @@ class RankedVoteModal extends Component {
                         </CardSection>
                         <CardSection>
                             <ScrollView >
-                                {this.renderItems(this.props.restaurants)}
+                                {this.renderItems(this.props.restaurant_info)}
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}
@@ -111,6 +97,7 @@ class RankedVoteModal extends Component {
                                 />
                             </ScrollView>
                         </CardSection>
+                        {this.renderError()}
                     </Card>
                 </View>
             </Modal>
@@ -124,6 +111,7 @@ const mapStatetoProps = (state) => {
         restaurantChosen: state.voting.choice,
         rankedChoices: state.voting.rankedChoices,
         restaurants: state.voting.restaurants,
+        restaurant_info: state.voting.restaurant_info,
     };
 };
 

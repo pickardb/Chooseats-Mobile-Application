@@ -12,8 +12,12 @@ class RankedVoteModalItem extends Component {
         selectedDropDownValue: "1"
     };
 
+    componentWillMount(){
+        console.log("Item Mounting");
+    }
     createPickerItems() {
         var pickerArray = []
+        console.log("this.props.max is: " + this.props.max)
         for(var i = 1; i<=this.props.max; i++){
             pickerArray.push(i.toString());
         }
@@ -36,7 +40,7 @@ class RankedVoteModalItem extends Component {
                         {this.createPickerItems()}
                     </Picker>
                     <Text style={{ flex: 3 }}>
-                        {this.props.item.google_places_id}
+                        {this.props.item.name}
                     </Text>
                 </CardSection>
         );
@@ -44,7 +48,6 @@ class RankedVoteModalItem extends Component {
 }
 
 const mapStatetoProps = (state) => {
-    console.log("state.choice is " + state.voting.choice);
     return {
         choice: state.voting.choice,
     };

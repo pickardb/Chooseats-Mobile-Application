@@ -27,9 +27,6 @@ const updateArray = (state, i, rank) => {
 
 const votingReducer = (state=INITIAL_STATE, action) => {
     console.log(action);
-    console.log("Ranked Choices is: " + state.rankedChoices)
-    console.log("Restaurants is: ");
-    console.log (state.restaurants);
     switch(action.type){
         case types.SINGLE_SUBMIT_VOTE: 
             return {...state, voteSubmitted: true};

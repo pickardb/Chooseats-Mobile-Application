@@ -7,27 +7,12 @@ import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 import { submitVote } from '../../../actions/voting';
 
-const items = [
-    {
-        id: 1,
-        itemName: "testItem1"
-    },
-    {
-        id: 2,
-        itemName: "testItem2"
-    },
-    {
-        id: 3,
-        itemName: "testItem3"
-    }
-];
-
 class VoteModal extends Component {
     state = { showModal: true }
 
-    renderItems(restaurants) {
-        if (restaurants != null) {
-            return restaurants.map((restaurant, index) => <VoteModalItem key={index} index={index} item={restaurant} />);
+    renderItems(restaurant_info) {
+        if (restaurant_info != null) {
+            return Object.keys(restaurant_info).map((restaurant, index) => <VoteModalItem key={index} index={index} item={this.props.restaurant_info[restaurant]} />);
         }
     }
 
@@ -54,7 +39,7 @@ class VoteModal extends Component {
                         </CardSection>
                         <CardSection>
                             <ScrollView >
-                                {this.renderItems(this.props.restaurants)}
+                                {this.renderItems(this.props.restaurant_info)}
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}
@@ -73,6 +58,7 @@ const mapStatetoProps = (state) => {
         voteSubmitted: state.voting.voteSubmitted,
         restaurantChosen: state.voting.choice,
         restaurants: state.voting.restaurants,
+        restaurant_info: state.voting.restaurant_info,
     };
 };
 

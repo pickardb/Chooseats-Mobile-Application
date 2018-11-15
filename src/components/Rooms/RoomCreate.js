@@ -175,7 +175,7 @@ const mapStatetoProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    _createRoom: (roomName, roomDesc) => dispatch(createRoom(roomName, roomDesc)),
+    _createRoom: (roomName, roomDesc, newRoomVote, newRoomMax) => dispatch(createRoom(roomName, roomDesc, newRoomVote, newRoomMax)),
     _getRooms: () => dispatch(getRooms),
     _updateNewRoomName: (text) => dispatch(updateNewRoomName(text)),
     _updateNewRoomDesc: (text) => dispatch(updateNewRoomDesc(text)),

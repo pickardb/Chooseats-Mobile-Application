@@ -22,7 +22,7 @@ export const getRooms = async (dispatch) => {
     }
 };
 
-export const createRoom = (newRoomName, newRoomDesc) => async (dispatch) => {
+export const createRoom = (newRoomName, newRoomDesc, newRoomVote, newRoomMax) => async (dispatch) => {
     console.log("Create room values:" + newRoomName + " " + newRoomDesc);
     console.log("dispatch: " + dispatch);
     try {
@@ -30,7 +30,9 @@ export const createRoom = (newRoomName, newRoomDesc) => async (dispatch) => {
             type: roomTypes.CREATE_ROOM,
             payload: roomsService.create({
                 roomName: newRoomName,
-                roomDesc: newRoomDesc
+                roomDesc: newRoomDesc,
+                roomType: newRoomVote,
+                roomMac: newRoomMax,
             })
         });
     } catch (err) {

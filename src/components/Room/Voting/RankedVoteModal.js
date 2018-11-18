@@ -47,7 +47,7 @@ class RankedVoteModal extends Component {
         if (this.checkRanks(this.props.rankedChoices)) {
             this.setState({ showModal: false });
             this.setState({error: ''});
-            this.props._submitRankedVote();
+            this.props._submitRankedVote(this.props.rankedChoices, this.props.restaurants, this.props.currentRoom);
         }
     }
 
@@ -117,7 +117,7 @@ const mapStatetoProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    _submitRankedVote: () => dispatch(submitRankedVote),
+    _submitRankedVote: (rankedChoices, restaurants, currentRoom) => dispatch(submitRankedVote(rankedChoices, restaurants, currentRoom)),
     _setReduxArray: (length) => dispatch(setReduxArray(length)),
 });
 

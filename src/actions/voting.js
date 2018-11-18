@@ -4,26 +4,75 @@ import RNGooglePlaces from 'react-native-google-places';
 import feathersClient from '../feathers/index';
 
 const restaurantsService = feathersClient.service('restaurants');
+const votingService = feathersClient.service('votes');
 
 
 export const chooseVote = (item) => {
     return {
         type: votingTypes.UPDATE_CHOICE,
-        payload: item.name
+        payload: item
     };
 };
 
-export const submitVote = () => {
+export const submitVote = (choice, room) => 
+    async (dispatch) => {
     console.log("Reached submitVote");
-    return {
-        type: votingTypes.SINGLE_SUBMIT_VOTE,
-        payload: ''
-    };
+    console.log("Choice is: ");
+    console.log(choice);
+    console.log("room is: ");
+    console.log(room);
+    try {
+        await dispatch({
+            type: votingTypes.SINGLE_SUBMIT_VOTE,
+            payload: votingService.create({
+                roomId: room.roomCode,
+                text: "Text",
+                userId: null,
+                restaurantId: choice.placeID
+            })
+        });
+    }
+    catch (err) {
+        console.log("Error with submit vote: " + err);
+    }
 
 };
 
-export const submitRankedVote = () => {
+export const submitRankedVote = (rankedChoices, restaurant_info, currentRoom) => async(dispatch) => {
+    console.log("rankedChoices is: ");
+    console.log(rankedChoices);
+    console.log("restaurant_info is: ");
+    console.log(restaurant_info);
+    console.log("room is: ");
+    console.log(currentRoom);
 
+    //For each restaurant being voted on
+    for(var i = 0; i<rankedChoices.length; i++){
+        //Submit total-rank votes
+        //Ex. 3 total restaurants
+        //rank 1 receives (3-1)=2 votes
+        //rank 2 receives (3-2)=1 votes
+        //rank 3 receives (3-3)=0 votes
+        for(var j = 0; j<rankedChoices.length - rankedChoices[i]; j++){
+            console.log("restaurant is: ");
+            console.log(restaurant_info[Object.keys(restaurant_info)[i]]);
+            try {
+                await dispatch({
+                    type: votingTypes.SINGLE_SUBMIT_VOTE,
+                    payload: votingService.create({
+                        roomId: currentRoom.roomCode,
+                        text: "Text",
+                        userId: null,
+                        restaurantId: restaurant_info[Object.keys(restaurant_info)[i]].placeID
+                    })
+                });
+            }
+            catch (err) {
+                console.log("Error with submit vote: " + err);
+            }
+        
+        }
+    }
     return {
         type: votingTypes.RANKED_SUBMIT_VOTE,
         payload: ''

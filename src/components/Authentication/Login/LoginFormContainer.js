@@ -28,7 +28,7 @@ const container = ({ error, handleSubmit, isLoggingIn }) => (
         handleSubmit={handleSubmit}
         onSubmit={loginUser}
         isLoggingIn={isLoggingIn}
-        
+        accessibilityLabel="logIn-form"
     />
 );
 

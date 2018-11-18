@@ -35,10 +35,10 @@ export default class RoomContainer extends React.Component {
     //    const { room } = this.props;
     //    if (room.isVoting) {
     //        if (room.roomType == "ranked") {
-    //            return(<RankedVoteModal/>);
+    //            return(<RankedVoteModal room = {room}/>);
     //        }
     //        else if (room.roomType == "single") {
-    //            return(<VoteModal/>);
+    //            return(<VoteModal room = {room}/>);
     //        }
     //        else if (room.roomType == "random") {
     //            //No Modal
@@ -55,7 +55,7 @@ export default class RoomContainer extends React.Component {
     renderModal(){
         if(this.state.showModal){
             return(
-                <VoteModal/>
+                <RankedVoteModal currentRoom = {this.props.room}/>
             );
         }
     }

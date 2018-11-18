@@ -16,12 +16,13 @@ class VoteModalItem extends Component {
 
     componentWillReceiveProps(newProps){
         console.log("Component Received Props");
+        console.log(this.props.item);
         this.chooseButtonStyle(newProps);
     }
     
     chooseButtonStyle(newProps){
         console.log("chooseButtonStyle: " + newProps.choice);
-        if(newProps.choice==this.props.item.name){
+        if(newProps.choice==this.props.item){
             this.setState({style:styles.chosenButtonStyle});
         }
         else{

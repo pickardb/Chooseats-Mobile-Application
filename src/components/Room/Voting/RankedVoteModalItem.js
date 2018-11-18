@@ -33,7 +33,7 @@ class RankedVoteModalItem extends Component {
                         onValueChange={(itemValue) => {
                             console.log("Index: " + this.props.index + " set to: " + itemValue);
                             this.setState({ selectedDropDownValue: itemValue});
-                            this.props.rankedUpdate(this.props.index, itemValue);
+                            this.props.rankedUpdate(this.props.index, parseInt(itemValue));
                         }}
                         style={{ flex: 1 }}
                     >

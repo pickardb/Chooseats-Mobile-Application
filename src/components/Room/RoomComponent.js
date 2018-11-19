@@ -30,6 +30,7 @@ export default class RoomContainer extends React.Component {
     state={trigger: false};
     componentDidMount() {
         this.refs.messagesView.scrollToEnd({ animated: false });
+        console.log(this.props);
     }
 
     renderVotingModal() {
@@ -49,25 +50,30 @@ export default class RoomContainer extends React.Component {
                 console.log(room.roomType);
                 return(<VoteModal currentRoom = {room}/>);
             }
+        }
+        else if(room.roomState=="done"){
+            return <SelectedRestaurantModal restaurant_info = {this.props.restaurant_info} googlePlacesId = {room.selectedRestaurant} onRequestClose={() => this.setState({ showModal: false })}/>
+        }
             /*
              **For bonus if implemented
              *else if (room.roomType=="swipe"){
              *return(<SwipeVoteModal/>)  ;  
              *}
              */
-        }
+
 
     }
 
     onButtonPress(){
         this.setState({trigger:!this.state.trigger});
-        Actions.refresh({key:"RoomContainer"});
         this.props.startVoting(this.props.room);
+        this.props.getRooms();
+        
     }
 
     renderButton(){
         const {room} = this.props;
-        if(room.isAdmin){
+        if(room.isAdmin&&room.restaurants.length>0&&room.roomState=="starting"){
             return(
                 <Button
                     large title = "Begin Voting"

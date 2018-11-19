@@ -42,12 +42,14 @@ class RoomContainer extends React.Component {
 
     componentWillUnmount() {
         feathersClient.service('messages').removeAllListeners("created");
+        this.props._getRooms();
+        Actions.refresh({ key: 'roomList' });
     }
 
     render() {
-        const { room, messages } = this.props;
+        const { room, messages, restaurant_info, restaurants } = this.props;
 
-        return (<RoomComponent startVoting = {this.props._startVoting} room={room} messages={messages} roomState = {this.props.roomState}/>);
+        return (<RoomComponent restaurant_info = {restaurant_info} startVoting = {this.props._startVoting} getRooms = {this.props._getRooms} room={room} messages={messages} roomState = {this.props.roomState}/>);
     }
 }
 
@@ -55,8 +57,9 @@ class RoomContainer extends React.Component {
 const mapStatetoProps = (state) => {
     return {
         messages: state.messages,
-        restaurants: state.user.restaurants,
-        roomState: state.voting.votingState
+        restaurants: state.voting.restaurants,
+        roomState: state.voting.votingState,
+        restaurant_info: state.voting.restaurant_info,
     };
 };
 

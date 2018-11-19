@@ -127,7 +127,6 @@ class RoomCreate extends Component {
                             <Picker.Item label="Single Vote" value="single"/>
                             <Picker.Item label="Random" value="truerandom"/>
                             <Picker.Item label="Ranked" value="rank"/>
-                            <Picker.Item label="Swipe" value="tinder"/>
                         </Picker>
                     </CardSection>
                 </Card>

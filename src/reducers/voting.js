@@ -61,6 +61,8 @@ const votingReducer = (state=INITIAL_STATE, action) => {
             return {...state, votingState: action.payload.roomState};
         case types.UPDATE_VOTING_STATE:
             return {...state, votingState: action.payload};
+        case types.SUBMIT_READY:
+            return {...state};
         default:
             return state;
     }

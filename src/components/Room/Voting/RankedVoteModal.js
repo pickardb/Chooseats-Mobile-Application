@@ -5,7 +5,7 @@ import { Card, CardSection } from '../../common';
 import RankedVoteModalItem from './RankedVoteModalItem';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
-import { submitRankedVote, setReduxArray, getRoomRestaurants } from '../../../actions/voting';
+import { submitRankedVote, setReduxArray, getRoomRestaurants, submitReadyService } from '../../../actions/voting';
 import { red } from 'ansi-colors';
 
 
@@ -54,6 +54,7 @@ class RankedVoteModal extends Component {
             this.setState({ showModal: false });
             this.setState({error: ''});
             this.props._submitRankedVote(this.props.rankedChoices, this.props.restaurants, this.props.currentRoom);
+            this.props._submitReadyService(this.props.currentRoom);
         }
     }
 
@@ -126,6 +127,7 @@ const mapStatetoProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     _submitRankedVote: (rankedChoices, restaurants, currentRoom) => dispatch(submitRankedVote(rankedChoices, restaurants, currentRoom)),
     _setReduxArray: (length) => dispatch(setReduxArray(length)),
+    _submitReadyService: (room) => dispatch(submitReadyService(room)),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RankedVoteModal);

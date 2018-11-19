@@ -5,8 +5,9 @@ import { Card, CardSection } from '../../common';
 import VoteModalItem from './VoteModalItem';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
-import { submitVote } from '../../../actions/voting';
-
+import { submitVote, submitReadyService } from '../../../actions/voting';
+import {getRooms} from '../../../actions/rooms';
+import {Actions} from 'react-native-router-flux';
 class VoteModal extends Component {
     state = { 
         showModal: true,
@@ -31,17 +32,20 @@ class VoteModal extends Component {
             this.setState({ showModal: false });
             this.setState({error: ''});
             this.props._submitVote(this.props.chosen, this.props.currentRoom);
+            this.props._submitReadyService(this.props.currentRoom);
+            this.props._getRooms();
+
         }
         else{
             this.setState({error: 'Please select a Restaurant'});
         }
     }
 
-    componentWillReceiveProps(nextProps){
+    /*componentWillReceiveProps(nextProps){
         console.log("Vote Modal receives new Props: ");
         console.log(nextProps);
 
-    }
+    }*/
 
     renderError() {
         if (this.state.error) {
@@ -95,7 +99,9 @@ class VoteModal extends Component {
 };
 
 const mapDispatchtoProps = (dispatch) => ({
-    _submitVote: (choice, room) => dispatch(submitVote(choice, room))
+    _submitVote: (choice, room) => dispatch(submitVote(choice, room)),
+    _getRooms: () => dispatch(getRooms),
+    _submitReadyService: (room) => dispatch(submitReadyService(room)),
 });
 
 const mapStatetoProps = (state) => {

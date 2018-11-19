@@ -33,6 +33,22 @@ export const startVoting = (room) => async(dispatch) => {
     }
 };
 
+export const submitReadyService = (room) =>
+    async (dispatch) =>{
+        const readyService = feathersClient.service('ready');
+        try{
+            await dispatch({
+                type: votingTypes.SUBMIT_READY,
+                payload: readyService.create({roomId: room.id})
+            })
+            Actions.pop();
+        }
+        catch(err){
+            console.log("Problem with readyService");
+        }
+        
+    }
+
 export const submitVote = (choice, room) => 
     async (dispatch) => {
     console.log("Reached submitVote");
@@ -52,15 +68,7 @@ export const submitVote = (choice, room) =>
         })
     }catch (err) {
         console.log("Error with submit vote: " + err);
-    }
-    try{
-        await readyService.create({
-            roomId: room.id,
-        });
-    }
-    catch(err){
-        console.log("Error with ready Service " + err);
-    }
+    }    
 
 };
 
@@ -98,9 +106,6 @@ export const submitRankedVote = (rankedChoices, restaurant_info, currentRoom) =>
         
         }
     }
-    readyService.create({
-        roomId: currentRoom.id
-    });
     return {
         type: votingTypes.RANKED_SUBMIT_VOTE,
         payload: ''

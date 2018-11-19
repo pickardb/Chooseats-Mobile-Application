@@ -13,7 +13,9 @@ class RestaurantContainer extends React.Component {
         RNGooglePlaces.openAutocompleteModal({
             type: 'establishment',
             country: 'CA',
-            useOverlay: true
+            useOverlay: true,
+            latitude: 49.2765,
+            longitude: -123.2177,
         })
             .then((place) => {
                 this.props._addRestaurant(this.props.rooms.currentRoomId, place.placeID);

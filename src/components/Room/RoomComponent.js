@@ -6,7 +6,7 @@ import { Card, Button } from 'react-native-elements';
 import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
 import VoteModal from './Voting/VoteModal';
-import RankedVoteModal from './Voting/RankedVoteModal';
+import SelectedRestaurantModal from './Voting/SelectedRestaurantModal';
 import AddRestuarantButton from '../Restaurants/AddRestaurantButton';
 import { Actions } from 'react-native-router-flux';
 

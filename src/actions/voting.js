@@ -33,7 +33,7 @@ export const startVoting = (room) => async(dispatch) => {
     }
 };
 
-/*export const submitVote = (choice, room) => 
+export const submitVote = (choice, room) => 
     async (dispatch) => {
     console.log("Reached submitVote");
     console.log("Choice is: ");
@@ -106,7 +106,7 @@ export const submitRankedVote = (rankedChoices, restaurant_info, currentRoom) =>
         payload: ''
     };
 
-};*/
+};
 
 export const rankedUpdate = (index, rank) => {
     console.log("Ranked vote update: " + index + " " + rank);

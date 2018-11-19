@@ -2,6 +2,7 @@ import votingTypes from '../types/voting'
 import RNGooglePlaces from 'react-native-google-places';
 
 import feathersClient from '../feathers/index';
+import {Actions} from 'react-native-router-flux';
 
 const restaurantsService = feathersClient.service('restaurants');
 const votingService = feathersClient.service('votes');
@@ -14,26 +15,51 @@ export const chooseVote = (item) => {
     };
 };
 
-export const submitVote = (choice, room) => 
+export const startVoting = (room) => async(dispatch) => {
+    var path = 'rooms';
+    console.log("path is: " + path);
+    const roomVotingService = feathersClient.service(path);
+    
+    try{
+        await dispatch({
+            type: votingTypes.START_VOTE,
+            payload: roomVotingService.patch(room.id,{
+                roomId: room.id,
+                roomState: "voting"
+            })
+        })
+    } catch (err) {
+        console.log("Error with startVoting: " + err);
+    }
+};
+
+/*export const submitVote = (choice, room) => 
     async (dispatch) => {
     console.log("Reached submitVote");
     console.log("Choice is: ");
     console.log(choice);
     console.log("room is: ");
     console.log(room);
+    const readyService = feathersClient.service('ready');
     try {
         await dispatch({
             type: votingTypes.SINGLE_SUBMIT_VOTE,
             payload: votingService.create({
-                roomId: room.roomCode,
+                roomId: room.id,
                 text: "Text",
-                userId: null,
-                restaurantId: choice.placeID
+                restaurantId: choice
             })
+        })
+    }catch (err) {
+        console.log("Error with submit vote: " + err);
+    }
+    try{
+        await readyService.create({
+            roomId: room.id,
         });
     }
-    catch (err) {
-        console.log("Error with submit vote: " + err);
+    catch(err){
+        console.log("Error with ready Service " + err);
     }
 
 };
@@ -45,7 +71,7 @@ export const submitRankedVote = (rankedChoices, restaurant_info, currentRoom) =>
     console.log(restaurant_info);
     console.log("room is: ");
     console.log(currentRoom);
-
+    const readyService = feathersClient.service('ready');
     //For each restaurant being voted on
     for(var i = 0; i<rankedChoices.length; i++){
         //Submit total-rank votes
@@ -58,12 +84,11 @@ export const submitRankedVote = (rankedChoices, restaurant_info, currentRoom) =>
             console.log(restaurant_info[Object.keys(restaurant_info)[i]]);
             try {
                 await dispatch({
-                    type: votingTypes.SINGLE_SUBMIT_VOTE,
+                    type: votingTypes.RANKED_SUBMIT_VOTE,
                     payload: votingService.create({
-                        roomId: currentRoom.roomCode,
+                        roomId: currentRoom.id,
                         text: "Text",
-                        userId: null,
-                        restaurantId: restaurant_info[Object.keys(restaurant_info)[i]].placeID
+                        restaurantId: restaurant_info[Object.keys(restaurant_info)[i]].id
                     })
                 });
             }
@@ -73,12 +98,15 @@ export const submitRankedVote = (rankedChoices, restaurant_info, currentRoom) =>
         
         }
     }
+    readyService.create({
+        roomId: currentRoom.id
+    });
     return {
         type: votingTypes.RANKED_SUBMIT_VOTE,
         payload: ''
     };
 
-};
+};*/
 
 export const rankedUpdate = (index, rank) => {
     console.log("Ranked vote update: " + index + " " + rank);
@@ -136,3 +164,12 @@ export const clearVotingState = () => {
         type: votingTypes.CLEAR_VOTING_STATE
     };
 };
+
+export const updateVotingState = (roomState) => {
+   
+    return{
+        type: votingTypes.UPDATE_VOTING_STATE,
+        payload: roomState
+    };
+};
+

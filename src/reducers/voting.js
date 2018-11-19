@@ -8,6 +8,7 @@ const INITIAL_STATE = {
     restaurants: { data: [] },
     restaurantsLoading: false,
     restaurant_info: {},
+    votingState: '',
 };
 
 const updateArray = (state, i, rank) => {
@@ -52,7 +53,14 @@ const votingReducer = (state=INITIAL_STATE, action) => {
                 return state
             }
         case types.CLEAR_VOTING_STATE: 
-            return{INITIAL_STATE, restaurant_info: {}, restaurants: {data: []} }
+            return{...state, restaurant_info: {}, restaurants: {data: []} }
+        
+        case types.START_VOTE:
+            return {...state, voteSubmitted: false};
+        case types.START_VOTE_FULFILLED:
+            return {...state, votingState: action.payload.roomState};
+        case types.UPDATE_VOTING_STATE:
+            return {...state, votingState: action.payload};
         default:
             return state;
     }

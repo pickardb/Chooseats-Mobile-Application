@@ -40,6 +40,7 @@ class RoomLobbyContainer extends Component {
     componentWillMount() {
         const { _getRooms } = this.props;
         _getRooms();
+        console.log(this.props);
     }
 
     handleLogout = () => {

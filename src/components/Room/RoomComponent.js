@@ -8,6 +8,7 @@ import MessagesFormContainer from './Messages/MessagesFormContainer';
 import VoteModal from './Voting/VoteModal';
 import RankedVoteModal from './Voting/RankedVoteModal';
 import AddRestuarantButton from '../Restaurants/AddRestaurantButton';
+import { Actions } from 'react-native-router-flux';
 
 const styles = {
     container: {
@@ -26,42 +27,54 @@ const styles = {
 };
 
 export default class RoomContainer extends React.Component {
-    state={showModal: false};
+    state={trigger: false};
     componentDidMount() {
         this.refs.messagesView.scrollToEnd({ animated: false });
     }
 
-    //renderVotingModal() {
-    //    const { room } = this.props;
-    //    if (room.isVoting) {
-    //        if (room.roomType == "ranked") {
-    //            return(<RankedVoteModal room = {room}/>);
-    //        }
-    //        else if (room.roomType == "single") {
-    //            return(<VoteModal room = {room}/>);
-    //        }
-    //        else if (room.roomType == "random") {
-    //            //No Modal
-    //        }
+    renderVotingModal() {
+        const { room } = this.props;
+        if (room.roomState == "voting") {
+            if (room.roomType == "rank") {
+                return(<RankedVoteModal currentRoom = {room}/>);
+            }
+            else if (room.roomType == "single") {
+                return(<VoteModal currentRoom = {room}/>);
+            }
+            else if (room.roomType == "random") {
+                //No Modal
+            }
+            else{
+                console.log("Hit last else in room component");
+                console.log(room.roomType);
+                return(<VoteModal currentRoom = {room}/>);
+            }
             /*
              **For bonus if implemented
              *else if (room.roomType=="swipe"){
              *return(<SwipeVoteModal/>)  ;  
              *}
              */
-    //    }
-    //}
-
-    renderModal(){
-        if(this.state.showModal){
-            return(
-                <RankedVoteModal currentRoom = {this.props.room}/>
-            );
         }
+
     }
 
     onButtonPress(){
-        this.setState({showModal:true});
+        this.setState({trigger:!this.state.trigger});
+        Actions.refresh({key:"RoomContainer"});
+        this.props.startVoting(this.props.room);
+    }
+
+    renderButton(){
+        const {room} = this.props;
+        if(room.isAdmin){
+            return(
+                <Button
+                    large title = "Begin Voting"
+                    onPress = {this.onButtonPress.bind(this)}
+                />
+            );
+        }
     }
 
     render() {
@@ -70,11 +83,9 @@ export default class RoomContainer extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.messagesContainer}>
-                    <Button
-                        large title = "Show Modal"
-                        onPress = {this.onButtonPress.bind(this)}
-                    />
+               
                     <ScrollView ref="messagesView">
+                    {this.renderButton()}
                         {!messages.isLoading &&
                             <MessagesList messages={messages} />
                         }
@@ -84,7 +95,7 @@ export default class RoomContainer extends React.Component {
                     <MessagesFormContainer roomId={room.id} />
                 </View>
 
-                {this.renderModal()}
+                {this.renderVotingModal()}
             </View>
 
         );

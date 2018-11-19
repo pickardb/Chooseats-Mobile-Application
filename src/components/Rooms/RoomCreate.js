@@ -20,7 +20,7 @@ const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
 class RoomCreate extends Component {
     onButtonPress() {
-        this.props._createRoom(this.props.newRoomName, this.props.newRoomDesc);
+        this.props._createRoom(this.props.newRoomName, this.props.newRoomDesc, this.props.newRoomVote, this.props.newRoomMax);
     }
 
     componentDidMount() {
@@ -124,8 +124,8 @@ class RoomCreate extends Component {
                             selectedValue = {this.props.newRoomVote}
                             onValueChange={this.onVoteChange.bind(this)}
                         >
-                            <Picker.Item label="Single Vote" value="vote"/>
-                            <Picker.Item label="Random" value="random"/>
+                            <Picker.Item label="Single Vote" value="single"/>
+                            <Picker.Item label="Random" value="truerandom"/>
                             <Picker.Item label="Ranked" value="rank"/>
                             <Picker.Item label="Swipe" value="tinder"/>
                         </Picker>

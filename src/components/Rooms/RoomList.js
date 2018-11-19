@@ -23,6 +23,7 @@ class RoomList extends Component {
     componentWillMount() {
         this.props._getRooms();
         Actions.refresh({ key: 'roomList' });
+        console.log(this.props);
     }
 
     renderRooms(rooms) {

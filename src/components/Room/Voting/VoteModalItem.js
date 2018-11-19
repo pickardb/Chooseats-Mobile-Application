@@ -11,22 +11,28 @@ class VoteModalItem extends Component {
     };
     
     onPress(){
-        this.props.chooseVote(this.props.item);
+        for(var i = 0; i<this.props.restaurants.length; i++){
+            if(this.props.item.placeID==this.props.restaurants[i].google_places_id){
+                this.props.chooseVote(this.props.restaurants[i].id);
+            }
+        }
+        
     }
 
     componentWillReceiveProps(newProps){
-        console.log("Component Received Props");
-        console.log(this.props.item);
         this.chooseButtonStyle(newProps);
     }
     
     chooseButtonStyle(newProps){
         console.log("chooseButtonStyle: " + newProps.choice);
-        if(newProps.choice==this.props.item){
-            this.setState({style:styles.chosenButtonStyle});
-        }
-        else{
-            this.setState({style:styles.buttonStyle});
+        for(var i = 0; i<this.props.restaurants.length; i++){
+            if(this.props.item.placeID==this.props.restaurants[i].google_places_id){
+                if(newProps.choice==this.props.restaurants[i].id){
+                    this.setState({style:styles.chosenButtonStyle});
+                }else{
+                    this.setState({style:styles.buttonStyle});
+                }
+            }
         }
     }
     

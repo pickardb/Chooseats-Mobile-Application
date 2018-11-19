@@ -19,7 +19,8 @@ class VoteModal extends Component {
                 <VoteModalItem 
                     key={index} 
                     index={index}
-                    item={this.props.restaurant_info[restaurant]} 
+                    item={this.props.restaurant_info[restaurant]}
+                    restaurants = {this.props.restaurants} 
                 />
             );
         }
@@ -34,6 +35,12 @@ class VoteModal extends Component {
         else{
             this.setState({error: 'Please select a Restaurant'});
         }
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("Vote Modal receives new Props: ");
+        console.log(nextProps);
+
     }
 
     renderError() {
@@ -98,6 +105,7 @@ const mapStatetoProps = (state) => {
         restaurants: state.voting.restaurants,
         restaurant_info: state.voting.restaurant_info,
         chosen: state.voting.choice,
+        votingState: state.voting.votingState,
     };
 };
 

@@ -32,7 +32,7 @@ export const createRoom = (newRoomName, newRoomDesc, newRoomVote, newRoomMax) =>
                 roomName: newRoomName,
                 roomDesc: newRoomDesc,
                 roomType: newRoomVote,
-                roomMac: newRoomMax,
+                roomMax: newRoomMax,
             })
         });
     } catch (err) {

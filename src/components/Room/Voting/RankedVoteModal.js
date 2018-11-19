@@ -25,6 +25,12 @@ class RankedVoteModal extends Component {
         }
     }
 
+    componentWillReceiveProps(newProps){
+        console.log("Ranked Modal receives new Props: ");
+        console.log(newProps);
+
+    }
+
     //Check to see that there is only one of each rank
     checkRanks(rankedChoices) {
         var total = 0;
@@ -113,6 +119,7 @@ const mapStatetoProps = (state) => {
         rankedChoices: state.voting.rankedChoices,
         restaurants: state.voting.restaurants,
         restaurant_info: state.voting.restaurant_info,
+        votingState: state.voting.votingState,
     };
 };
 

@@ -6,7 +6,7 @@ import { Card, Button } from 'react-native-elements';
 import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
 import VoteModal from './Voting/VoteModal';
-import RankedVoteModal from './Voting/RankedVoteModal';
+import SelectedRestaurantModal from './Voting/SelectedRestaurantModal';
 import AddRestuarantButton from '../Restaurants/AddRestaurantButton';
 
 const styles = {
@@ -26,7 +26,7 @@ const styles = {
 };
 
 export default class RoomContainer extends React.Component {
-    state={showModal: false};
+    state = { showModal: false };
     componentDidMount() {
         this.refs.messagesView.scrollToEnd({ animated: false });
     }
@@ -43,25 +43,25 @@ export default class RoomContainer extends React.Component {
     //        else if (room.roomType == "random") {
     //            //No Modal
     //        }
-            /*
-             **For bonus if implemented
-             *else if (room.roomType=="swipe"){
-             *return(<SwipeVoteModal/>)  ;  
-             *}
-             */
+    /*
+     **For bonus if implemented
+     *else if (room.roomType=="swipe"){
+     *return(<SwipeVoteModal/>)  ;  
+     *}
+     */
     //    }
     //}
 
-    renderModal(){
-        if(this.state.showModal){
-            return(
-                <RankedVoteModal currentRoom = {this.props.room}/>
+    renderModal() {
+        if (this.state.showModal) {
+            return (
+                <SelectedRestaurantModal currentRoom={this.props.room} googlePlacesId={'ChIJT-_EGpjM1IkRrp0SrXctqZE'} onRequestClose={() => this.setState({ showModal: false })} />
             );
         }
     }
 
-    onButtonPress(){
-        this.setState({showModal:true});
+    onButtonPress() {
+        this.setState({ showModal: true });
     }
 
     render() {
@@ -71,8 +71,8 @@ export default class RoomContainer extends React.Component {
             <View style={styles.container}>
                 <View style={styles.messagesContainer}>
                     <Button
-                        large title = "Show Modal"
-                        onPress = {this.onButtonPress.bind(this)}
+                        large title="Show Modal"
+                        onPress={this.onButtonPress.bind(this)}
                     />
                     <ScrollView ref="messagesView">
                         {!messages.isLoading &&

@@ -1,4 +1,5 @@
 import RNGooglePlaces from 'react-native-google-places';
+import axios from 'axios';
 
 import feathersClient from '../feathers/index';
 import restaurantTypes from '../types/restaurants';
@@ -32,6 +33,13 @@ export const getRestaurantInformation = (id) => dispatch => {
     });
 }
 
+export const getAdditionalRestaurantInformation = (id) => dispatch => {
+    return dispatch({
+        type: restaurantTypes.GET_GOOGLE_ADDITIONAL_RESTAURANT_INFO,
+        payload: axios.get('https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyDPby2X44nOJt8mF3VAriIIwHETjtIIwKM&placeid=' + id)
+    });
+}
+
 const getRestaurants = async (roomId, dispatch) => {
     const result = await restaurantsService.find({
         query: {
@@ -41,6 +49,10 @@ const getRestaurants = async (roomId, dispatch) => {
 
     await Promise.all(result.data.map(restaurant => {
         return dispatch(getRestaurantInformation(restaurant.google_places_id));
+    }));
+
+    await Promise.all(result.data.map(restaurant => {
+        return dispatch(getAdditionalRestaurantInformation(restaurant.google_places_id));
     }));
 
     return result;

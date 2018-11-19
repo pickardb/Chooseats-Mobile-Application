@@ -22,7 +22,14 @@ const restaurantReducer = (state = INITIAL_STATE, action) => {
             } else {
                 return state
             }
+        case types.GET_GOOGLE_ADDITIONAL_RESTAURANT_INFO_FULFILLED:
+            var restaurant_info = { ...state.restaurant_info };
 
+            var response = JSON.parse(action.payload.request._response);
+
+            restaurant_info[response.result.place_id].additionalInfo = response.result;
+
+            return { ...state, restaurant_info };
         default:
             return state;
     }

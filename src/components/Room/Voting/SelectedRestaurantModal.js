@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
-import { Text, View, Modal } from 'react-native';
+import { Text, View } from 'react-native';
+import Modal from 'react-native-modal';
 import { Card, Rating, Button } from 'react-native-elements';
 //import { Card, CardSection } from '../../common';
 import { connect } from 'react-redux';
 import { getRestaurantInformation, getAdditionalRestaurantInformation } from '../../../actions/restaurants';
+import {Actions} from 'react-native-router-flux';
+import RoomContainer from '../RoomContainer';
 
 class SelectedRestaurantModal extends Component {
     state = {
-        showModal: true,
+        showModal: false,
         error: ''
     }
 
+    componentWillMount(){
+        this.setState({ showModal: false });
+
+    }
     componentDidMount() {
         this.props._getRestaurantInfomation(this.props.googlePlacesId);
         this.props._getAdditionalRestaurantInformation(this.props.googlePlacesId);
-        this.setState({ showModal: true });
+        setTimeout(()=>{
+            this.setState({ showModal: true });
+            console.log("Setting state to true");
+        }, 1000);
     }
 
     render() {
@@ -22,13 +32,11 @@ class SelectedRestaurantModal extends Component {
 
         return (
             <Modal
-                animationType="slide"
-                onRequestClose={() => { }}
-                visible={this.state.showModal}
-                transparent
-                onRequestClose={() => { this.setState({ showModal: false }) }}
+                isVisible={this.state.showModal}
+                onBackButtonPress={() => { this.setState({ showModal: false }) }}
+                hideModalContentWhileAnimating={true}
             >
-                {restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo &&
+              {restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo &&
                     <View style={styles.modalStyle}>
                         <Card
                             image={{
@@ -56,6 +64,14 @@ class SelectedRestaurantModal extends Component {
                             />
                         </Card>
                     </View>}
+                    {!(restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo )&&
+                        <View>
+                            <Card>
+                                <Text>
+                                    No info
+                                </Text>
+                            </Card>
+                        </View>}
             </Modal>
         );
     }

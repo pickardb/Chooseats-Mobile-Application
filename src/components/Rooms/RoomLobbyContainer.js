@@ -50,7 +50,12 @@ class RoomLobbyContainer extends Component {
 
     render() {
         return (
-            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
+            <ImageBackground 
+                resizeMode='cover' 
+                style={styles.container} 
+                source={backgroundImage}
+                accessibilityLabel={"lobby-background"}
+            >
                 <CardSection style={styles.textContainerStyle}>
                     < Text style={styles.titleTextStyle}>
                         Welcome to Chooseats!
@@ -67,6 +72,7 @@ class RoomLobbyContainer extends Component {
                     }}
                     large title='Room List'
                     onPress={Actions.roomList}
+                    accessibilityLabel={'lobby-button-roomList'}
                 />
                 <Button
                     buttonStyle={{

@@ -29,7 +29,12 @@ class RoomList extends Component {
     renderRooms(rooms) {
         if (rooms.data != null) {
             return rooms.data.map((room) =>
-                <RoomListItem key={room.id} room={room} setCurrentRoomHandler={() => this.props._setCurrentRoom(room.id)} />);
+                <RoomListItem 
+                    key={room.id} 
+                    room={room} 
+                    setCurrentRoomHandler={() => this.props._setCurrentRoom(room.id)} 
+                    accessibilityLabel={room.roomCode}
+                />);
         }
     }
 
@@ -45,6 +50,7 @@ class RoomList extends Component {
                             backgroundColor: '#c67f00',
                             elevation: 5
                         }}
+                        accessibilityLabel={"roomList-button-joinRoom"}
                         large title='Join a New Room'
                         onPress={Actions.roomJoin}
                     />

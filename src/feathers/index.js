@@ -2,8 +2,8 @@ import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import auth from '@feathersjs/authentication-client';
 import io from 'socket.io-client';
-
-const socket = io('http://192.168.1.138:3030/');
+//http://chooseats.us-west-2.elasticbeanstalk.com
+const socket = io('206.87.158.93:3030');
 
 // Configure feathers-client
 const feathersClient = feathers()

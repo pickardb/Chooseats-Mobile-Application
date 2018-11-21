@@ -42,7 +42,7 @@ export default class RoomContainer extends React.Component {
             else if (room.roomType == "single") {
                 return(<VoteModal currentRoom = {room}/>);
             }
-            else if (room.roomType == "random") {
+            else if (room.roomType == "truerandom") {
                 //No Modal
             }
             else{
@@ -52,7 +52,7 @@ export default class RoomContainer extends React.Component {
             }
         }
         else if(room.roomState=="done"){
-            return <SelectedRestaurantModal restaurant_info = {this.props.restaurant_info} googlePlacesId = {room.selectedRestaurant} onRequestClose={() => this.setState({ showModal: false })}/>
+            return <SelectedRestaurantModal restaurant_info = {this.props.restaurant_info} googlePlacesId = {room.selectedRestaurant}/>
         }
             /*
              **For bonus if implemented

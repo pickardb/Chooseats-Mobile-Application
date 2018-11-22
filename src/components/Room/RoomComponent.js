@@ -27,7 +27,7 @@ const styles = {
 };
 
 export default class RoomContainer extends React.Component {
-    state={trigger: false};
+    state = { trigger: false };
     componentDidMount() {
         this.refs.messagesView.scrollToEnd({ animated: false });
         console.log(this.props);
@@ -37,47 +37,47 @@ export default class RoomContainer extends React.Component {
         const { room } = this.props;
         if (room.roomState == "voting") {
             if (room.roomType == "rank") {
-                return(<RankedVoteModal currentRoom = {room}/>);
+                return (<RankedVoteModal currentRoom={room} />);
             }
             else if (room.roomType == "single") {
-                return(<VoteModal currentRoom = {room}/>);
+                return (<VoteModal currentRoom={room} />);
             }
             else if (room.roomType == "truerandom") {
                 //No Modal
             }
-            else{
+            else {
                 console.log("Hit last else in room component");
                 console.log(room.roomType);
-                return(<VoteModal currentRoom = {room}/>);
+                return (<VoteModal currentRoom={room} />);
             }
         }
-        else if(room.roomState=="done"){
-            return <SelectedRestaurantModal restaurant_info = {this.props.restaurant_info} googlePlacesId = {room.selectedRestaurant}/>
+        else if (room.roomState == "done") {
+            return <SelectedRestaurantModal restaurant_info={this.props.restaurant_info} googlePlacesId={room.selectedRestaurant} />
         }
-            /*
-             **For bonus if implemented
-             *else if (room.roomType=="swipe"){
-             *return(<SwipeVoteModal/>)  ;  
-             *}
-             */
+        /*
+         **For bonus if implemented
+         *else if (room.roomType=="swipe"){
+         *return(<SwipeVoteModal/>)  ;  
+         *}
+         */
 
 
     }
 
-    onButtonPress(){
-        this.setState({trigger:!this.state.trigger});
+    onButtonPress() {
+        this.setState({ trigger: !this.state.trigger });
         this.props.startVoting(this.props.room);
         this.props.getRooms();
-        
+
     }
 
-    renderButton(){
-        const {room} = this.props;
-        if(room.isAdmin&&room.restaurants.length>0&&room.roomState=="starting"){
-            return(
+    renderButton() {
+        const { room } = this.props;
+        if (room.isAdmin && room.restaurants.length > 0 && room.roomState == "starting") {
+            return (
                 <Button
-                    large title = "Begin Voting"
-                    onPress = {this.onButtonPress.bind(this)}
+                    large title="Begin Voting"
+                    onPress={this.onButtonPress.bind(this)}
                 />
             );
         }
@@ -89,9 +89,9 @@ export default class RoomContainer extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.messagesContainer}>
-               
+
                     <ScrollView ref="messagesView">
-                    {this.renderButton()}
+                        {this.renderButton()}
                         {!messages.isLoading &&
                             <MessagesList messages={messages} />
                         }

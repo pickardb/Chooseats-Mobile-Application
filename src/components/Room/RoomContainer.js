@@ -29,6 +29,12 @@ class RoomContainer extends React.Component {
             Actions.refresh({ key: "roomContainer" });
         };
         feathersClient.service('rooms').on('patched', roomCallback);
+
+        const restaurantCallback = () => {
+            console.log("Restaurant Added");
+            this.props._getRooms();
+        }
+        feathersClient.service('restaurants').on('created', restaurantCallback);
     }
     componentWillMount() {
         this.props._clearVotingState();
@@ -49,7 +55,10 @@ class RoomContainer extends React.Component {
     }
 
     render() {
-        const { room, messages, restaurant_info, restaurants } = this.props;
+        const { room, messages, restaurant_info, restaurants, rooms, index } = this.props;
+        console.log(rooms);
+        console.log(index);
+        console.log(rooms.data[index]);
 
         return (<RoomComponent restaurant_info={restaurant_info} startVoting={this.props._startVoting} getRooms={this.props._getRooms} room={room} messages={messages} roomState={this.props.roomState} />);
     }
@@ -62,6 +71,7 @@ const mapStatetoProps = (state) => {
         restaurants: state.restaurants.restaurants,
         roomState: state.voting.votingState,
         restaurant_info: state.restaurants.restaurant_info,
+        rooms: state.rooms,
     };
 };
 

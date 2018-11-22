@@ -28,12 +28,13 @@ class RoomList extends Component {
 
     renderRooms(rooms) {
         if (rooms.data != null) {
-            return rooms.data.map((room) =>
+            return rooms.data.map((room, index) =>
                 <RoomListItem 
                     key={room.id} 
                     room={room} 
                     setCurrentRoomHandler={() => this.props._setCurrentRoom(room.id)} 
                     accessibilityLabel={room.roomCode}
+                    index={index}
                 />);
         }
     }

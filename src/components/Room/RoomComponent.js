@@ -5,10 +5,9 @@ import { Card, Button } from 'react-native-elements';
 
 import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
+import RankedVoteModal from './Voting/RankedVoteModal';
 import VoteModal from './Voting/VoteModal';
 import SelectedRestaurantModal from './Voting/SelectedRestaurantModal';
-import AddRestuarantButton from '../Restaurants/AddRestaurantButton';
-import { Actions } from 'react-native-router-flux';
 
 const styles = {
     container: {
@@ -30,12 +29,12 @@ export default class RoomContainer extends React.Component {
     state = { trigger: false };
     componentDidMount() {
         this.refs.messagesView.scrollToEnd({ animated: false });
-        console.log(this.props);
     }
 
     renderVotingModal() {
         const { room } = this.props;
         if (room.roomState == "voting") {
+            console.log('renderVotingModal: ' + room.roomType);
             if (room.roomType == "rank") {
                 return (<RankedVoteModal currentRoom={room} />);
             }
@@ -67,8 +66,7 @@ export default class RoomContainer extends React.Component {
     onButtonPress() {
         this.setState({ trigger: !this.state.trigger });
         this.props.startVoting(this.props.room);
-        this.props.getRooms();
-
+        //this.props.getRooms();
     }
 
     renderButton() {

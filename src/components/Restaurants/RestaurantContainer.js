@@ -31,6 +31,7 @@ class RestaurantContainer extends React.Component {
     render() {
         const { restaurants } = this.props
         const props = { restaurants };
+        console.log('restcontainer: ' + this.props.rooms.currentRoomId);
         return (<RestaurantComponent {...props} openSearchModal={this.openSearchModal} />);
     }
 };

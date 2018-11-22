@@ -39,10 +39,10 @@ class RoomContainer extends React.Component {
         this.props._clearVotingState();
     }
     componentDidMount() {
-        const { _getRestaurants, _getMessages, room: { id, roomName, roomCode } } = this.props;
+        const { _getRestaurants, _getMessages, rooms } = this.props;
 
-        _getMessages(id);
-        _getRestaurants(id);
+        _getMessages(rooms.currentRoomId);
+        _getRestaurants(rooms.currentRoomId);
     }
 
     componentWillUnmount() {
@@ -55,7 +55,7 @@ class RoomContainer extends React.Component {
     render() {
         const { room, messages, restaurant_info, restaurants, rooms, index } = this.props;
 
-        return (<RoomComponent restaurant_info = {restaurant_info} startVoting = {this.props._startVoting} getRooms = {this.props._getRooms} room={rooms.data[index]} messages={messages} roomState = {this.props.roomState}/>);
+        return (<RoomComponent restaurant_info={restaurant_info} startVoting={this.props._startVoting} getRooms={this.props._getRooms} room={rooms.data[index]} messages={messages} roomState={this.props.roomState} />);
     }
 }
 

@@ -3,13 +3,14 @@ import { View, Text, ImageBackground, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input } from '../common';
 import { Button } from 'react-native-elements';
-import { 
-    createRoom, 
-    getRooms, 
-    updateNewRoomDesc, 
-    updateNewRoomName, 
-    updateNewRoomMax, 
-    updateNewRoomVote, 
+import {
+    nukeRoom,
+    createRoom,
+    getRooms,
+    updateNewRoomDesc,
+    updateNewRoomName,
+    updateNewRoomMax,
+    updateNewRoomVote,
 } from '../../actions/rooms';
 import { Actions } from 'react-native-router-flux';
 import RoomList from './RoomList';
@@ -28,6 +29,7 @@ class RoomCreate extends Component {
     }
 
     componentWillUnmount() {
+        this.props._nukeRoom();
         Actions.refresh({ key: 'roomList' });
     }
 
@@ -43,7 +45,7 @@ class RoomCreate extends Component {
         this.props._updateNewRoomMax(value);
     }
 
-    onVoteChange(value){
+    onVoteChange(value) {
         this.props._updateNewRoomVote(value);
     }
 
@@ -52,9 +54,9 @@ class RoomCreate extends Component {
         if (this.props.newRoom) {
             return (
                 <Card style={styles.textContainerStyle}>
-                <CardSection style={styles.cardSectionStyle}>
-                    <Text style={styles.descriptTextStyle} >
-                        Your Room Code:
+                    <CardSection style={styles.cardSectionStyle}>
+                        <Text style={styles.descriptTextStyle} >
+                            Your Room Code:
                     </Text >
                         <Text style={styles.descriptTextStyle}>
                             {this.props.newRoom}
@@ -83,54 +85,53 @@ class RoomCreate extends Component {
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
 
                 <View>
-
-                    {this.renderRoomCode()}
                     <Card style={styles.textContainerStyle}>
-                    <CardSection style={styles.cardSectionStyle}>
-                        <Input
-                            label="Room Name"
-                            placeholder="Name your room"
-                            onChangeText={this.onNameChange.bind(this)}
-                            value={this.newRoomName}
-                        />
-                    </CardSection>
-                    <CardSection style={styles.cardSectionStyle}>
-                        <Input
-                            label="Details"
-                            placeholder="Room Details"
-                            onChangeText={this.onDescChange.bind(this)}
-                            value={this.newRoomDesc}
-                        />
-                    </CardSection>
-                    <CardSection style={styles.pickerSectionStyle}>
-                        <Text>Max # of people</Text>
-                        <Picker
-                            selectedValue = {this.props.newRoomMax}
-                            onValueChange={this.onMaxChange.bind(this)}
-                        >
-                            <Picker.Item label="1" value="1"/>
-                            <Picker.Item label="2" value="2"/>
-                            <Picker.Item label="3" value="3"/>
-                            <Picker.Item label="4" value="4"/>
-                            <Picker.Item label="5" value="5"/>
-                            <Picker.Item label="6" value="6"/>
-                            <Picker.Item label="7" value="7"/>
-                            <Picker.Item label="8" value="8"/>
-                        </Picker>
-                    </CardSection>
-                    <CardSection style={styles.pickerSectionStyle}>
-                        <Text>Voting Style</Text>
-                        <Picker
-                            selectedValue = {this.props.newRoomVote}
-                            onValueChange={this.onVoteChange.bind(this)}
-                        >
-                            <Picker.Item label="Single Vote" value="single"/>
-                            <Picker.Item label="Random" value="truerandom"/>
-                            <Picker.Item label="Ranked" value="rank"/>
-                        </Picker>
-                    </CardSection>
-                </Card>
-            </View>
+                        <CardSection style={styles.cardSectionStyle}>
+                            <Input
+                                label="Room Name"
+                                placeholder="Name your room"
+                                onChangeText={this.onNameChange.bind(this)}
+                                value={this.newRoomName}
+                            />
+                        </CardSection>
+                        <CardSection style={styles.cardSectionStyle}>
+                            <Input
+                                label="Details"
+                                placeholder="Room Details"
+                                onChangeText={this.onDescChange.bind(this)}
+                                value={this.newRoomDesc}
+                            />
+                        </CardSection>
+                        <CardSection style={styles.pickerSectionStyle}>
+                            <Text>Max # of people</Text>
+                            <Picker
+                                selectedValue={this.props.newRoomMax}
+                                onValueChange={this.onMaxChange.bind(this)}
+                            >
+                                <Picker.Item label="1" value="1" />
+                                <Picker.Item label="2" value="2" />
+                                <Picker.Item label="3" value="3" />
+                                <Picker.Item label="4" value="4" />
+                                <Picker.Item label="5" value="5" />
+                                <Picker.Item label="6" value="6" />
+                                <Picker.Item label="7" value="7" />
+                                <Picker.Item label="8" value="8" />
+                            </Picker>
+                        </CardSection>
+                        <CardSection style={styles.pickerSectionStyle}>
+                            <Text>Voting Style</Text>
+                            <Picker
+                                selectedValue={this.props.newRoomVote}
+                                onValueChange={this.onVoteChange.bind(this)}
+                            >
+                                <Picker.Item label="Single Vote" value="single" />
+                                <Picker.Item label="Random" value="truerandom" />
+                                <Picker.Item label="Ranked" value="rank" />
+                            </Picker>
+                        </CardSection>
+                    </Card>
+                    {this.renderRoomCode()}
+                </View>
             </ImageBackground>
         );
     }
@@ -180,6 +181,7 @@ const mapDispatchToProps = (dispatch) => ({
     _updateNewRoomDesc: (text) => dispatch(updateNewRoomDesc(text)),
     _updateNewRoomMax: (text) => dispatch(updateNewRoomMax(text)),
     _updateNewRoomVote: (text) => dispatch(updateNewRoomVote(text)),
+    _nukeRoom: () => dispatch(nukeRoom())
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RoomCreate);

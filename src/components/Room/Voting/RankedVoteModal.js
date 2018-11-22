@@ -16,16 +16,24 @@ class RankedVoteModal extends Component {
     }
 
     componentWillMount() {
-        this.props._setReduxArray(Object.keys(this.props.restaurant_info).length);
+        this.props._setReduxArray(this.props.restaurants.data.length);
         this.setState({ error: '' });
     }
-    renderItems(restaurant_info) {
-        if (Object.keys(restaurant_info).length > 0) {
-            return Object.keys(restaurant_info).map((restaurantKey, index) => <RankedVoteModalItem key={index} index={index} item={this.props.restaurant_info[restaurantKey]} max={Object.keys(restaurant_info).length} />);
+    renderItems(restaurants, restaurant_info) {
+        if (restaurants != null) {
+            return restaurants.data.map((restaurant, index) =>
+                <RankedVoteModalItem
+                    key={index}
+                    index={index}
+                    item={restaurant_info[restaurant.google_places_id]}
+                    restaurants={this.props.restaurants.data}
+                    max={this.props.restaurants.data.length}
+                />
+            );
         }
     }
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
         console.log("Ranked Modal receives new Props: ");
         console.log(newProps);
 
@@ -52,7 +60,7 @@ class RankedVoteModal extends Component {
     onSubmitPress() {
         if (this.checkRanks(this.props.rankedChoices)) {
             this.setState({ showModal: false });
-            this.setState({error: ''});
+            this.setState({ error: '' });
             this.props._submitRankedVote(this.props.rankedChoices, this.props.restaurants, this.props.currentRoom);
             this.props._submitReadyService(this.props.currentRoom);
         }
@@ -65,7 +73,7 @@ class RankedVoteModal extends Component {
                 <CardSection>
                     <Text
                         style={{
-                            color:"#F11",
+                            color: "#F11",
                             fontSize: 18,
                         }}
                     >
@@ -94,7 +102,7 @@ class RankedVoteModal extends Component {
                         </CardSection>
                         <CardSection>
                             <ScrollView >
-                                {this.renderItems(this.props.restaurant_info)}
+                                {this.renderItems(this.props.restaurants, this.props.restaurant_info)}
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}

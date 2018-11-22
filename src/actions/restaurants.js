@@ -6,7 +6,7 @@ import restaurantTypes from '../types/restaurants';
 
 const restaurantsService = feathersClient.service('restaurants');
 
-export const setSelectedRestaurant = restaurant => dispatch => ({
+export const setSelectedRestaurant = restaurant => ({
     type: restaurantTypes.RESTAURANT_SELECTED,
     payload: restaurant
 });

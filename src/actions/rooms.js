@@ -22,6 +22,13 @@ export const getRooms = async (dispatch) => {
     }
 };
 
+export const nukeRoom = () => {
+    return {
+        type: roomTypes.NUKE_ROOM,
+        payload: null
+    };
+}
+
 export const createRoom = (newRoomName, newRoomDesc, newRoomVote, newRoomMax) => async (dispatch) => {
     console.log("Create room values:" + newRoomName + " " + newRoomDesc);
     console.log("dispatch: " + dispatch);
@@ -84,7 +91,7 @@ export const updateNewRoomMax = (text) => {
 };
 
 export const updateNewRoomVote = (text) => {
-    return({
+    return ({
         type: roomTypes.NEW_ROOM_VOTE,
         payload: text
     });

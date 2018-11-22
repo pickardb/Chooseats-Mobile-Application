@@ -4,8 +4,8 @@ import Modal from 'react-native-modal';
 import { Card, Rating, Button } from 'react-native-elements';
 //import { Card, CardSection } from '../../common';
 import { connect } from 'react-redux';
-import { getRestaurantInformation, getAdditionalRestaurantInformation } from '../../../actions/restaurants';
-import {Actions} from 'react-native-router-flux';
+import { getRestaurantInformation } from '../../../actions/restaurants';
+import { Actions } from 'react-native-router-flux';
 import RoomContainer from '../RoomContainer';
 
 class SelectedRestaurantModal extends Component {
@@ -14,17 +14,15 @@ class SelectedRestaurantModal extends Component {
         error: ''
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.setState({ showModal: false });
 
     }
     componentDidMount() {
-        this.props._getRestaurantInfomation(this.props.googlePlacesId);
-        this.props._getAdditionalRestaurantInformation(this.props.googlePlacesId);
-        setTimeout(()=>{
+        setTimeout(() => {
             this.setState({ showModal: true });
             console.log("Setting state to true");
-        }, 1000);
+        }, 300);
     }
 
     render() {
@@ -36,7 +34,7 @@ class SelectedRestaurantModal extends Component {
                 onBackButtonPress={() => { this.setState({ showModal: false }) }}
                 hideModalContentWhileAnimating={true}
             >
-              {restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo &&
+                {restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo &&
                     <View style={styles.modalStyle}>
                         <Card
                             image={{
@@ -60,18 +58,18 @@ class SelectedRestaurantModal extends Component {
                                 backgroundColor='#ffb839'
                                 buttonStyle={{ borderRadius: 0, marginTop: 10, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                                 title="Let's Go!"
-                                onPress={() => this.setState({ showModal: false }) }
+                                onPress={() => this.setState({ showModal: false })}
                             />
                         </Card>
                     </View>}
-                    {!(restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo )&&
-                        <View>
-                            <Card>
-                                <Text>
-                                    No info
+                {!(restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo) &&
+                    <View>
+                        <Card>
+                            <Text>
+                                No info
                                 </Text>
-                            </Card>
-                        </View>}
+                        </Card>
+                    </View>}
             </Modal>
         );
     }
@@ -82,8 +80,7 @@ const mapStatetoProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    _getRestaurantInfomation: id => dispatch(getRestaurantInformation(id)),
-    _getAdditionalRestaurantInformation: id => dispatch(getAdditionalRestaurantInformation(id))
+    _getRestaurantInfomation: id => dispatch(getRestaurantInformation(id))
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(SelectedRestaurantModal);

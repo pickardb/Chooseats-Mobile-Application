@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getMessages, addNewMessage } from '../../actions/messages';
-import { getRoomRestaurants, clearVotingState, startVoting, updateVotingState } from '../../actions/voting';
+import { clearVotingState, startVoting, updateVotingState } from '../../actions/voting';
+import { getRoomRestaurants } from '../../actions/restaurants';
 import { getRooms } from '../../actions/rooms'
 import feathersClient from '../../feathers/index';
 import { Actions } from 'react-native-router-flux';
@@ -58,9 +59,9 @@ class RoomContainer extends React.Component {
 const mapStatetoProps = (state) => {
     return {
         messages: state.messages,
-        restaurants: state.voting.restaurants,
+        restaurants: state.restaurants.restaurants,
         roomState: state.voting.votingState,
-        restaurant_info: state.voting.restaurant_info,
+        restaurant_info: state.restaurants.restaurant_info,
     };
 };
 

@@ -3,17 +3,11 @@ import { Text, View, Modal } from 'react-native';
 import { Card, Rating, Button } from 'react-native-elements';
 //import { Card, CardSection } from '../../common';
 import { connect } from 'react-redux';
-import { getRestaurantInformation, getAdditionalRestaurantInformation } from '../../actions/restaurants';
 
 class RestaurantViewModal extends Component {
     state = {
         showModal: true,
         error: ''
-    }
-
-    componentDidMount() {
-        this.props._getRestaurantInfomation(this.props.googlePlacesId);
-        this.props._getAdditionalRestaurantInformation(this.props.googlePlacesId);
     }
 
     render() {
@@ -64,8 +58,7 @@ const mapStatetoProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    _getRestaurantInfomation: id => dispatch(getRestaurantInformation(id)),
-    _getAdditionalRestaurantInformation: id => dispatch(getAdditionalRestaurantInformation(id))
+    _getRestaurantInfomation: id => dispatch(getRestaurantInformation(id))
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(RestaurantViewModal);

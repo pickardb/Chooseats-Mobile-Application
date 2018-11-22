@@ -37,7 +37,6 @@ class RoomContainer extends React.Component {
     }
     componentWillMount() {
         this.props._clearVotingState();
-        console.log(this.props.restaurants);
     }
     componentDidMount() {
         const { _getRestaurants, _getMessages, room: { id, roomName, roomCode } } = this.props;
@@ -55,15 +54,8 @@ class RoomContainer extends React.Component {
 
     render() {
         const { room, messages, restaurant_info, restaurants, rooms, index } = this.props;
-        console.log(rooms);
-        console.log(index);
-        console.log(rooms.data[index]);
 
-<<<<<<< HEAD
         return (<RoomComponent restaurant_info = {restaurant_info} startVoting = {this.props._startVoting} getRooms = {this.props._getRooms} room={rooms.data[index]} messages={messages} roomState = {this.props.roomState}/>);
-=======
-        return (<RoomComponent restaurant_info={restaurant_info} startVoting={this.props._startVoting} getRooms={this.props._getRooms} room={room} messages={messages} roomState={this.props.roomState} />);
->>>>>>> bae46070fec617667d71f67dc5c6bef138614920
     }
 }
 

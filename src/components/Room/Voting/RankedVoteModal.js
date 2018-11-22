@@ -118,8 +118,8 @@ const mapStatetoProps = (state) => {
         voteSubmitted: state.voting.voteSubmitted,
         restaurantChosen: state.voting.choice,
         rankedChoices: state.voting.rankedChoices,
-        restaurants: state.voting.restaurants,
-        restaurant_info: state.voting.restaurant_info,
+        restaurants: state.restaurants.restaurants,
+        restaurant_info: state.restaurants.restaurant_info,
         votingState: state.voting.votingState,
     };
 };

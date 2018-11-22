@@ -26,7 +26,6 @@ class RoomContainer extends React.Component {
             console.log(room);
             _updateVotingState(room.roomState);
             this.props._getRooms();
-            Actions.refresh({ key: "roomContainer" });
         };
         feathersClient.service('rooms').on('patched', roomCallback);
 

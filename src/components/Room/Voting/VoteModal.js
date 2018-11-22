@@ -108,8 +108,8 @@ const mapStatetoProps = (state) => {
     return {
         voteSubmitted: state.voting.voteSubmitted,
         restaurantChosen: state.voting.choice,
-        restaurants: state.voting.restaurants,
-        restaurant_info: state.voting.restaurant_info,
+        restaurants: state.restaurants.restaurants,
+        restaurant_info: state.restaurants.restaurant_info,
         chosen: state.voting.choice,
         votingState: state.voting.votingState,
     };

@@ -21,7 +21,6 @@ const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 class RoomCreate extends Component {
     onButtonPress() {
         this.props._createRoom(this.props.newRoomName, this.props.newRoomDesc, this.props.newRoomVote, this.props.newRoomMax);
-        Actions.refresh({key: "roomList"});
     }
 
     componentDidMount() {

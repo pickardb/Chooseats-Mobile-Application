@@ -90,11 +90,6 @@ const RouterComponent = () => {
                         key="restaurantContainer"
                         component={RestaurantContainer}
                         title="Restaurant"
-                        onBack={()=>{
-                            Actions.refresh({key: "roomList"});
-                            Actions.refresh({key: "roomContainer"});
-                            }
-                        }
                     />
 
                 </Scene>

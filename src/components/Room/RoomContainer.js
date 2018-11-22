@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getMessages, addNewMessage } from '../../actions/messages';
-import {getRoomRestaurants, clearVotingState, startVoting, updateVotingState} from '../../actions/voting';
-import {getRooms} from '../../actions/rooms'
+import { getRoomRestaurants, clearVotingState, startVoting, updateVotingState } from '../../actions/voting';
+import { getRooms } from '../../actions/rooms'
 import feathersClient from '../../feathers/index';
 import { Actions } from 'react-native-router-flux';
 
@@ -25,7 +25,7 @@ class RoomContainer extends React.Component {
             console.log(room);
             _updateVotingState(room.roomState);
             this.props._getRooms();
-            Actions.refresh({key: "roomContainer"});
+            Actions.refresh({ key: "roomContainer" });
         };
         feathersClient.service('rooms').on('patched', roomCallback);
 
@@ -35,19 +35,20 @@ class RoomContainer extends React.Component {
         }
         feathersClient.service('restaurants').on('created', restaurantCallback);
     }
-    componentWillMount(){
+    componentWillMount() {
         this.props._clearVotingState();
         console.log(this.props.restaurants);
     }
     componentDidMount() {
         const { _getRestaurants, _getMessages, room: { id, roomName, roomCode } } = this.props;
-        
+
         _getMessages(id);
         _getRestaurants(id);
     }
 
     componentWillUnmount() {
-        feathersClient.service('messages').removeAllListeners("created");
+        feathersClient.service('messages').removeAllListeners("newMessage");
+        feathersClient.service('rooms').removeAllListeners('patched');
         this.props._getRooms();
         Actions.refresh({ key: 'roomList' });
     }
@@ -58,7 +59,11 @@ class RoomContainer extends React.Component {
         console.log(index);
         console.log(rooms.data[index]);
 
+<<<<<<< HEAD
         return (<RoomComponent restaurant_info = {restaurant_info} startVoting = {this.props._startVoting} getRooms = {this.props._getRooms} room={rooms.data[index]} messages={messages} roomState = {this.props.roomState}/>);
+=======
+        return (<RoomComponent restaurant_info={restaurant_info} startVoting={this.props._startVoting} getRooms={this.props._getRooms} room={room} messages={messages} roomState={this.props.roomState} />);
+>>>>>>> bae46070fec617667d71f67dc5c6bef138614920
     }
 }
 

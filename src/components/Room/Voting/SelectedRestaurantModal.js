@@ -24,7 +24,7 @@ class SelectedRestaurantModal extends Component {
         setTimeout(()=>{
             this.setState({ showModal: true });
             console.log("Setting state to true");
-        }, 1000);
+        }, 2000);
     }
 
     render() {

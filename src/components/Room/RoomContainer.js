@@ -56,11 +56,7 @@ class RoomContainer extends React.Component {
     render() {
         const { room, messages, restaurant_info, restaurants, rooms, index } = this.props;
 
-<<<<<<< HEAD
         return (<RoomComponent restaurant_info = {restaurant_info} startVoting = {this.props._startVoting} getRooms = {this.props._getRooms} room={rooms.data[index]} messages={messages} roomState = {this.props.roomState}/>);
-=======
-        return (<RoomComponent restaurant_info={restaurant_info} startVoting={this.props._startVoting} getRooms={this.props._getRooms} room={room} messages={messages} roomState={this.props.roomState} />);
->>>>>>> 99c13792037c12c9fc49cbd4833b263f3e0144f3
     }
 }
 

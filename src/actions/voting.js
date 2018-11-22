@@ -17,7 +17,6 @@ export const chooseVote = (item) => {
 
 export const startVoting = (room) => async(dispatch) => {
     var path = 'rooms';
-    console.log("path is: " + path);
     const roomVotingService = feathersClient.service(path);
     
     try{
@@ -133,36 +132,6 @@ export const setReduxArray = (size) => {
         payload: retArray
     };
 };
-
-export const getRestaurantInformation = (id) => dispatch => {
-    return dispatch({
-        type: votingTypes.GET_GOOGLE_RESTAURANT_INFO,
-        payload: RNGooglePlaces.lookUpPlaceByID(id)
-    });
-}
-
-const getRestaurants = async (roomId, dispatch) => {
-    const result = await restaurantsService.find({
-        query: {
-            roomId
-        }
-    });
-
-    await Promise.all(result.data.map(restaurant => {
-        return dispatch(getRestaurantInformation(restaurant.google_places_id));
-    }));
-
-    return result;
-}
-
-export const getRoomRestaurants = (roomId) => dispatch => {
-    console.log(roomId);
-    return dispatch({
-        type: votingTypes.GET_ROOM_RESTAURANTS,
-        payload: getRestaurants(roomId, dispatch)
-    })
-}
-
 export const clearVotingState = () => {
     console.log("Clearing Voting State");
     return {

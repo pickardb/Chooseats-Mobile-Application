@@ -5,9 +5,7 @@ const INITIAL_STATE = {
     voteSubmitted: false,
     choice: '',
     rankedChoices: null,
-    restaurants: { data: [] },
     restaurantsLoading: false,
-    restaurant_info: {},
     votingState: '',
 };
 

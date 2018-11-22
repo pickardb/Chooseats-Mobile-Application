@@ -13,7 +13,7 @@ import { ActionConst } from 'react-native-router-flux';
 class RoomContainer extends React.Component {
     constructor(props) {
         super(props);
-        const { _addNewMessage, _updateVotingState } = this.props;
+        const { _addNewMessage, _updateVotingState, rooms } = this.props;
 
         const callback = (message, context) => {
             _addNewMessage(message);
@@ -31,7 +31,7 @@ class RoomContainer extends React.Component {
 
         const restaurantCallback = () => {
             console.log("Restaurant Added");
-            this.props._getRooms();
+            this.props._getRestaurants(rooms.currentRoomId);
         }
         feathersClient.service('restaurants').on('created', restaurantCallback);
     }
@@ -48,6 +48,7 @@ class RoomContainer extends React.Component {
     componentWillUnmount() {
         feathersClient.service('messages').removeAllListeners("newMessage");
         feathersClient.service('rooms').removeAllListeners('patched');
+        feathersClient.service('restaurants').removeAllListeners('created');
         this.props._getRooms();
         Actions.refresh({ key: 'roomList' });
     }

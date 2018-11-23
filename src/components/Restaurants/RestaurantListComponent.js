@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { View } from 'react-native-elements';
 
 import RestaurantListItem from './RestaurantListItem';
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 0
+        margin: 0,
     }
 })
 
@@ -18,8 +18,8 @@ const RestaurantListComponent = ({ restaurants }) => {
 
 
     return (
-        <List containerStyle={styles.container}>
+        <View style={styles.container}>
             {!restaurants.isLoading && restaurantsListJSX}
-        </List>);
+        </View>);
 };
 export default RestaurantListComponent;

@@ -6,6 +6,7 @@ import { Button } from 'react-native-elements';
 import RoomListItem from './RoomListItem';
 import { getRooms, setCurrentRoom } from '../../actions/rooms';
 import { Actions } from 'react-native-router-flux';
+import RoomListActionButton from './RoomListActionButton'
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
@@ -29,10 +30,10 @@ class RoomList extends Component {
     renderRooms(rooms) {
         if (rooms.data != null) {
             return rooms.data.map((room, index) =>
-                <RoomListItem 
-                    key={room.id} 
-                    room={room} 
-                    setCurrentRoomHandler={() => this.props._setCurrentRoom(room.id)} 
+                <RoomListItem
+                    key={room.id}
+                    room={room}
+                    setCurrentRoomHandler={() => this.props._setCurrentRoom(room.id)}
                     accessibilityLabel={room.roomCode}
                     index={index}
                 />);
@@ -45,19 +46,9 @@ class RoomList extends Component {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
                 <ScrollView>
-                    <Button
-                        buttonStyle={{
-                            marginVertical: 10,
-                            backgroundColor: '#c67f00',
-                            elevation: 5
-                        }}
-                        accessibilityLabel={"roomList-button-joinRoom"}
-                        large title='Join a New Room'
-                        onPress={Actions.roomJoin}
-                    />
                     {this.renderRooms(rooms)}
-
                 </ScrollView>
+                <RoomListActionButton />
             </ImageBackground>
         );
     }

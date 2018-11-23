@@ -58,11 +58,7 @@ const RouterComponent = () => {
                     <Scene
                         key="roomList"
                         component={RoomList}
-                        title="Your Rooms"
-                        rightTitle="Create"
-                        onRight={() =>
-                            Actions.roomCreate()
-                        }
+                        title="My Rooms"
                     />
                     <Scene
                         key="roomCreate"
@@ -82,8 +78,8 @@ const RouterComponent = () => {
                         onRight={() =>
                             Actions.restaurantContainer()
                         }
-                        onBack={()=>
-                            Actions.refresh({key: "roomList"})
+                        onBack={() =>
+                            Actions.refresh({ key: "roomList" })
                         }
                     />
                     <Scene

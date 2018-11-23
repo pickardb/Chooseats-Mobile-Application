@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { Card, Rating } from 'react-native-elements';
 import RestaurantViewModal from './RestaurantViewModal';
 
 class RestaurantListItem extends React.Component {
@@ -12,9 +12,27 @@ class RestaurantListItem extends React.Component {
         this.setState({ showModal: true });
     }
     render() {
-        const { name, address, website } = this.props.restaurantInfo;
+        const { name, address, rating, additionalInfo } = this.props.restaurantInfo;
         const { restaurant } = this.props;
+
         return (
+            <Card
+                title={name}
+                image={{
+                    uri: 'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyDPby2X44nOJt8mF3VAriIIwHETjtIIwKM&maxheight=500&photoreference='
+                        + additionalInfo.photos[0].photo_reference
+                }}>
+                <Rating
+                    imageSize={20}
+                    readonly
+                    startingValue={rating}
+                />
+                <Text h3 style={{ marginBottom: 10 }}>
+                    {address}
+                </Text>
+            </Card>
+        );
+        /*return (
             <View>
                 <ListItem
                     key={restaurant.id}
@@ -25,7 +43,7 @@ class RestaurantListItem extends React.Component {
                 >
                 </ListItem>
                 {this.state.showModal && <RestaurantViewModal googlePlacesId={restaurant.google_places_id} onRequestClose={() => this.setState({ showModal: false })} />}
-            </View>);
+            </View>);*/
     }
 };
 

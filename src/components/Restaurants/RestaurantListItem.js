@@ -14,13 +14,13 @@ class RestaurantListItem extends React.Component {
     render() {
         const { name, address, rating, additionalInfo } = this.props.restaurantInfo;
         const { restaurant } = this.props;
-
+        const photoId = additionalInfo ? additionalInfo.photos[0].photo_reference : null;
         return (
             <Card
                 title={name}
                 image={{
                     uri: 'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyDPby2X44nOJt8mF3VAriIIwHETjtIIwKM&maxheight=500&photoreference='
-                        + additionalInfo.photos[0].photo_reference
+                        + photoId
                 }}>
                 <Rating
                     imageSize={20}

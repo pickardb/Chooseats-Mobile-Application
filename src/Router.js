@@ -85,7 +85,7 @@ const RouterComponent = () => {
                     <Scene
                         key="restaurantContainer"
                         component={RestaurantContainer}
-                        title="Restaurant"
+                        title="Restaurants"
                     />
 
                 </Scene>

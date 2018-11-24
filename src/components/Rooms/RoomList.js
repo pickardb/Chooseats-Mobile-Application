@@ -14,9 +14,7 @@ const styles = {
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
+        justifyContent: 'flex-start'
     },
 };
 

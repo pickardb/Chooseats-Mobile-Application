@@ -4,7 +4,7 @@ import RNGooglePlaces from 'react-native-google-places';
 import { connect } from 'react-redux';
 
 import RestaurantComponent from './RestaurantComponent';
-import { getRoomRestaurants, addRestaurant } from '../../actions/restaurants';
+import { getRoomRestaurants, addRestaurant, getRooms } from '../../actions/restaurants';
 
 class RestaurantContainer extends React.Component {
 
@@ -44,7 +44,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     _getRestaurants: (roomId) => dispatch(getRoomRestaurants(roomId)),
-    _addRestaurant: (roomId, google_places_id) => dispatch(addRestaurant(roomId, google_places_id))
+    _addRestaurant: (roomId, google_places_id) => dispatch(addRestaurant(roomId, google_places_id)),
+    _getRooms: () => dispatch(getRooms),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantContainer);

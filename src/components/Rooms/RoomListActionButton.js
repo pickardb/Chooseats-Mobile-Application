@@ -5,11 +5,11 @@ import ActionButton from 'react-native-action-button';
 import { Actions } from 'react-native-router-flux';
 
 export default RoomListActionButton = ({ joinRoom, createRoom }) => (
-    <ActionButton buttonColor='#c67f00'>
-        <ActionButton.Item buttonColor='#c67f00' title="Join Room" onPress={() => Actions.roomJoin()}>
+    <ActionButton buttonColor='#388E3C'>
+        <ActionButton.Item buttonColor='#388E3C' title="Join Room" onPress={() => Actions.roomJoin()}>
             <Icon name="users" style={styles.actionButtonIcon} />
         </ActionButton.Item>
-        <ActionButton.Item buttonColor='#c67f00' title="Create a Room" onPress={() => Actions.roomCreate()}>
+        <ActionButton.Item buttonColor='#388E3C' title="Create a Room" onPress={() => Actions.roomCreate()}>
             <Icon name="user-plus" style={styles.actionButtonIcon} />
         </ActionButton.Item>
     </ActionButton>

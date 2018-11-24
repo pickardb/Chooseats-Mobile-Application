@@ -62,12 +62,8 @@ class SelectedRestaurantModal extends Component {
                         </Card>
                     </View>}
                 {!(restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo) &&
-                    <View>
-                        <Card>
-                            <Text>
-                                No info
-                                </Text>
-                        </Card>
+                    <View loading={true}>
+
                     </View>}
             </Modal>
         );

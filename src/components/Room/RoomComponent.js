@@ -1,12 +1,16 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import RNGooglePlaces from 'react-native-google-places';
-import { Card, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
+import { GiftedChat } from 'react-native-gifted-chat'
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import BottomNavigation, { FullTab } from 'react-native-material-bottom-navigation'
+import { Actions } from 'react-native-router-flux';
 
 import MessagesList from './Messages/MessagesList';
 import MessagesFormContainer from './Messages/MessagesFormContainer';
 import RankedVoteModal from './Voting/RankedVoteModal';
 import VoteModal from './Voting/VoteModal';
+import RoomInfoModal from './RoomInfoModal';
 import SelectedRestaurantModal from './Voting/SelectedRestaurantModal';
 
 const styles = {
@@ -15,20 +19,19 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'flex-start'
     },
-    messagesContainer: {
-        flex: 9,
-        backgroundColor: 'green'
-    },
-    sendContainer: {
-        flex: 0,
-        flexGrow: 1
+    toolbar: {
+        backgroundColor: '#696969',
+        height: 50,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
     }
 };
 
 export default class RoomContainer extends React.Component {
     state = { trigger: false };
     componentDidMount() {
-        this.refs.messagesView.scrollToEnd({ animated: false });
+
     }
 
     renderVotingModal() {
@@ -50,9 +53,6 @@ export default class RoomContainer extends React.Component {
                 return (<VoteModal currentRoom={room} />);
             }
         }
-        else if (room.roomState == "done") {
-            return <SelectedRestaurantModal restaurant_info={this.props.restaurant_info} googlePlacesId={room.selectedRestaurant} />
-        }
         /*
          **For bonus if implemented
          *else if (room.roomType=="swipe"){
@@ -69,37 +69,108 @@ export default class RoomContainer extends React.Component {
         //this.props.getRooms();
     }
 
-    renderButton() {
+    tabs = () => {
+        var tabs = [{
+            key: 'restaurant',
+            icon: 'restaurant',
+            label: 'Restaurants',
+            barColor: '#388E3C',
+            pressColor: 'rgba(255, 255, 255, 0.16)'
+        },
+        {
+            key: 'info',
+            icon: 'info',
+            label: 'Room Info',
+            barColor: '#388E3C',
+            pressColor: 'rgba(255, 255, 255, 0.16)'
+        },
+        ];
+
         const { room } = this.props;
+
         if (room.isAdmin && room.restaurants.length > 0 && room.roomState == "starting") {
-            return (
-                <Button
-                    large title="Begin Voting"
-                    onPress={this.onButtonPress.bind(this)}
-                />
-            );
+            tabs.push({
+                key: 'vote',
+                icon: 'playlist-play',
+                label: 'Start Vote',
+                barColor: '#388E3C',
+                pressColor: 'rgba(255, 255, 255, 0.16)'
+            });
+        }
+
+        if (room.roomState == "done") {
+            tabs.push({
+                key: 'selected',
+                icon: 'star',
+                label: 'Selected Restaurant',
+                barColor: '#388E3C',
+                pressColor: 'rgba(255, 255, 255, 0.16)'
+            });
+        }
+
+        return tabs;
+    };
+
+    renderIcon = icon => ({ isActive }) => (
+        <Icon size={24} color="white" name={icon} />
+    )
+
+    renderTab = ({ tab, isActive }) => {
+        return (
+            <FullTab
+                key={tab.key}
+                isActive={isActive}
+                label={tab.label}
+                renderIcon={this.renderIcon(tab.icon)}
+            />
+        )
+    }
+
+    handleTabPress = (newTab, oldTab) => {
+        switch (newTab.key) {
+            case 'restaurant':
+                Actions.restaurantContainer();
+                break;
+            case 'info':
+                this.setState({roomInfoModal: true})
+                break;    
+            case 'selected':
+                this.setState({selectedRestaurantModal: true});
+                break;
+            case 'vote':
+                this.onButtonPress.bind(this)();
+                break;
         }
     }
 
+
     render() {
-        const { messages, room } = this.props;
+        const { messages: { messages }, user, sendMessage, room } = this.props;
 
         return (
             <View style={styles.container}>
-                <View style={styles.messagesContainer}>
-
-                    <ScrollView ref="messagesView">
-                        {this.renderButton()}
-                        {!messages.isLoading &&
-                            <MessagesList messages={messages} />
-                        }
-                    </ScrollView>
-                </View>
-                <View style={styles.sendContainer}>
-                    <MessagesFormContainer roomId={room.id} />
-                </View>
-
+                <GiftedChat
+                    messages={messages}
+                    user={{
+                        _id: user.id,
+                    }}
+                    alwaysShowSend={true}
+                    onSend={(values) => sendMessage(values, room.id)}
+                    renderChatFooter={() =>
+                        <BottomNavigation
+                            style={{ elevation: 0 }}
+                            onTabPress={() => console.log}
+                            renderTab={this.renderTab}
+                            tabs={this.tabs()}
+                            onTabPress={this.handleTabPress}
+                            defaultTab={'restaurant'}
+                            activeTab={'restaurant'}
+                        />
+                    }
+                />
+                {this.state.selectedRestaurantModal && <SelectedRestaurantModal restaurant_info={this.props.restaurant_info} googlePlacesId={room.selectedRestaurant} />}
                 {this.renderVotingModal()}
+                {this.state.roomInfoModal && <RoomInfoModal room={room} onRequestClose={()=>this.setState({roomInfoModal: false})}/>}
             </View>
 
         );

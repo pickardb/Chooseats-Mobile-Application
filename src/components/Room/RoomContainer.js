@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getMessages, addNewMessage } from '../../actions/messages';
+import { getMessages, addNewMessage, sendMessage2 } from '../../actions/messages';
 import { clearVotingState, startVoting, updateVotingState } from '../../actions/voting';
 import { getRoomRestaurants } from '../../actions/restaurants';
 import { getRooms } from '../../actions/rooms'
@@ -13,7 +13,7 @@ import { ActionConst } from 'react-native-router-flux';
 class RoomContainer extends React.Component {
     constructor(props) {
         super(props);
-        const { _addNewMessage, _updateVotingState, rooms } = this.props;
+        const { _addNewMessage, _updateVotingState,_getMessages, rooms } = this.props;
 
         const callback = (message, context) => {
             _addNewMessage(message);
@@ -31,6 +31,8 @@ class RoomContainer extends React.Component {
 
         const restaurantCallback = () => {
             console.log("Restaurant Added");
+            this.props._getRooms();
+            //_getMessages(rooms.currentRoomId);
             this.props._getRestaurants(rooms.currentRoomId);
         }
         feathersClient.service('restaurants').on('created', restaurantCallback);
@@ -54,9 +56,9 @@ class RoomContainer extends React.Component {
     }
 
     render() {
-        const { room, messages, restaurant_info, restaurants, rooms, index } = this.props;
+        const { user, messages, restaurant_info, _sendMessage2, rooms, index } = this.props;
 
-        return (<RoomComponent restaurant_info={restaurant_info} startVoting={this.props._startVoting} getRooms={this.props._getRooms} room={rooms.data[index]} messages={messages} roomState={this.props.roomState} />);
+        return (<RoomComponent sendMessage={_sendMessage2} user={user} restaurant_info={restaurant_info} startVoting={this.props._startVoting} getRooms={this.props._getRooms} room={rooms.data[index]} messages={messages} roomState={this.props.roomState} />);
     }
 }
 
@@ -68,10 +70,12 @@ const mapStatetoProps = (state) => {
         roomState: state.voting.votingState,
         restaurant_info: state.restaurants.restaurant_info,
         rooms: state.rooms,
+        user: state.user
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+    _sendMessage2: (values, roomId) => dispatch(sendMessage2(values, roomId)),
     _getMessages: (roomId) => dispatch(getMessages(roomId)),
     _addNewMessage: (message) => dispatch(addNewMessage(message)),
     _getRestaurants: (roomId) => dispatch(getRoomRestaurants(roomId)),

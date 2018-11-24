@@ -30,6 +30,7 @@ class RoomCreate extends Component {
 
     componentWillUnmount() {
         this.props._nukeRoom();
+        this.props._getRooms();
         Actions.refresh({ key: 'roomList' });
     }
 

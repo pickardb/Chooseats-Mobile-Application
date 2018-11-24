@@ -40,7 +40,7 @@ export const submitReadyService = (room) =>
                 type: votingTypes.SUBMIT_READY,
                 payload: readyService.create({ roomId: room.id })
             })
-            Actions.pop();
+            //Actions.pop();
         }
         catch (err) {
             console.log("Problem with readyService");

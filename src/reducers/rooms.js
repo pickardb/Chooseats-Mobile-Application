@@ -8,7 +8,7 @@ const initalState = {
     joinRoomCode: '',
     newRoomName: '',
     newRoomDesc: '',
-    newRoomMax: '1',
+    newRoomMax: '4',
     newRoomVote: 'vote',
 }
 
@@ -49,7 +49,7 @@ const roomsReducer = (state = initalState, action) => {
                 joinRoomCode: '',
                 newRoomName: '',
                 newRoomDesc: '',
-                newRoomMax: '1',
+                newRoomMax: '4',
                 newRoomVote: 'vote'
             };
         default:

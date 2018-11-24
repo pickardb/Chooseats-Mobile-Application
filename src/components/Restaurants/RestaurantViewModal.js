@@ -65,6 +65,7 @@ export default connect(mapStatetoProps, mapDispatchToProps)(RestaurantViewModal)
 
 const styles = {
     modalStyle: {
+        padding: '10px',
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',

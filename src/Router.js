@@ -74,10 +74,6 @@ const RouterComponent = () => {
                         key="roomContainer"
                         component={RoomContainer}
                         title="Chat"
-                        rightTitle="Restaurants"
-                        onRight={() =>
-                            Actions.restaurantContainer()
-                        }
                         onBack={() =>
                             Actions.refresh({ key: "roomList" })
                         }

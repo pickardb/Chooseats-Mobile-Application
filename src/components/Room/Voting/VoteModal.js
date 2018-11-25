@@ -29,7 +29,7 @@ class VoteModal extends Component {
     }
 
     onSubmitPress() {
-        if (this.props.chosen) {
+        if (this.props.chosen!='') {
             this.setState({ showModal: false });
             this.setState({ error: '' });
             this.props._submitVote(this.props.chosen, this.props.currentRoom);
@@ -52,7 +52,7 @@ class VoteModal extends Component {
         if (this.state.error) {
             return (
 
-                <CardSection>
+                <CardSection style={styles.cardStyle}>
                     <Text
                         style={{
                             color: "#F11",
@@ -76,18 +76,19 @@ class VoteModal extends Component {
                 onRequestClose={() => { this.setState({ showModal: false }) }}
             >
                 <View style={styles.modalStyle}>
-                    <Card>
-                        <CardSection>
-                            <Text>
+                    <Card style={styles.cardStyle}>
+                        <CardSection style={styles.cardStyle}>
+                            <Text style={styles.textStyle}>
                                 Please Select an Item
                         </Text>
                         </CardSection>
-                        <CardSection>
+                        <CardSection style={styles.cardStyle}>
                             <ScrollView >
                                 {this.renderItems(this.props.restaurants, this.props.restaurant_info)}
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}
+                                    buttonStyle={styles.submitStyle}
                                 />
                             </ScrollView>
                         </CardSection>
@@ -123,6 +124,19 @@ const styles = {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-    }
+    },
+    cardStyle: {
+        borderRadius: 4,
+    },
+    textStyle: {
+        fontSize: 21,
+        color: "#000",
+        flex: 1,
+        flexDirection: "row",
+    },
+    submitStyle: {
+        backgroundColor: "#c67f00",
+        marginBottom: 5,
+    },
 };
 

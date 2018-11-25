@@ -51,7 +51,7 @@ const votingReducer = (state=INITIAL_STATE, action) => {
                 return state
             }
         case types.CLEAR_VOTING_STATE: 
-            return{...state, restaurant_info: {}, restaurants: {data: []} }
+            return{...state, choice: '', restaurant_info: {}, restaurants: {data: []} }
         
         case types.START_VOTE:
             return {...state, voteSubmitted: false};

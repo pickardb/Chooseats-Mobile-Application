@@ -63,12 +63,12 @@ export default connect(mapStatetoProps, { chooseVote })(VoteModalItem);
 const styles = {
     buttonStyle: {
         marginVertical: 5,
-        backgroundColor: '#00f',
+        backgroundColor: '#ffb839',
         borderColor: '#000',
     },
     chosenButtonStyle: {
         marginVertical: 5,
-        backgroundColor: '#f00',
+        backgroundColor: '#388E3C',
         borderColor: '#fff',
     }
 };

@@ -70,12 +70,6 @@ export const submitVote = (choice, room) =>
     };
 
 export const submitRankedVote = (rankedChoices, restaurants, currentRoom) => async (dispatch) => {
-    /*console.log("rankedChoices is: ");
-    console.log(rankedChoices);
-    console.log("restaurant_info is: ");
-    console.log(restaurants);
-    console.log("room is: ");
-    console.log(currentRoom);*/
     const readyService = feathersClient.service('ready');
     //For each restaurant being voted on
     for (var i = 0; i < rankedChoices.length; i++) {
@@ -102,8 +96,8 @@ export const submitRankedVote = (rankedChoices, restaurants, currentRoom) => asy
         }
     }
     return {
-        type: votingTypes.RANKED_SUBMIT_VOTE,
-        payload: ''
+        type: votingTypes.SUBMIT_READY,
+        payload: readyService.create({ roomId: currentRoom.id })
     };
 
 };

@@ -62,7 +62,7 @@ class RankedVoteModal extends Component {
             this.setState({ showModal: false });
             this.setState({ error: '' });
             this.props._submitRankedVote(this.props.rankedChoices, this.props.restaurants, this.props.currentRoom);
-            this.props._submitReadyService(this.props.currentRoom);
+            //this.props._submitReadyService(this.props.currentRoom);
         }
     }
 

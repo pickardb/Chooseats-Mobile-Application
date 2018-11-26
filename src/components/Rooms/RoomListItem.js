@@ -9,7 +9,24 @@ class RoomListItem extends Component {
     onRowPress() {
         const { index, room, room: { roomCode, roomName }, setCurrentRoomHandler } = this.props;
         setCurrentRoomHandler();
-        Actions.roomContainer({ room, title: roomName, index:index});
+        Actions.roomContainer({ room, title: roomName, index: index });
+    }
+
+    renderLogo() {
+        if (this.props.room.roomState == "voting") {
+            return (
+                <Text style={Styles.logoStlye}>
+                    V
+                </Text>
+            );
+        }
+        else if (this.props.room.roomState == "done") {
+            return (
+                <Text style={Styles.logoStlye}>
+                    F
+                </Text>
+            );
+        }
     }
 
     render() {
@@ -18,12 +35,15 @@ class RoomListItem extends Component {
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>
                     <CardSection style={Styles.itemStyle}>
-                        <Text style={Styles.titleStyle}>
-                            {roomName}
-                        </Text>
-                        <Text style={Styles.idStyle}>
-                            {roomCode}
-                        </Text>
+                        <View style={Styles.containerStyle}>
+                            <Text style={Styles.titleStyle}>
+                                {roomName}
+                            </Text>
+                            <Text style={Styles.idStyle}>
+                                {roomCode}
+                            </Text>
+                        </View>
+                        {this.renderLogo()}
                     </CardSection>
                 </View>
             </TouchableWithoutFeedback>
@@ -45,7 +65,16 @@ const Styles = {
     },
     itemStyle: {
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: 'row',
         opacity: 0.8,
+    },
+    containerStyle: {
+        flex: 9,
+        flexDirection: 'column',
+    },
+    logoStlye: {
+        flex: 1,
+        fontSize: 32,
+        color: '#000',
     },
 };

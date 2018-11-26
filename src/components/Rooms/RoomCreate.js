@@ -117,6 +117,10 @@ class RoomCreate extends Component {
                                 <Picker.Item label="6" value="6" />
                                 <Picker.Item label="7" value="7" />
                                 <Picker.Item label="8" value="8" />
+                                <Picker.Item label="9" value="9" />
+                                <Picker.Item label="10" value="10" />
+                                <Picker.Item label="11" value="11" />
+                                <Picker.Item label="12" value="12" />
                             </Picker>
                         </CardSection>
                         <CardSection style={styles.pickerSectionStyle}>

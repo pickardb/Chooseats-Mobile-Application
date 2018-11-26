@@ -62,7 +62,6 @@ class RankedVoteModal extends Component {
             this.setState({ showModal: false });
             this.setState({ error: '' });
             this.props._submitRankedVote(this.props.rankedChoices, this.props.restaurants, this.props.currentRoom);
-            //this.props._submitReadyService(this.props.currentRoom);
         }
     }
 
@@ -96,9 +95,9 @@ class RankedVoteModal extends Component {
                 <View style={styles.modalStyle}>
                     <Card>
                         <CardSection>
-                            <Text>
-                                Please Select an Item
-                        </Text>
+                            <Text style={styles.textStyle}>
+                                Please Rank your Choices
+                            </Text>
                         </CardSection>
                         <CardSection>
                             <ScrollView >
@@ -106,10 +105,7 @@ class RankedVoteModal extends Component {
                                 <Button
                                     large title='Submit Vote'
                                     onPress={this.onSubmitPress.bind(this)}
-                                    buttonStyle={{
-                                        marginVertical: 10,
-                                        elevation: 8
-                                    }}
+                                    buttonStyle={styles.submitStyle}
                                 />
                             </ScrollView>
                         </CardSection>
@@ -145,6 +141,17 @@ const styles = {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-    }
+    },
+    textStyle: {
+        fontSize: 20,
+        color: "#000",
+        flex: 3
+    },
+    submitStyle: {
+        backgroundColor: "#c67f00",
+        marginBottom: 5,
+        marginVertical: 10,
+        elevation: 8,
+    },
 };
 

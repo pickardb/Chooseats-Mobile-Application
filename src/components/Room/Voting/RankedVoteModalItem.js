@@ -27,7 +27,7 @@ class RankedVoteModalItem extends Component {
 
     render() {
         return (
-                <CardSection style={{ flexDirection: 'row' }}>
+                <CardSection style={styles.containerStyle}>
                     <Picker
                         selectedValue={this.state.selectedDropDownValue}
                         onValueChange={(itemValue) => {
@@ -39,7 +39,7 @@ class RankedVoteModalItem extends Component {
                     >
                         {this.createPickerItems()}
                     </Picker>
-                    <Text style={{ flex: 3 }}>
+                    <Text style={styles.textStyle}>
                         {this.props.item.name}
                     </Text>
                 </CardSection>
@@ -56,14 +56,15 @@ const mapStatetoProps = (state) => {
 export default connect(mapStatetoProps, { chooseVote, rankedUpdate })(RankedVoteModalItem);
 
 const styles = {
-    buttonStyle: {
-        marginVertical: 5,
-        backgroundColor: '#00f',
-        borderColor: '#000',
+    containerStyle: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    chosenButtonStyle: {
-        marginVertical: 5,
-        backgroundColor: '#f00',
-        borderColor: '#fff',
-    }
+    textStyle: {
+        fontSize:20,
+        color: "#000",
+        flex: 3
+    },
 };

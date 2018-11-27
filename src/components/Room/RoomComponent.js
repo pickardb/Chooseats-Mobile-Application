@@ -132,10 +132,10 @@ export default class RoomContainer extends React.Component {
                 Actions.restaurantContainer();
                 break;
             case 'info':
-                this.setState({roomInfoModal: true})
-                break;    
+                this.setState({ roomInfoModal: true })
+                break;
             case 'selected':
-                this.setState({selectedRestaurantModal: true});
+                this.setState({ selectedRestaurantModal: true });
                 break;
             case 'vote':
                 this.onButtonPress.bind(this)();
@@ -168,9 +168,9 @@ export default class RoomContainer extends React.Component {
                         />
                     }
                 />
-                {this.state.selectedRestaurantModal && <SelectedRestaurantModal restaurant_info={this.props.restaurant_info} googlePlacesId={room.selectedRestaurant} />}
+                {this.state.selectedRestaurantModal && <SelectedRestaurantModal restaurant_info={this.props.restaurant_info} googlePlacesId={room.selectedRestaurant} onRequestClose={() => this.setState({ selectedRestaurantModal: false })} />}
                 {this.renderVotingModal()}
-                {this.state.roomInfoModal && <RoomInfoModal room={room} onRequestClose={()=>this.setState({roomInfoModal: false})}/>}
+                {this.state.roomInfoModal && <RoomInfoModal room={room} onRequestClose={() => this.setState({ roomInfoModal: false })} />}
             </View>
 
         );

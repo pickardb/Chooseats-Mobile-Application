@@ -25,12 +25,12 @@ class SelectedRestaurantModal extends Component {
     }
 
     render() {
-        const { restaurant_info, googlePlacesId } = this.props;
+        const { restaurant_info, googlePlacesId, onRequestClose } = this.props;
 
         return (
             <Modal
                 isVisible={this.state.showModal}
-                onBackButtonPress={() => { this.setState({ showModal: false }) }}
+                onBackButtonPress={onRequestClose}
                 hideModalContentWhileAnimating={true}
             >
                 {restaurant_info[googlePlacesId] && restaurant_info[googlePlacesId].additionalInfo &&
@@ -57,7 +57,7 @@ class SelectedRestaurantModal extends Component {
                                 backgroundColor='#ffb839'
                                 buttonStyle={{ borderRadius: 0, marginTop: 10, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                                 title="Let's Go!"
-                                onPress={() => this.setState({ showModal: false })}
+                                onPress={onRequestClose}
                             />
                         </Card>
                     </View>}

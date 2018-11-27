@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Card, CardSection, Input } from '../common';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import { updateJoinRoomCode, joinRoom } from '../../actions/rooms';
+import { updateJoinRoomCode, joinRoom, getRooms } from '../../actions/rooms';
 import { TextField } from '../../utils/form_components';
 import { Field } from 'redux-form';
 
@@ -38,6 +38,7 @@ const styles = {
 
 class RoomJoin extends Component {
     componentWillUnmount() {
+        this.props._getRooms();
         Actions.refresh({ key: 'roomList' });
     }
 
@@ -86,7 +87,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     _joinRoom: (roomCode) => dispatch(joinRoom(roomCode)),
-    _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
+    _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text)),
+    _getRooms: () => dispatch(getRooms()),
 });
 
 

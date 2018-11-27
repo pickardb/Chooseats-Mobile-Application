@@ -42,7 +42,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case types.REMOVE_LOCAL_MESSAGE:
             return { ...state, localMessages: state.localMessages.filter((message) => message.id !== action.payload) };
         case types.ADD_NEW_MESSAGE_FROM_SERVER:
-            var messages = state.messages;
+            var messages = [...state.messages];
             const system = action.payload.type === "system" ? true : false;
             const formattedMessage = {
                 _id: action.payload.id.toString(),
@@ -55,7 +55,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 }
 
             }
-      
+
             messages.unshift(formattedMessage);
             return { ...state, messages };
 

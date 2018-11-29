@@ -33,11 +33,12 @@ const container = ({ error, handleSubmit }) => (
     />
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 });
 
 SignupFormContainer = reduxForm({
     form: 'SignUp',
+    validate
 })(container);
 
 export default connect(mapStateToProps)(SignupFormContainer);

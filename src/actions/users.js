@@ -56,7 +56,6 @@ export const signupUser = async (values, dispatch) => {
     }
 };
 
-
 export const authenticateUser = (accessToken) => async (dispatch) => {
     try {
         await dispatch({

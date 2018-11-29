@@ -48,9 +48,16 @@ class CheckAuthentication extends React.Component {
 
     render() {
         return (
-            <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
+            <ImageBackground 
+                resizeMode='cover' 
+                style={styles.container} 
+                source={backgroundImage} 
+                accessibilityLabel="checkAuthentication-background">
                 <Animatable.View animation="slideInLeft">
-                    <Button buttonStyle={{ marginVertical: 5, backgroundColor: '#9b6400' }} large title='Go' onPress={this.go} />
+                    <Button 
+                        buttonStyle={{ marginVertical: 5, backgroundColor: '#9b6400' }} 
+                        large title='Go' onPress={this.go} 
+                        accessibilityLabel="checkAuthentication-button-go"/>
                 </Animatable.View>
             </ImageBackground>
         );

@@ -22,7 +22,14 @@ export const getRooms = async (dispatch) => {
     }
 };
 
-export const createRoom = (newRoomName, newRoomDesc) => async (dispatch) => {
+export const nukeRoom = () => {
+    return {
+        type: roomTypes.NUKE_ROOM,
+        payload: null
+    };
+}
+
+export const createRoom = (newRoomName, newRoomDesc, newRoomVote, newRoomMax) => async (dispatch) => {
     console.log("Create room values:" + newRoomName + " " + newRoomDesc);
     console.log("dispatch: " + dispatch);
     try {
@@ -30,7 +37,9 @@ export const createRoom = (newRoomName, newRoomDesc) => async (dispatch) => {
             type: roomTypes.CREATE_ROOM,
             payload: roomsService.create({
                 roomName: newRoomName,
-                roomDesc: newRoomDesc
+                roomDesc: newRoomDesc,
+                roomType: newRoomVote,
+                roomMax: newRoomMax,
             })
         });
     } catch (err) {
@@ -74,6 +83,19 @@ export const updateNewRoomDesc = (text) => {
     });
 };
 
+export const updateNewRoomMax = (text) => {
+    return ({
+        type: roomTypes.NEW_ROOM_MAX,
+        payload: text
+    });
+};
+
+export const updateNewRoomVote = (text) => {
+    return ({
+        type: roomTypes.NEW_ROOM_VOTE,
+        payload: text
+    });
+};
 export const setCurrentRoom = (id) => {
     return ({
         type: roomTypes.SET_CURRENT_ROOM,

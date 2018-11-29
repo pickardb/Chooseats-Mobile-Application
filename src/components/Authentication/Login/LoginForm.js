@@ -40,6 +40,7 @@ const LoginForm = ({ handleSubmit, onSubmit, isLoggingIn }) => (
                     }}
                     large title='Login'
                     onPress={handleSubmit(onSubmit)}
+                    accessibilityLabel="logIn-buton"
                 />}
         
     </View >

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Card, CardSection, Input } from '../common';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import { updateJoinRoomCode, joinRoom } from '../../actions/rooms';
+import { updateJoinRoomCode, joinRoom, getRooms } from '../../actions/rooms';
 import { TextField } from '../../utils/form_components';
 import { Field } from 'redux-form';
 
@@ -38,6 +38,7 @@ const styles = {
 
 class RoomJoin extends Component {
     componentWillUnmount() {
+        this.props._getRooms();
         Actions.refresh({ key: 'roomList' });
     }
 
@@ -46,21 +47,21 @@ class RoomJoin extends Component {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
 
-                <View>
-                    <Card style={styles.textContainerStyle}>
-                        <CardSection>
-                            <Text style={styles.subtitleTextStyle}>
-                                Enter the room code:
+            <View>
+                <Card style={styles.textContainerStyle}>
+                    <CardSection style={styles.cardSectionStyle}>
+                        <Text style={styles.subtitleTextStyle}>
+                            Enter the room code:
                         </Text>
-                        </CardSection>
-                        <CardSection>
-                            <Field
-                                name="roomCode"
-                                placeholder="ABC123"
-                                label="Room Code:"
-                                component={TextField}
-                            />
-                        </CardSection>
+                    </CardSection>
+                    <CardSection style={styles.cardSectionStyle}>
+                        <Field
+                            name="roomCode"
+                            placeholder="ABC123"
+                            label="Room Code:"
+                            component={TextField}
+                        />
+                    </CardSection>
                     </Card>
                     <Button
                         buttonStyle={{
@@ -86,7 +87,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     _joinRoom: (roomCode) => dispatch(joinRoom(roomCode)),
-    _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text))
+    _updateJoinRoomCode: (text) => dispatch(updateJoinRoomCode(text)),
+    _getRooms: () => dispatch(getRooms()),
 });
 
 

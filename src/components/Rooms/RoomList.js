@@ -6,6 +6,7 @@ import { Button } from 'react-native-elements';
 import RoomListItem from './RoomListItem';
 import { getRooms, setCurrentRoom } from '../../actions/rooms';
 import { Actions } from 'react-native-router-flux';
+import RoomListActionButton from './RoomListActionButton'
 
 const backgroundImage = require('./assets/Chooseats_Logo_Tall_Bottom.png');
 
@@ -13,9 +14,7 @@ const styles = {
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'flex-start',
-        padding: 10,
-        paddingBottom: 25,
+        justifyContent: 'flex-start'
     },
 };
 
@@ -23,12 +22,19 @@ class RoomList extends Component {
     componentWillMount() {
         this.props._getRooms();
         Actions.refresh({ key: 'roomList' });
+        console.log(this.props);
     }
 
     renderRooms(rooms) {
         if (rooms.data != null) {
-            return rooms.data.map((room) =>
-                <RoomListItem key={room.id} room={room} setCurrentRoomHandler={() => this.props._setCurrentRoom(room.id)} />);
+            return rooms.data.map((room, index) =>
+                <RoomListItem
+                    key={room.id}
+                    room={room}
+                    setCurrentRoomHandler={() => this.props._setCurrentRoom(room.id)}
+                    accessibilityLabel={room.roomCode}
+                    index={index}
+                />);
         }
     }
 
@@ -38,18 +44,9 @@ class RoomList extends Component {
         return (
             <ImageBackground resizeMode='cover' style={styles.container} source={backgroundImage}>
                 <ScrollView>
-                    <Button
-                        buttonStyle={{
-                            marginVertical: 10,
-                            backgroundColor: '#c67f00',
-                            elevation: 5
-                        }}
-                        large title='Join a New Room'
-                        onPress={Actions.roomJoin}
-                    />
                     {this.renderRooms(rooms)}
-
                 </ScrollView>
+                <RoomListActionButton />
             </ImageBackground>
         );
     }

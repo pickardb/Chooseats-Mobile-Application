@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         borderColor: '#444',
         borderRadius: 2,
         marginLeft: 5,
-        marginRight: 5
+        marginRight: 5,
+        marginVertical: 5,
     }
 });
 

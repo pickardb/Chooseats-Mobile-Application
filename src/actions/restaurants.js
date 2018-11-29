@@ -1,11 +1,12 @@
 import RNGooglePlaces from 'react-native-google-places';
+import axios from 'axios';
 
 import feathersClient from '../feathers/index';
 import restaurantTypes from '../types/restaurants';
 
 const restaurantsService = feathersClient.service('restaurants');
 
-export const setSelectedRestaurant = restaurant => dispatch => ({
+export const setSelectedRestaurant = restaurant => ({
     type: restaurantTypes.RESTAURANT_SELECTED,
     payload: restaurant
 });
@@ -25,10 +26,15 @@ export const addRestaurant = (roomId, google_places_id) => async dispatch => {
     }
 }
 
-export const getRestaurantInformation = (id) => dispatch => {
-    return dispatch({
+export const getRestaurantInformation = (id) => async dispatch => {
+    await dispatch({
         type: restaurantTypes.GET_GOOGLE_RESTAURANT_INFO,
         payload: RNGooglePlaces.lookUpPlaceByID(id)
+    });
+
+    return dispatch({
+        type: restaurantTypes.GET_GOOGLE_ADDITIONAL_RESTAURANT_INFO,
+        payload: axios.get('https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyDPby2X44nOJt8mF3VAriIIwHETjtIIwKM&placeid=' + id)
     });
 }
 
@@ -53,3 +59,4 @@ export const getRoomRestaurants = (roomId) => dispatch => {
         payload: getRestaurants(roomId, dispatch)
     })
 }
+

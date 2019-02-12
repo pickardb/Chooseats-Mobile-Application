@@ -22,7 +22,8 @@ Getting up and running is as easy as 1, 2, 3 and 4.
 
 3. Make sure you have an android emulator running
 
-4. 
+4.  Start the app on your emulator
+
     ```
     react-native run-android
     ```
